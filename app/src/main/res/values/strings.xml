@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AndroidStudyApp</string>
+    <string name="name_button_favourites">ИЗБРАННОЕ</string>
+    <string name="name_button_category">КАТЕГОРИИ</string>
 </resources>
