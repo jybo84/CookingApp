@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
-    tools:context=".MainActivity"  >
+    android:background="@color/color_background"
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -22,26 +22,22 @@
         <Button
             style="@style/StyleTitle14"
             android:layout_width="match_parent"
-            android:layout_height="36dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
             android:layout_weight="1"
             android:backgroundTint="@color/color_button_category"
             android:text="@string/name_button_category" />
 
-
-        <com.google.android.material.button.MaterialButton
+        <Button
             style="@style/StyleTitle14"
             android:layout_width="match_parent"
-            android:layout_height="36dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_weight="1"
             android:backgroundTint="@color/color_button_favourites"
-            android:gravity="center_horizontal"
             android:text="@string/name_button_favourites"
             app:icon="@drawable/ic_heart_empty"
-            app:iconGravity="textEnd">
-
-        </com.google.android.material.button.MaterialButton>
+            app:iconGravity="textEnd" />
 
     </LinearLayout>
 

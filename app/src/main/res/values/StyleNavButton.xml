@@ -5,6 +5,7 @@
         <item name="android:paddingVertical">10dp</item>
         <item name="android:paddingStart">20dp</item>
         <item name="android:paddingEnd">24dp</item>
+        <item name="textAllCaps">true</item>
 
     </style>
 </resources>

@@ -3,8 +3,14 @@
     <style name="Base.Theme.AndroidStudyApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="android:statusBarColor">@color/background_color</item>
+        <item name="android:statusBarColor">@color/color_background</item>
         <item name="android:windowLightStatusBar">true</item>
+
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:navigationBarColor">@color/color_background</item>
+        <!--        <item name="android:navigationBarDividerColor">@android:color/holo_orange_dark</item>-->
+        <!--        <item name="android:windowTranslucentNavigation">true</item>-->
+
     </style>
 
     <style name="Theme.AndroidStudyApp" parent="Base.Theme.AndroidStudyApp" />
