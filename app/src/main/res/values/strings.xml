@@ -2,5 +2,5 @@
     <string name="app_name">AndroidStudyApp</string>
     <string name="name_button_favourites">избранное</string>
     <string name="name_button_category">категории</string>
-    <string name="iv_picture">iv_picture</string>
+
 </resources>

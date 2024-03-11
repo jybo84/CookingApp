@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            style="@style/StyleTitle14"
+            style="@style/StyleNavButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
@@ -29,7 +29,7 @@
             android:text="@string/name_button_category" />
 
         <Button
-            style="@style/StyleTitle14"
+            style="@style/StyleNavButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"

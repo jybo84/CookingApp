@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="StyleNavButton" parent="Widget.Material3.Button">
-        <item name="cornerRadius">8dp</item>
+        <item name="android:textAppearance">@style/StyleTitle14</item>
         <item name="android:paddingVertical">10dp</item>
-        <item name="android:paddingStart">20dp</item>
-        <item name="android:paddingEnd">24dp</item>
-        <item name="textAllCaps">true</item>
+        <item name="cornerRadius">8dp</item>
 
     </style>
 </resources>
