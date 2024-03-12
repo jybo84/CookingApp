@@ -37,8 +37,55 @@
             android:backgroundTint="@color/color_button_favourites"
             android:text="@string/name_button_favourites"
             app:icon="@drawable/ic_heart_empty"
-            app:iconGravity="textEnd" />
+            app:iconGravity="textEnd"
+            android:fontFamily="@font/zcool_kuaile"
+            />
+
 
     </LinearLayout>
+
+    <Button
+        android:layout_width="225dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/zcool_kuaile"
+        android:text="Привет"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:layout_width="225dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="150dp"
+        android:fontFamily="@font/montserrat_alternates_semibold"
+        android:text="Привет"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:layout_width="225dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="250dp"
+        android:fontFamily="@font/montserrat_alternates"
+        android:text="Привет"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:layout_width="225dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="350dp"
+        android:fontFamily="@font/diplomata_sc"
+        android:text="Привет"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
