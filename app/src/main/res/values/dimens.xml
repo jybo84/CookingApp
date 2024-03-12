@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size">16sp</dimen>
+    <dimen name="corner_radius">8dp</dimen>
+    <dimen name="button_padding_vertical">10dp</dimen>
+    <dimen name="button_padding_horizontal">20dp</dimen>
+    <dimen name="linear_layout_margin_horizontal">16dp</dimen>
+    <dimen name="linear_layout_margin_bottom">0dp</dimen>
+    <dimen name="button_layout_margin_endEnd">2dp</dimen>
+    <dimen name="button_layout_margin_start">2dp</dimen>
+
+</resources>

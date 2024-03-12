@@ -12,8 +12,8 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginHorizontal="@dimen/linear_layout_margin_horizontal"
+        android:layout_marginBottom="@dimen/linear_layout_margin_bottom"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
             style="@style/StyleNavButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
+            android:layout_marginEnd="@dimen/button_layout_margin_endEnd"
             android:layout_weight="1"
             android:backgroundTint="@color/color_button_category"
             android:text="@string/name_button_category" />
@@ -32,60 +32,13 @@
             style="@style/StyleNavButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="@dimen/button_layout_margin_start"
             android:layout_weight="1"
             android:backgroundTint="@color/color_button_favourites"
             android:text="@string/name_button_favourites"
             app:icon="@drawable/ic_heart_empty"
-            app:iconGravity="textEnd"
-            android:fontFamily="@font/zcool_kuaile"
-            />
-
+            app:iconGravity="textEnd" />
 
     </LinearLayout>
-
-    <Button
-        android:layout_width="225dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/zcool_kuaile"
-        android:text="Привет"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:layout_width="225dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="150dp"
-        android:fontFamily="@font/montserrat_alternates_semibold"
-        android:text="Привет"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:layout_width="225dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="250dp"
-        android:fontFamily="@font/montserrat_alternates"
-        android:text="Привет"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:layout_width="225dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="350dp"
-        android:fontFamily="@font/diplomata_sc"
-        android:text="Привет"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
