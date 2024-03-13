@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        fragmentTransaction = supportFragmentManager.beginTransaction();
+        fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.mainContainer, CategoriesListFragment()).commit()
     }
 }
