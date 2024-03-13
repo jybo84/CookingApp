@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    tools:context=".CategoriesListFragment">
+
+    <TextView
+        style="@style/StyleTopRectangle"
+        android:layout_width="@dimen/text_view_width"
+        android:layout_height="@dimen/text_view_height"
+        android:background="@drawable/shape_rectangle_top"
+        android:text="@string/text__top_rectangle_category" />
+
+</FrameLayout>

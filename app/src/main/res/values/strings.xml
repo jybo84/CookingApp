@@ -2,5 +2,8 @@
     <string name="app_name">AndroidStudyApp</string>
     <string name="name_button_favourites">избранное</string>
     <string name="name_button_category">категории</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text__top_rectangle_category">категории</string>
 
 </resources>
