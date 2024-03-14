@@ -12,8 +12,7 @@
         android:id="@+id/mainContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="@dimen/fragment_container_margin_bottom"
-        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,17 +29,19 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:id="@+id/button_category"
+            android:id="@+id/buttonCategory"
             style="@style/StyleNavButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/button_layout_margin_endEnd"
             android:layout_weight="1"
             android:backgroundTint="@color/color_button_category"
-            android:text="@string/name_button_category" />
+            android:text="@string/name_button_category"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
         <Button
-            android:id="@+id/button_favourites"
+            android:id="@+id/buttonFavourites"
             style="@style/StyleNavButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,6 +49,8 @@
             android:layout_weight="1"
             android:backgroundTint="@color/color_button_favourites"
             android:text="@string/name_button_favourites"
+            android:textColor="@color/white"
+            android:textSize="16sp"
             app:icon="@drawable/ic_heart_empty"
             app:iconGravity="textEnd" />
 

@@ -11,27 +11,19 @@
 
     <style name="StyleTitle14" parent="TextAppearance.AppCompat">
         <item name="fontFamily">@font/montserrat_alternates_semi_bold</item>
-        <item name="android:textSize">@dimen/text_size</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="StyleTopRectangle" parent="Widget.AppCompat.TextView">
+        <item name="android:background">@color/color_background</item>
         <item name="cornerRadius">@dimen/corner_radius</item>
+        <item name="android:layout_marginStart">@dimen/text_view_margin_start</item>
         <item name="android:paddingTop">10dp</item>
         <item name="android:paddingBottom">10dp</item>
         <item name="android:paddingLeft">10dp</item>
-        <item name="android:textAppearance">@style/StyleTextRectangle</item>
-        <item name="android:layout_marginStart">@dimen/text_view_margin_start</item>
-        <item name="android:layout_marginTop">@dimen/text_view_margin_top</item>
-        <item name="android:layout_marginEnd">@dimen/text_view_margin_end</item>
-    </style>
-
-    <style name="StyleTextRectangle" parent="TextAppearance.AppCompat">
-        <item name="fontFamily">@font/montserrat_alternates_semi_bold</item>
-        <item name="textAllCaps">true</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textAppearance">@style/StyleTitle14</item>
         <item name="android:textColor">@color/color_text_top_rectangle</item>
+        <item name="android:textSize">@dimen/text_size_rectangle_top</item>
     </style>
 
 </resources>

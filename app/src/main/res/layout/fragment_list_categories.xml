@@ -8,9 +8,12 @@
 
     <TextView
         style="@style/StyleTopRectangle"
-        android:layout_width="@dimen/text_view_width"
-        android:layout_height="@dimen/text_view_height"
-        android:background="@drawable/shape_rectangle_top"
-        android:text="@string/text__top_rectangle_category" />
+        android:layout_width="149dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="164dp"
+        android:text="@string/text_top_rectangle_category" />
 
 </FrameLayout>
+
+
+

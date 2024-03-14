@@ -8,11 +8,6 @@
     <dimen name="linear_layout_margin_bottom">0dp</dimen>
     <dimen name="button_layout_margin_endEnd">2dp</dimen>
     <dimen name="button_layout_margin_start">2dp</dimen>
-    <dimen name="fragment_container_margin_bottom">497dp</dimen>
-    <dimen name="text_view_width">149dp</dimen>
-    <dimen name="text_view_height">44dp</dimen>
     <dimen name="text_view_margin_start">16dp</dimen>
-    <dimen name="text_view_margin_top">164dp</dimen>
-    <dimen name="text_view_margin_end">195dp</dimen>
-
+    <dimen name="text_size_rectangle_top">20sp</dimen>
 </resources>
