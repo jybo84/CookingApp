@@ -9,14 +9,13 @@ import com.example.androidstudyapp.databinding.FragmentListCategoriesBinding
 
 class CategoriesListFragment : Fragment() {
 
-    private var binding: FragmentListCategoriesBinding? = null
+    private val binding by lazy { FragmentListCategoriesBinding.inflate(layoutInflater) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        binding = FragmentListCategoriesBinding.inflate(inflater, container, false)
-        return binding?.root
+        return binding.root
     }
 }
