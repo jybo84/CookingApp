@@ -33,19 +33,19 @@
             style="@style/StyleNavButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/button_layout_margin_endEnd"
+            android:layout_marginEnd="2dp"
             android:layout_weight="1"
             android:backgroundTint="@color/color_button_category"
             android:text="@string/name_button_category"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            />
 
         <Button
             android:id="@+id/buttonFavourites"
             style="@style/StyleNavButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/button_layout_margin_start"
+            android:layout_marginStart="2dp"
             android:layout_weight="1"
             android:backgroundTint="@color/color_button_favourites"
             android:text="@string/name_button_favourites"
