@@ -45,7 +45,7 @@
             style="@style/StyleNavButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="@dimen/button_favourites_margin_start"
             android:layout_weight="1"
             android:backgroundTint="@color/color_button_favourites"
             android:text="@string/name_button_favourites"
