@@ -11,7 +11,7 @@
         android:layout_width="149dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="164dp"
-        android:text="@string/text_top_rectangle_category" />
+        android:text="@string/title_categories" />
 
 </FrameLayout>
 
