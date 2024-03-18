@@ -1,6 +1,5 @@
 package com.example.androidstudyapp
 
-
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -8,7 +7,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.add
-import androidx.fragment.app.replace
 import com.example.androidstudyapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -40,15 +38,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             addToBackStack(null)
         }
     }
-
-    //TODO метод всегда возвращает FavouritesFragment, т.е. код под конкретную кнопку
-    // TODO чтобы не дублировать метод пользуемся первым вариантом
-    private fun changeFragment2(fragment: Fragment) {
-        supportFragmentManager.commit {
-            replace<FavouritesFragment>(R.id.mainContainer) //
-            setReorderingAllowed(true)
-            addToBackStack(null)
-        }
-    }
 }
+
 
