@@ -35,7 +35,17 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private fun changeFragment(fragment: Fragment) {
         supportFragmentManager.commit {
-            replace<FavouritesFragment>(R.id.mainContainer)
+            replace(R.id.mainContainer, fragment)
+            setReorderingAllowed(true)
+            addToBackStack(null)
+        }
+    }
+
+    //TODO метод всегда возвращает FavouritesFragment, т.е. код под конкретную кнопку
+    // TODO чтобы не дублировать метод пользуемся первым вариантом
+    private fun changeFragment2(fragment: Fragment) {
+        supportFragmentManager.commit {
+            replace<FavouritesFragment>(R.id.mainContainer) //
             setReorderingAllowed(true)
             addToBackStack(null)
         }
