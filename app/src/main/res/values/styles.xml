@@ -2,7 +2,7 @@
 <resources>
 
     <style name="StyleNavButton" parent="Widget.Material3.Button">
-        <item name="android:textAppearance">@style/titleCategories</item>
+        <item name="android:textAppearance">@style/StyleTitle14</item>
         <item name="android:paddingVertical">@dimen/button_padding_vertical</item>
         <item name="android:paddingHorizontal">@dimen/button_padding_horizontal</item>
         <item name="cornerRadius">@dimen/corner_radius</item>
@@ -10,7 +10,7 @@
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="titleCategories" parent="TextAppearance.AppCompat">
+    <style name="StyleTitle14" parent="TextAppearance.AppCompat">
         <item name="fontFamily">@font/montserrat_alternates_semi_bold</item>
         <item name="android:textAllCaps">true</item>
     </style>
@@ -22,7 +22,7 @@
         <item name="android:paddingTop">10dp</item>
         <item name="android:paddingBottom">10dp</item>
         <item name="android:paddingLeft">10dp</item>
-        <item name="android:textAppearance">@style/titleCategories</item>
+        <item name="android:textAppearance">@style/StyleTitle14</item>
         <item name="android:textColor">@color/color_text_top_rectangle</item>
         <item name="android:textSize">@dimen/text_size_rectangle_top</item>
     </style>
