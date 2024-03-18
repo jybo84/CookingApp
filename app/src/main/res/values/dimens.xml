@@ -6,7 +6,8 @@
     <dimen name="button_padding_horizontal">20dp</dimen>
     <dimen name="linear_layout_margin_horizontal">16dp</dimen>
     <dimen name="linear_layout_margin_bottom">0dp</dimen>
-    <dimen name="button_layout_margin_endEnd">2dp</dimen>
-    <dimen name="button_layout_margin_start">2dp</dimen>
-
+    <dimen name="text_view_margin_start">16dp</dimen>
+    <dimen name="text_size_rectangle_top">20sp</dimen>
+    <dimen name="button_favourites_margin_start">2dp</dimen>
 </resources>
+
