@@ -37,8 +37,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/color_button_category"
             android:text="@string/name_button_category"
-            android:textColor="@color/white"
-            />
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/buttonFavourites"
