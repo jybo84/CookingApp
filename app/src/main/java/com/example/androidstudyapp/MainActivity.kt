@@ -1,10 +1,10 @@
 package com.example.androidstudyapp
 
-
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.add
 import com.example.androidstudyapp.databinding.ActivityMainBinding
@@ -12,6 +12,7 @@ import com.example.androidstudyapp.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -26,10 +27,17 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 add<CategoriesListFragment>(R.id.mainContainer)
             }
         }
+        binding.buttonFavourites.setOnClickListener { changeFragment(FavouritesFragment()) }
+        binding.buttonCategory.setOnClickListener { changeFragment(CategoriesListFragment()) }
+    }
+
+    private fun changeFragment(fragment: Fragment) {
+        supportFragmentManager.commit {
+            replace(R.id.mainContainer, fragment)
+            setReorderingAllowed(true)
+            addToBackStack(null)
+        }
     }
 }
-
-
-
 
 
