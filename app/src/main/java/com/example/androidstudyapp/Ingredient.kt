@@ -1,6 +1,6 @@
 package com.example.androidstudyapp
 data class Ingredient(
-    val quantity: Double,
-    val unitOfMeasure: String = "кг",
+    val quantity: Float,
+    val unitOfMeasure: String,
     val description: String,
 )
