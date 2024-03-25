@@ -15,9 +15,9 @@
 
         <ImageView
             android:id="@+id/ivCategoryBurger"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="130dp"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:src="@drawable/bcg_categories"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,15 +38,17 @@
 
         <TextView
             android:id="@+id/textView2"
-            style="@style/StyleTitle14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
-            android:textColor="@color/black"
+            android:textColor="#666666"
             android:textSize="12sp"
             app:layout_constraintTop_toBottomOf="@+id/textView"
             tools:layout_editor_absoluteX="60dp"
-            tools:text="Рецепты всех \nпопулярных видов \nбургеров" />
+            tools:text="Рецепты всех \nпопулярных видов \nбургеров"
+            android:fontFamily="@font/montserrat_medium"
+
+            />
 
     </LinearLayout>
 
