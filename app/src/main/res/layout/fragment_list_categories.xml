@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_background"
+    android:orientation="vertical"
     tools:context=".CategoriesListFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,15 +29,22 @@
             android:layout_width="149dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="164dp"
+            android:background="@drawable/shape_top_rectangle"
             android:text="@string/title_categories"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/shape_top_rectangle"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCategories"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="16dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:itemCount="6"
+        tools:listitem="@layout/item_category" />
+
 </LinearLayout>
-
-
-
