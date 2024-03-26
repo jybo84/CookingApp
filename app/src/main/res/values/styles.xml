@@ -16,8 +16,6 @@
     </style>
 
     <style name="StyleTopRectangle" parent="Widget.AppCompat.TextView">
-        <item name="android:background">@color/color_background</item>
-        <item name="cornerRadius">@dimen/corner_radius</item>
         <item name="android:layout_marginStart">@dimen/text_view_margin_start</item>
         <item name="android:paddingTop">10dp</item>
         <item name="android:paddingBottom">10dp</item>
