@@ -16,7 +16,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/ivCategoryBurger"
+            android:id="@+id/ivCategory"
             android:layout_width="wrap_content"
             android:layout_height="130dp"
             android:scaleType="centerCrop"
@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/nameCategory"
+            android:id="@+id/titleCategory"
             style="@style/StyleTitle14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
