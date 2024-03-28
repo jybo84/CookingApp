@@ -1,10 +1,10 @@
 package com.example.androidstudyapp
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.androidstudyapp.databinding.FragmentListCategoriesBinding
 
 class CategoriesListFragment : Fragment() {
@@ -19,3 +19,4 @@ class CategoriesListFragment : Fragment() {
         return binding.root
     }
 }
+
