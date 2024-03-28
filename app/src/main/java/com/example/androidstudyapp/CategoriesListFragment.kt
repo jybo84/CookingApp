@@ -19,4 +19,3 @@ class CategoriesListFragment : Fragment() {
         return binding.root
     }
 }
-
