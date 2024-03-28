@@ -13,9 +13,9 @@ class CategoriesListAdapter(private val dataSet: List<Category>) :
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = ItemCategoryBinding.inflate(LayoutInflater.from(itemView.context))
-        val ivCategory1 = binding.ivCategory
-        val tvTitleCategory1 = binding.tvTitleCategory
-        val tvDescriptionCategory1 = binding.tvDescriptionCategory
+        val ivCategoryHolder = binding.ivCategory
+        val tvTitleCategoryHolder = binding.tvTitleCategory
+        val tvDescriptionCategoryHolder = binding.tvDescriptionCategory
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,8 +26,8 @@ class CategoriesListAdapter(private val dataSet: List<Category>) :
 
     override fun onBindViewHolder(holder: ViewHolder, numberOfPosition: Int) {
         val category: Category = dataSet[numberOfPosition]
-        holder.tvTitleCategory1.text = category.title
-        holder.tvDescriptionCategory1.text = category.description
+        holder.tvTitleCategoryHolder.text = category.title
+        holder.tvDescriptionCategoryHolder.text = category.description
 
         val drawable =
             try {
@@ -39,7 +39,7 @@ class CategoriesListAdapter(private val dataSet: List<Category>) :
                 Log.d("Ошибка.", "Картинка не загрузлась. Не верный адрес")
                 null
             }
-        holder.ivCategory1.setImageDrawable(drawable)
+        holder.ivCategoryHolder.setImageDrawable(drawable)
     }
 
     override fun getItemCount() = dataSet.size

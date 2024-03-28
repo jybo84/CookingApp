@@ -18,4 +18,14 @@ class CategoriesListFragment : Fragment() {
         // Inflate the layout for this fragment
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initRecycler()
+    }
+
+    private fun initRecycler() {
+        val adapter = CategoriesListAdapter(STUB.getCategories())
+        binding.rvCategories.adapter = adapter
+    }
 }
