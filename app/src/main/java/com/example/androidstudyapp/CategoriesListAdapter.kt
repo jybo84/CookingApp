@@ -19,8 +19,9 @@ class CategoriesListAdapter(private val dataSet: List<Category>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val el = LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false)
-        return ViewHolder(el)
+        val inflater = LayoutInflater.from(parent.context)
+        val view = inflater.inflate(R.layout.item_category, parent, false)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, numberOfPosition: Int) {
