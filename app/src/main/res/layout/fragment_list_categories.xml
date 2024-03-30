@@ -41,10 +41,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:itemCount="6"
-        tools:listitem="@layout/item_category"
-        android:layout_marginTop="8dp"/>
+        tools:listitem="@layout/item_category" />
 
 </LinearLayout>

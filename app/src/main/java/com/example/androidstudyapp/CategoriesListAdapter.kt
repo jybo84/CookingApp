@@ -3,7 +3,6 @@ package com.example.androidstudyapp
 import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidstudyapp.databinding.ItemCategoryBinding
@@ -11,17 +10,15 @@ import com.example.androidstudyapp.databinding.ItemCategoryBinding
 class CategoriesListAdapter(private val dataSet: List<Category>) :
     RecyclerView.Adapter<CategoriesListAdapter.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val binding = ItemCategoryBinding.inflate(LayoutInflater.from(itemView.context))
+    class ViewHolder(binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
         val ivCategoryHolder = binding.ivCategory
         val tvTitleCategoryHolder = binding.tvTitleCategory
         val tvDescriptionCategoryHolder = binding.tvDescriptionCategory
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.item_category, parent, false)
-        return ViewHolder(view)
+
+        return ViewHolder(ItemCategoryBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, numberOfPosition: Int) {
