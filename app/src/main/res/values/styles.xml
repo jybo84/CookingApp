@@ -13,6 +13,9 @@
     <style name="StyleTitle14" parent="TextAppearance.AppCompat">
         <item name="fontFamily">@font/montserrat_alternates_semi_bold</item>
         <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/color_text_top_rectangle</item>
+        <item name="android:textSize">14sp</item>
+
     </style>
 
     <style name="StyleTopRectangle" parent="Widget.AppCompat.TextView">
@@ -23,6 +26,14 @@
         <item name="android:textAppearance">@style/StyleTitle14</item>
         <item name="android:textColor">@color/color_text_top_rectangle</item>
         <item name="android:textSize">@dimen/text_size_rectangle_top</item>
+    </style>
+
+    <style name="StyleDescriptionCategory" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/montserrat_medium</item>
+        <item name="android:paddingHorizontal">8dp</item>
+        <item name="android:textColor">@color/color_item</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginTop">8dp</item>
     </style>
 
 </resources>

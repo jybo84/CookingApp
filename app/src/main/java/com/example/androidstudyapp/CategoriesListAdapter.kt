@@ -33,7 +33,7 @@ class CategoriesListAdapter(private val dataSet: List<Category>) :
                     null
                 )
             } catch (e: Exception) {
-                Log.d("Ошибка.", "Картинка не загрузлась. Не верный адрес")
+                Log.d("Ошибка.", "Картинка не загрузилась. Не верный адрес")
                 null
             }
         holder.ivCategoryHolder.setImageDrawable(drawable)
