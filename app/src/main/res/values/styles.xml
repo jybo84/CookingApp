@@ -15,7 +15,6 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/color_text_top_rectangle</item>
         <item name="android:textSize">14sp</item>
-
     </style>
 
     <style name="StyleTopRectangle" parent="Widget.AppCompat.TextView">
@@ -37,4 +36,3 @@
     </style>
 
 </resources>
-

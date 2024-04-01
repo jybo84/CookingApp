@@ -18,7 +18,9 @@ class CategoriesListAdapter(private val dataSet: List<Category>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        return ViewHolder(ItemCategoryBinding.inflate(LayoutInflater.from(parent.context)))
+        return ViewHolder(
+            ItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, numberOfPosition: Int) {
@@ -33,7 +35,7 @@ class CategoriesListAdapter(private val dataSet: List<Category>) :
                     null
                 )
             } catch (e: Exception) {
-                Log.d("Ошибка.", "Картинка не загрузилась. Не верный адрес")
+                Log.e("Ошибка.", "Картинка не загрузилась. Не верный адрес")
                 null
             }
         holder.ivCategoryHolder.setImageDrawable(drawable)
