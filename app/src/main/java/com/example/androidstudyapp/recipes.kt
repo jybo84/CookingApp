@@ -5,7 +5,7 @@ object STUB {
         Category(
             0,
             "Бургеры",
-            "Рецепты всех популярных видов бургеров",
+            "рецепты всех популярных видов бургеров",
             "burger.png"
         ),
         Category(
@@ -24,22 +24,21 @@ object STUB {
             3,
             "Рыба",
             "Печеная, жареная, сушеная, любая рыба на твой вкус",
-            "fish.png"
+            "dessert.png"
         ),
         Category(
             4,
             "Супы",
             "От классики до экзотики: мир в одной тарелке",
-            "soup.png",
-
-            ),
+            "salad.png"
+        ),
         Category(
             5,
             "Салаты",
-            "Хрустящий калейдоскоп под соусом вдохновен",
+            "Хрустящий калейдоскоп под соусом вдохновения",
             "salad.png"
         ),
     )
 
-    fun getCategories() = categories
+    fun getCategories(): List<Category> = categories
 }
