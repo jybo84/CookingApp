@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.commit
 import com.example.androidstudyapp.databinding.FragmentListCategoriesBinding
 
 class CategoriesListFragment() : Fragment() {
@@ -30,17 +32,20 @@ class CategoriesListFragment() : Fragment() {
 
         adapter.setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick() {
-                openRecipesByCategoryId()
+                openRecipesByCategoryId(RecipesListFragment())
             }
         })
     }
 
-    fun openRecipesByCategoryId(fragment: Fragment) {
+    private fun openRecipesByCategoryId(fragment: Fragment) {
+        val supportFragmentManager = FragmentManager()
         supportFragmentManager.commit {
             replace(R.id.mainContainer, fragment)
             setReorderingAllowed(true)
             addToBackStack(null)
         }
     }
-
 }
+
+
+
