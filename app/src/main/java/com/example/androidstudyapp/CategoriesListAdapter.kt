@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androidstudyapp.databinding.ItemCategoryBinding
 
 class CategoriesListAdapter(private val dataSet: List<Category>) :
-    RecyclerView.Adapter<CategoriesListAdapter.ViewHolder>() {
+    RecyclerView.Adapter<CategoriesListAdapter.ViewHolder>(), OnItemClickListener {
+
+    val itemClickListener: OnItemClickListener? = null
 
     class ViewHolder(binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
         val ivCategoryHolder = binding.ivCategory
@@ -17,7 +19,6 @@ class CategoriesListAdapter(private val dataSet: List<Category>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
         return ViewHolder(
             ItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
@@ -39,7 +40,15 @@ class CategoriesListAdapter(private val dataSet: List<Category>) :
                 null
             }
         holder.ivCategoryHolder.setImageDrawable(drawable)
+
+
     }
 
     override fun getItemCount() = dataSet.size
+    override fun onItemClick() {
+        TODO("Not yet implemented")
+    }
+    fun setOnItemClickListener(listener: OnItemClickListener){
+        val itemClickListener = listener
+    }
 }
