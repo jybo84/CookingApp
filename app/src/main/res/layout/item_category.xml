@@ -29,7 +29,7 @@
         <TextView
             android:id="@+id/tvTitleCategory"
             style="@style/StyleTitle14"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/tv_title_margin_top_and_padding_horizontal"
             android:paddingHorizontal="@dimen/tv_title_margin_top_and_padding_horizontal"
