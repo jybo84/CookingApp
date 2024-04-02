@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.fragment.app.add
+import androidx.fragment.app.commit
 import com.example.androidstudyapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -39,5 +39,3 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         }
     }
 }
-
-
