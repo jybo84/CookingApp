@@ -7,8 +7,9 @@
     <dimen name="linear_layout_margin_bottom">0dp</dimen>
     <dimen name="text_view_margin_start">16dp</dimen>
     <dimen name="button_favourites_margin_start">2dp</dimen>
-
+    <dimen name="recycle_view_and_card_view_margin_horizontal_and_vertical">8dp</dimen>
+    <dimen name="tv_title_margin_top_and_padding_horizontal">8dp</dimen>
+    <dimen name="tv_description_padding">8dp</dimen>
     <dimen name="text_size_rectangle_top">20sp</dimen>
     <dimen name="text_size">16sp</dimen>
 </resources>
-
