@@ -8,9 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androidstudyapp.databinding.ItemCategoryBinding
 
 class CategoriesListAdapter(private val dataSet: List<Category>) :
-    RecyclerView.Adapter<CategoriesListAdapter.ViewHolder>(), OnItemClickListener {
+    RecyclerView.Adapter<CategoriesListAdapter.ViewHolder>() {
 
-    val itemClickListener: OnItemClickListener? = null
 
     class ViewHolder(binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
         val ivCategoryHolder = binding.ivCategory
@@ -40,15 +39,7 @@ class CategoriesListAdapter(private val dataSet: List<Category>) :
                 null
             }
         holder.ivCategoryHolder.setImageDrawable(drawable)
-
-
     }
 
     override fun getItemCount() = dataSet.size
-    override fun onItemClick() {
-        TODO("Not yet implemented")
-    }
-    fun setOnItemClickListener(listener: OnItemClickListener){
-        val itemClickListener = listener
-    }
 }
