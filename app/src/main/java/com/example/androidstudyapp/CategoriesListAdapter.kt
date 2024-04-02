@@ -10,7 +10,15 @@ import com.example.androidstudyapp.databinding.ItemCategoryBinding
 class CategoriesListAdapter(private val dataSet: List<Category>) :
     RecyclerView.Adapter<CategoriesListAdapter.ViewHolder>() {
 
+interface OnItemClickListener{
+    fun onItemClick()
+}
 
+    val itemClickListener: OnItemClickListener? = null
+
+    fun setOnItemClickListener(listener: OnItemClickListener){
+
+    }
     class ViewHolder(binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
         val ivCategoryHolder = binding.ivCategory
         val tvTitleCategoryHolder = binding.tvTitleCategory
@@ -39,6 +47,8 @@ class CategoriesListAdapter(private val dataSet: List<Category>) :
                 null
             }
         holder.ivCategoryHolder.setImageDrawable(drawable)
+
+        holder.itemView.setOnClickListener{ itemClickListener?.onItemClick() }
     }
 
     override fun getItemCount() = dataSet.size

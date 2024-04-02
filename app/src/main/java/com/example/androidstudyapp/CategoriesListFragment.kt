@@ -27,5 +27,13 @@ class CategoriesListFragment : Fragment() {
     private fun initRecycler() {
         val adapter = CategoriesListAdapter(STUB.getCategories())
         binding.rvCategories.adapter = adapter
+        adapter.setOnItemClickListener(object : CategoriesListAdapter.OnItemClickListener {
+            override fun onItemClick() {
+                openRecipesByCategoryId(RecipesListFragment())
+            }
+        })
+    }
+    fun  openRecipesByCategoryId(fragment: Fragment){
+
     }
 }
