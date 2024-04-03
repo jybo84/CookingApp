@@ -16,10 +16,10 @@ class CategoriesListAdapter(private val dataSet: List<Category>) :
         }
     }
 
-    private val itemClickListener: OnItemClickListener? = null
+    private var itemClickListener: OnItemClickListener? = null
 
-    fun setOnItemClickListener(itemClickListener: OnItemClickListener) {
-
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        itemClickListener = listener
     }
 
     class ViewHolder(binding: ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
