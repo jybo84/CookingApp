@@ -31,14 +31,14 @@ class CategoriesListFragment : Fragment() {
         binding.rvCategories.adapter = adapter
         adapter.setOnItemClickListener(object : CategoriesListAdapter.OnItemClickListener {
             override fun onItemClick() {
-                openRecipesByCategoryId(MainActivity(), RecipesListFragment())
+                openRecipesByCategoryId(RecipesListFragment())
             }
         })
     }
 
-    fun openRecipesByCategoryId(activity: MainActivity, fragment: Fragment) {
-        activity.supportFragmentManager.commit {
-            replace(com.example.androidstudyapp.R.id.mainContainer, fragment)
+    fun openRecipesByCategoryId(fragment: Fragment) {
+        parentFragmentManager.commit {
+            replace(R.id.mainContainer, fragment)
             setReorderingAllowed(true)
             addToBackStack(null)
         }
