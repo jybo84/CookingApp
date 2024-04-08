@@ -24,9 +24,9 @@ class FavouritesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val someInt = requireArguments().getInt(
-            "ARG_CATEGORY_ID" to "$categoryId",
-            "ARG_CATEGORY_NAME" to "$categoryName",
-            "ARG_CATEGORY_IMAGE_URL" to "$categoryImageUrl")
+//        val someInt = requireArguments().getInt(
+//            "ARG_CATEGORY_ID" to "$categoryId",
+//            "ARG_CATEGORY_NAME" to "$categoryName",
+//            "ARG_CATEGORY_IMAGE_URL" to "$categoryImageUrl")
     }
 }

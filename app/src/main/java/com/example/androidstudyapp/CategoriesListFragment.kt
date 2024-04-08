@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.androidstudyapp.databinding.FragmentListCategoriesBinding
@@ -32,12 +31,12 @@ class CategoriesListFragment : Fragment() {
         binding.rvCategories.adapter = adapter
         adapter.setOnItemClickListener(object : CategoriesListAdapter.OnItemClickListener {
             override fun onItemClick(categoryId: Int) {
-                openRecipesByCategoryId(categoryId, RecipesListFragment(), bundleOf())
+                openRecipesByCategoryId(categoryId, RecipesListFragment()  )
             }
         })
     }
 
-    fun openRecipesByCategoryId(categoryId: Int, fragment: Fragment, bundle: Bundle) {
+    fun openRecipesByCategoryId(categoryId: Int, fragment: Fragment) {
         parentFragmentManager.commit {
             replace(R.id.mainContainer, fragment)
             setReorderingAllowed(true)
@@ -46,11 +45,11 @@ class CategoriesListFragment : Fragment() {
             val categoryName = R.id.tvCategory
             val categoryImageUrl = R.id.ivCategory
 
-            val bundle = bundleOf(
-                "ARG_CATEGORY_ID" to "$categoryId",
-                "ARG_CATEGORY_NAME" to "$categoryName",
-                "ARG_CATEGORY_IMAGE_URL" to "$categoryImageUrl"
-            )
+//            val bundle = bundleOf(
+//                "ARG_CATEGORY_ID" to "$categoryId",
+//                "ARG_CATEGORY_NAME" to "$categoryName",
+//                "ARG_CATEGORY_IMAGE_URL" to "$categoryImageUrl"
+//            )
         }
     }
 }
