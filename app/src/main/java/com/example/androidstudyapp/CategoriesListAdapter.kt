@@ -49,7 +49,7 @@ class CategoriesListAdapter(private val dataSet: List<Category>) :
             }
         holder.ivCategoryHolder.setImageDrawable(drawable)
 
-        holder.itemView.setOnClickListener { itemClickListener?.onItemClick(R.id.ivCategory) }
+        holder.itemView.setOnClickListener { itemClickListener?.onItemClick(category.id) }
     }
 
     override fun getItemCount() = dataSet.size

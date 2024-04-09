@@ -9,12 +9,23 @@ import com.example.androidstudyapp.databinding.FragmentRecipesListBinding
 
 class RecipesListFragment : Fragment() {
 
-    val binding by lazy { FragmentRecipesListBinding.inflate(layoutInflater) }
+    private val binding by lazy { FragmentRecipesListBinding.inflate(layoutInflater) }
+    private var categoryId: Int? = null
+    private var categoryName: String? = null
+    private var categoryImageUrl: String? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        categoryId = arguments?.getInt("ARG_CATEGORY_ID")
+        categoryName = arguments?.getString("ARG_CATEGORY_NAME")
+        categoryImageUrl = arguments?.getString("ARG_CATEGORY_IMAGE_URL")
     }
 }
