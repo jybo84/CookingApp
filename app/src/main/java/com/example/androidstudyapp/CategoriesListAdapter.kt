@@ -11,7 +11,7 @@ class CategoriesListAdapter(private val dataSet: List<Category>) :
     RecyclerView.Adapter<CategoriesListAdapter.ViewHolder>() {
 
     interface OnItemClickListener {
-        fun onItemClick()
+        fun onItemClick(categoryId: Int)
     }
 
     private var itemClickListener: OnItemClickListener? = null
@@ -49,8 +49,10 @@ class CategoriesListAdapter(private val dataSet: List<Category>) :
             }
         holder.ivCategoryHolder.setImageDrawable(drawable)
 
-        holder.itemView.setOnClickListener { itemClickListener?.onItemClick() }
+        holder.itemView.setOnClickListener { itemClickListener?.onItemClick(category.id) }
     }
 
     override fun getItemCount() = dataSet.size
 }
+
+
