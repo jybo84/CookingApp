@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import com.example.androidstudyapp.databinding.FragmentRecipesListBinding
 
 class RecipesListFragment : Fragment() {
@@ -30,5 +31,14 @@ class RecipesListFragment : Fragment() {
 
         val adapter = RecipesListAdapter(STUB.getRecipesByCategoryId(categoryId))
         binding.rvRecipe.adapter = adapter
+    }
+
+    // TODO закоментировано специально, для проверки работоспособности приложения
+    fun openRecipeByRecipeId(id: Int) {
+        parentFragmentManager.commit {
+            replace(R.id.mainContainer, RecipeFragment())
+            setReorderingAllowed(true)
+            addToBackStack(null)
+        }
     }
 }
