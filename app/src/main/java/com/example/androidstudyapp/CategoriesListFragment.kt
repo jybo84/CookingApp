@@ -47,7 +47,7 @@ class CategoriesListFragment : Fragment() {
             val categoryName = category.title
             val categoryImageUrl = category.imageUrl
             val bundle = bundleOf(
-                "ARG_CATEGORY_ID" to categoryId.toString(),
+                "ARG_CATEGORY_ID" to categoryId,
                 "ARG_CATEGORY_NAME" to categoryName,
                 "ARG_CATEGORY_IMAGE_URL" to categoryImageUrl
             )
