@@ -31,17 +31,4 @@ class RecipesListFragment : Fragment() {
         val adapter = RecipesListAdapter(STUB.getRecipesByCategoryId(categoryId))
         binding.rvRecipe.adapter = adapter
     }
-// TODO закоментировал специально, а то он ошибку выдает (по условию не все параметры внутри)
-//    fun openRecipeByRecipeId(id: Int){
-//        parentFragmentManager.commit {
-//            replace(R.id.mainContainer)
-//            setReorderingAllowed(true)
-//            addToBackStack(null)
-//        }
-//    }
-    }
-
-//Создать метод навигации openRecipeByRecipeId() на фрагмент с рецептом, принимающий параметр id рецепта,
-//по которому был осуществлен клик.
-//Реализовать навигацию на пустой RecipeFragment, при этом в метод replace() не передавать других
-//параметров, кроме mainContainer.
+}
