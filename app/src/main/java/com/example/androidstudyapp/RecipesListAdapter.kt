@@ -10,13 +10,13 @@ import com.example.androidstudyapp.databinding.ItemRecipesBinding
 class RecipesListAdapter(private val dataSet: List<Recipe>) :
     RecyclerView.Adapter<RecipesListAdapter.ViewHolder>() {
 
-        interface OnItemClickListenerRecipe{
-            fun onItemClickRecipe(recipeId: Int)
-        }
+    interface OnItemClickListenerRecipe {
+        fun onItemClickRecipe(recipeId: Int)
+    }
 
     private var itemClickListenerRecipe: OnItemClickListenerRecipe? = null
 
-    fun setOnClickListenerRecipe(listenerRecipe: OnItemClickListenerRecipe ){
+    fun setOnClickListenerRecipe(listenerRecipe: OnItemClickListenerRecipe) {
         itemClickListenerRecipe = listenerRecipe
     }
 

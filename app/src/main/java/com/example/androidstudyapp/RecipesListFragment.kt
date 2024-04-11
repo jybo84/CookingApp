@@ -33,7 +33,6 @@ class RecipesListFragment : Fragment() {
         binding.rvRecipe.adapter = adapter
     }
 
-    // TODO закоментировано специально, для проверки работоспособности приложения
     fun openRecipeByRecipeId(id: Int) {
         parentFragmentManager.commit {
             replace(R.id.mainContainer, RecipeFragment())
