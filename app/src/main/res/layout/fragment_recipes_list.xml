@@ -51,5 +51,3 @@
         tools:listitem="@layout/item_recipe" />
 
 </LinearLayout>
-
-

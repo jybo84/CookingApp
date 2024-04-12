@@ -52,4 +52,3 @@ class RecipesListAdapter(private val dataSet: List<Recipe>) :
 
     override fun getItemCount() = dataSet.size
 }
-

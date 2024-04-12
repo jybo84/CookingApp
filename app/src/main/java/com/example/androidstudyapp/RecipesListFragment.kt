@@ -34,7 +34,6 @@ class RecipesListFragment : Fragment() {
         binding.tvCategory.text = categoryName
         val ivListCategoryOfRecipe = binding.ivRecipe
 
-
         try {
             // get input stream
             val ims = categoryImageUrl?.let { requireContext().assets.open(it) }
@@ -51,7 +50,6 @@ class RecipesListFragment : Fragment() {
         categoryName = arguments?.getString(NAME)
         categoryImageUrl = arguments?.getString(IMAGE_URL)
     }
-
 
     fun openRecipeByRecipeId(id: Int) {
         parentFragmentManager.commit {
