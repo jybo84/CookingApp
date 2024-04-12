@@ -13,7 +13,7 @@
         android:layout_height="@dimen/fragment_recipe_list_height">
 
         <ImageView
-            android:id="@+id/ivCategory"
+            android:id="@+id/ivRecipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:contentDescription="@string/image_for_burger_category"

@@ -1,12 +1,15 @@
 package com.example.androidstudyapp
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.androidstudyapp.databinding.FragmentRecipesListBinding
+
 
 class RecipesListFragment : Fragment() {
 
@@ -29,6 +32,17 @@ class RecipesListFragment : Fragment() {
         initRecyclerRecipe()
 
         binding.tvCategory.text = categoryName
+        val ivListCategoryOfRecipe = binding.ivRecipe
+
+        try {
+            // get input stream
+            val ims = categoryImageUrl?.let { requireContext().assets.open(it) }
+            // load image as Drawable
+            val picture = Drawable.createFromStream(ims, null)
+            ivListCategoryOfRecipe.setImageDrawable(picture)
+        } catch (ex: Exception) {
+            Log.e("mylog", "Error: $ex")
+        }
     }
 
     private fun getBundleArg() {
@@ -56,5 +70,3 @@ class RecipesListFragment : Fragment() {
         })
     }
 }
-
-
