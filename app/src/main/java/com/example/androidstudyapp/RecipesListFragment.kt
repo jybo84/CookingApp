@@ -34,6 +34,8 @@ class RecipesListFragment : Fragment() {
         binding.tvCategory.text = categoryName
         val ivListCategoryOfRecipe = binding.ivRecipe
 
+
+
         try {
             // get input stream
             val ims = categoryImageUrl?.let { requireContext().assets.open(it) }
@@ -46,9 +48,9 @@ class RecipesListFragment : Fragment() {
     }
 
     private fun getBundleArg() {
-        categoryId = arguments?.getInt("ARG_CATEGORY_ID")
-        categoryName = arguments?.getString("ARG_CATEGORY_NAME")
-        categoryImageUrl = arguments?.getString("ARG_CATEGORY_IMAGE_URL")
+        categoryId = arguments?.getInt(ID)
+        categoryName = arguments?.getString(NAME)
+        categoryImageUrl = arguments?.getString(IMAGE_URL)
     }
 
 
