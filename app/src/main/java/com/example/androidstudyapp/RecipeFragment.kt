@@ -25,8 +25,8 @@ class RecipeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        categoryRecipeId = arguments?.getInt("ARG_CATEGORY_ID")
-        categoryName = arguments?.getString("ARG_CATEGORY_NAME")
+//        categoryRecipeId = arguments?.getInt("ARG_CATEGORY_ID")
+//        categoryName = arguments?.getString("ARG_CATEGORY_NAME")
 
     }
 }
