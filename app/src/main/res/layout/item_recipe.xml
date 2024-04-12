@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginHorizontal="@dimen/recycle_view_and_card_view_margin_horizontal_and_vertical"
     android:layout_marginVertical="@dimen/recycle_view_and_card_view_margin_horizontal_and_vertical"
     android:clickable="true"
@@ -20,16 +21,17 @@
             android:layout_width="match_parent"
             android:layout_height="132dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/bcg_recipes_list" />
+            android:src="@drawable/bcg_recipes_list"
+            android:contentDescription="@string/title_burgers"
+            />
 
         <TextView
             android:id="@+id/tvTitleBurger"
             style="@style/StyleTitle14"
             android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:paddingVertical="8dp"
-            android:paddingStart="8dp"
-            android:text="классический гамбургер" />
+            tools:text="классический гамбургер"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintHorizontal_bias="0.0" />
 
     </LinearLayout>
 

@@ -24,18 +24,17 @@
             android:src="@drawable/bcg_categories"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/image_list_category"
+            />
 
         <TextView
             android:id="@+id/tvTitleCategory"
             style="@style/StyleTitle14"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/tv_title_margin_top_and_padding_horizontal"
-            android:paddingHorizontal="@dimen/tv_title_margin_top_and_padding_horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
             tools:text="бургеры" />
+
 
         <TextView
             android:id="@+id/tvDescriptionCategory"

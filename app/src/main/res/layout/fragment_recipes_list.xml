@@ -3,19 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/color_background"
     android:orientation="vertical"
     tools:context=".CategoriesListFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="224dp">
+        android:layout_height="@dimen/fragment_recipe_list_height">
 
         <ImageView
             android:id="@+id/ivCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/image_for_burger_category"
             android:scaleType="centerCrop"
             android:src="@drawable/bcg_recipes_list"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -26,13 +27,13 @@
         <TextView
             android:id="@+id/tvCategory"
             style="@style/StyleTopRectangle"
-            android:layout_width="124dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="164dp"
             android:background="@drawable/shape_top_rectangle"
-            android:text="@string/title_burgers"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:text="@string/title_burgers"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -47,7 +48,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:spanCount="2"
         tools:itemCount="6"
-        tools:listitem="@layout/item_recipes" />
+        tools:listitem="@layout/item_recipe" />
 
 </LinearLayout>
 

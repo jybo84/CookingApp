@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="224dp">
+        android:layout_height="@dimen/fragment_recipe_list_height">
 
         <ImageView
             android:id="@+id/ivCategory"
@@ -21,14 +21,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/image_list_category" />
 
         <TextView
             android:id="@+id/tvCategory"
             style="@style/StyleTopRectangle"
-            android:layout_width="149dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="164dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constrainedWidth="true"
             android:background="@drawable/shape_top_rectangle"
             android:text="@string/title_categories"
             app:layout_constraintStart_toStartOf="parent"

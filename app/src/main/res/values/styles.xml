@@ -15,13 +15,17 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/color_text_top_rectangle</item>
         <item name="android:textSize">14sp</item>
+
+        <item name="android:layout_height">32dp</item>
+        <item name="android:paddingVertical">8dp</item>
+        <item name="paddingStart">8dp</item>
     </style>
 
     <style name="StyleTopRectangle" parent="Widget.AppCompat.TextView">
         <item name="android:layout_marginStart">@dimen/text_view_margin_start</item>
-        <item name="android:paddingTop">10dp</item>
-        <item name="android:paddingBottom">10dp</item>
-        <item name="android:paddingLeft">10dp</item>
+        <item name="android:layout_marginBottom">@dimen/text_view_margin_start</item>
+        <item name="android:paddingVertical">10dp</item>
+        <item name="android:paddingHorizontal">10dp</item>
         <item name="android:textAppearance">@style/StyleTitle14</item>
         <item name="android:textColor">@color/color_text_top_rectangle</item>
         <item name="android:textSize">@dimen/text_size_rectangle_top</item>
@@ -29,7 +33,8 @@
 
     <style name="StyleDescriptionCategory" parent="TextAppearance.AppCompat">
         <item name="fontFamily">@font/montserrat_medium</item>
-        <item name="android:padding">8dp</item>
+        <item name="android:paddingHorizontal">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
         <item name="android:textColor">@color/color_item</item>
         <item name="android:textSize">12sp</item>
 

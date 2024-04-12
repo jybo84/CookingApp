@@ -28,9 +28,7 @@ class RecipesListFragment : Fragment() {
         categoryId = arguments?.getInt("ARG_CATEGORY_ID")
         categoryName = arguments?.getString("ARG_CATEGORY_NAME")
         categoryImageUrl = arguments?.getString("ARG_CATEGORY_IMAGE_URL")
-
-        val adapter = RecipesListAdapter(STUB.getRecipesByCategoryId(categoryId))
-        binding.rvRecipe.adapter = adapter
+        initRecyclerRecipe()
     }
 
     fun openRecipeByRecipeId(id: Int) {
@@ -40,4 +38,16 @@ class RecipesListFragment : Fragment() {
             addToBackStack(null)
         }
     }
+
+    private fun initRecyclerRecipe() {
+        val adapter = RecipesListAdapter(STUB.getRecipesByCategoryId(categoryId))
+        binding.rvRecipe.adapter = adapter
+        adapter.setOnClickListenerRecipe(object : RecipesListAdapter.OnItemClickListenerRecipe {
+            override fun onItemClickRecipe(recipeId: Int) {
+                openRecipeByRecipeId(recipeId)
+            }
+        })
+    }
 }
+
+
