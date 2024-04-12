@@ -27,8 +27,8 @@ class RecipesListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         getBundleArg()
         initRecyclerRecipe()
-        val titleCategory = binding.tvCategory
-        titleCategory.text = categoryName
+
+        binding.tvCategory.text = categoryName
     }
 
     private fun getBundleArg() {
@@ -40,11 +40,6 @@ class RecipesListFragment : Fragment() {
 
     fun openRecipeByRecipeId(id: Int) {
         parentFragmentManager.commit {
-
-            val category = STUB.getCategories().find {
-                it.id == id
-            } ?: return
-
             replace(R.id.mainContainer, RecipeFragment())
             setReorderingAllowed(true)
             addToBackStack(null)
