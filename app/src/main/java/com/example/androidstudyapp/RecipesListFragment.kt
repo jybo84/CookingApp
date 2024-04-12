@@ -25,11 +25,16 @@ class RecipesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getBundleArg()
+        initRecyclerRecipe()
+    }
+
+    private fun getBundleArg() {
         categoryId = arguments?.getInt("ARG_CATEGORY_ID")
         categoryName = arguments?.getString("ARG_CATEGORY_NAME")
         categoryImageUrl = arguments?.getString("ARG_CATEGORY_IMAGE_URL")
-        initRecyclerRecipe()
     }
+
 
     fun openRecipeByRecipeId(id: Int) {
         parentFragmentManager.commit {
