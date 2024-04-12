@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginHorizontal="@dimen/recycle_view_and_card_view_margin_horizontal_and_vertical"
-    android:layout_marginVertical="@dimen/recycle_view_and_card_view_margin_horizontal_and_vertical"
+    android:layout_marginHorizontal="@dimen/padding_8dp"
+    android:layout_marginVertical="@dimen/padding_8dp"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
@@ -20,18 +20,17 @@
             android:id="@+id/ivRecipeBurger"
             android:layout_width="match_parent"
             android:layout_height="132dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/bcg_recipes_list"
             android:contentDescription="@string/title_burgers"
-            />
+            android:scaleType="centerCrop"
+            android:src="@drawable/bcg_recipes_list" />
 
         <TextView
             android:id="@+id/tvTitleBurger"
             style="@style/StyleTitle14"
             android:layout_width="match_parent"
-            tools:text="классический гамбургер"
             app:layout_constrainedWidth="true"
-            app:layout_constraintHorizontal_bias="0.0" />
+            app:layout_constraintHorizontal_bias="0.0"
+            tools:text="классический гамбургер" />
 
     </LinearLayout>
 

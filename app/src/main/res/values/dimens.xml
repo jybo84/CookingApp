@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="corner_radius">8dp</dimen>
-    <dimen name="button_padding_vertical">10dp</dimen>
-    <dimen name="button_padding_horizontal">20dp</dimen>
-    <dimen name="linear_layout_margin_horizontal">16dp</dimen>
+    <dimen name="button_padding_vertical_10dp">10dp</dimen>
+    <dimen name="button_padding_horizontal_20dp">20dp</dimen>
+    <dimen name="margin_16dp">16dp</dimen>
     <dimen name="linear_layout_margin_bottom">0dp</dimen>
-    <dimen name="text_view_margin_start">16dp</dimen>
     <dimen name="button_favourites_margin_start">2dp</dimen>
-    <dimen name="recycle_view_and_card_view_margin_horizontal_and_vertical">8dp</dimen>
-    <dimen name="tv_title_margin_top_and_padding_horizontal">8dp</dimen>
-    <dimen name="tv_description_padding">8dp</dimen>
+    <dimen name="padding_8dp">8dp</dimen>
     <dimen name="text_size_rectangle_top">20sp</dimen>
-    <dimen name="text_size">16sp</dimen>
+    <dimen name="text_size_16sp">16sp</dimen>
     <dimen name="fragment_recipe_list_height">224dp</dimen>
 </resources>
 
