@@ -35,7 +35,6 @@ class RecipesListFragment : Fragment() {
         val ivListCategoryOfRecipe = binding.ivRecipe
 
 
-
         try {
             // get input stream
             val ims = categoryImageUrl?.let { requireContext().assets.open(it) }
