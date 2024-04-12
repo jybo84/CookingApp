@@ -10,10 +10,6 @@ import com.example.androidstudyapp.databinding.FragmentRecipeBinding
 class RecipeFragment : Fragment() {
 
     private val binding by lazy { FragmentRecipeBinding.inflate(layoutInflater) }
-    private var categoryRecipeId: Int? = null
-    private var categoryName: String? = null
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,8 +21,5 @@ class RecipeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        categoryRecipeId = arguments?.getInt("ARG_CATEGORY_ID")
-//        categoryName = arguments?.getString("ARG_CATEGORY_NAME")
-
     }
 }
