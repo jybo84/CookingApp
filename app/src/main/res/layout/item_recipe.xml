@@ -17,30 +17,21 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/ivCategory"
+            android:id="@+id/ivRecipeBurger"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:contentDescription="@string/image_list_category"
+            android:layout_height="132dp"
+            android:contentDescription="@string/title_burgers"
             android:scaleType="centerCrop"
-            android:src="@drawable/bcg_categories"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/bcg_recipes_list" />
 
         <TextView
-            android:id="@+id/tvTitleCategory"
+            android:id="@+id/tvTitleBurger"
             style="@style/StyleTitle14"
-            android:layout_width="wrap_content"
-            android:layout_marginStart="8dp"
-            tools:text="бургеры" />
-
-        <TextView
-            android:id="@+id/tvDescriptionCategory"
-            style="@style/StyleDescriptionCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            tools:text="Рецепты всех популярных видов бургеров" />
+            android:layout_width="match_parent"
+            android:paddingHorizontal="@dimen/padding_8dp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintHorizontal_bias="0.0"
+            tools:text="классический гамбургер" />
 
     </LinearLayout>
 

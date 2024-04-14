@@ -10,12 +10,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="224dp">
+        android:layout_height="@dimen/fragment_recipe_list_height">
 
         <ImageView
             android:id="@+id/ivCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/image_list_category"
             android:scaleType="centerCrop"
             android:src="@drawable/bcg_categories"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -26,11 +27,13 @@
         <TextView
             android:id="@+id/tvCategory"
             style="@style/StyleTopRectangle"
-            android:layout_width="149dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="164dp"
             android:background="@drawable/shape_top_rectangle"
             android:text="@string/title_categories"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,8 +43,8 @@
         android:id="@+id/rvCategories"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="@dimen/recycle_view_and_card_view_margin_horizontal_and_vertical"
-        android:layout_marginVertical="@dimen/recycle_view_and_card_view_margin_horizontal_and_vertical"
+        android:layout_marginHorizontal="@dimen/padding_8dp"
+        android:layout_marginVertical="@dimen/padding_8dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
