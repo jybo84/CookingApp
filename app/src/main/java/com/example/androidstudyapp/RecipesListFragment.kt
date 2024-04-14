@@ -22,7 +22,6 @@ class RecipesListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return binding.root
     }
 
@@ -35,9 +34,7 @@ class RecipesListFragment : Fragment() {
         val ivListCategoryOfRecipe = binding.ivRecipe
 
         try {
-            // get input stream
             val ims = categoryImageUrl?.let { requireContext().assets.open(it) }
-            // load image as Drawable
             val picture = Drawable.createFromStream(ims, null)
             ivListCategoryOfRecipe.setImageDrawable(picture)
         } catch (ex: Exception) {
@@ -46,9 +43,9 @@ class RecipesListFragment : Fragment() {
     }
 
     private fun getBundleArg() {
-        categoryId = arguments?.getInt(ID)
-        categoryName = arguments?.getString(NAME)
-        categoryImageUrl = arguments?.getString(IMAGE_URL)
+        categoryId = arguments?.getInt(ARG_CATEGORY_ID)
+        categoryName = arguments?.getString(ARG_CATEGORY_NAME)
+        categoryImageUrl = arguments?.getString(ARG_CATEGORY_IMAGE_URL)
     }
 
     fun openRecipeByRecipeId(id: Int) {

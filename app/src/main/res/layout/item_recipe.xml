@@ -28,6 +28,7 @@
             android:id="@+id/tvTitleBurger"
             style="@style/StyleTitle14"
             android:layout_width="match_parent"
+            android:paddingHorizontal="@dimen/padding_8dp"
             app:layout_constrainedWidth="true"
             app:layout_constraintHorizontal_bias="0.0"
             tools:text="классический гамбургер" />
