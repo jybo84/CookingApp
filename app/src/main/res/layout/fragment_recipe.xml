@@ -6,6 +6,7 @@
     tools:context=".RecipeFragment">
 
     <TextView
+        android:id="@+id/tvRecipeInRecipeFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"

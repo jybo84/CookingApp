@@ -50,11 +50,33 @@ class RecipesListFragment : Fragment() {
 
     fun openRecipeByRecipeId(id: Int) {
         parentFragmentManager.commit {
-            replace(R.id.mainContainer, RecipeFragment())
+
+            val recipe = STUB.getRecipeById(id)
+
+//            val bundle = bundleOf(
+//                ARG_RECIPE to recipe
+//            )
+//            val recFragment = RecipeFragment()
+//            recFragment.arguments = bundle
+//            replace(R.id.mainContainer, recFragment)
+//            setReorderingAllowed(true)
+//            addToBackStack(null)
+
+            val bundle = Bundle()
+            bundle.putParcelable(ARG_RECIPE, recipe)
+            val recFragment = RecipeFragment()
+            recFragment.arguments = bundle
+            replace(R.id.mainContainer, recFragment)
             setReorderingAllowed(true)
             addToBackStack(null)
         }
     }
+
+
+//    val bundle = Bundle()
+//    bundle.putParcelable("myData", myDataClassInstance)
+//
+//    val myData = bundle.getParcelable<MyDataClass>("myData")
 
     private fun initRecyclerRecipe() {
         val adapter = RecipesListAdapter(STUB.getRecipesByCategoryId(categoryId))
