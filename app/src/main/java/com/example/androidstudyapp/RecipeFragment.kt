@@ -25,11 +25,18 @@ class RecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val bundle = Bundle()
 
-        val rec = bundle.getParcelable(ARG_RECIPE, Recipe::class.java)
+        val rec = arguments?.getParcelable<Recipe>(ARG_RECIPE)
+//        val rec = arguments?.getParcelable<Recipe>(ARG_RECIPE, Recipe::class.java)
 
         val tvRecFragment = binding.tvRecipeInRecipeFragment
         tvRecFragment.text = rec.toString()
     }
 }
+
+
+//1. Инициализация сверху
+//2. Красивый вид по итогу
+//3.      val rec = arguments?.getParcelable<Recipe>(ARG_RECIPE) -работает
+//        val rec = arguments?.getParcelable<Recipe>(ARG_RECIPE, Recipe::class.java) - не работает
+//4. работа с ГИТ

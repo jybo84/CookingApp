@@ -72,12 +72,6 @@ class RecipesListFragment : Fragment() {
         }
     }
 
-
-//    val bundle = Bundle()
-//    bundle.putParcelable("myData", myDataClassInstance)
-//
-//    val myData = bundle.getParcelable<MyDataClass>("myData")
-
     private fun initRecyclerRecipe() {
         val adapter = RecipesListAdapter(STUB.getRecipesByCategoryId(categoryId))
         binding.rvRecipe.adapter = adapter
