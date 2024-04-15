@@ -13,6 +13,8 @@ class RecipeFragment : Fragment() {
 
     private val binding by lazy { FragmentRecipeBinding.inflate(layoutInflater) }
 
+    private val rec by lazy { arguments?.parcelable<Recipe>(ARG_RECIPE) }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,18 +27,7 @@ class RecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        val rec = arguments?.getParcelable<Recipe>(ARG_RECIPE)
-//        val rec = arguments?.getParcelable<Recipe>(ARG_RECIPE, Recipe::class.java)
-
         val tvRecFragment = binding.tvRecipeInRecipeFragment
-        tvRecFragment.text = rec.toString()
+        tvRecFragment.text = rec?.title.toString()
     }
 }
-
-
-//1. Инициализация сверху
-//2. Красивый вид по итогу
-//3.      val rec = arguments?.getParcelable<Recipe>(ARG_RECIPE) -работает
-//        val rec = arguments?.getParcelable<Recipe>(ARG_RECIPE, Recipe::class.java) - не работает
-//4. работа с ГИТ

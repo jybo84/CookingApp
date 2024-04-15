@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.androidstudyapp.databinding.FragmentRecipesListBinding
@@ -52,21 +53,11 @@ class RecipesListFragment : Fragment() {
         parentFragmentManager.commit {
 
             val recipe = STUB.getRecipeById(id)
+            val bundle = bundleOf(
+                ARG_RECIPE to recipe
+            )
 
-//            val bundle = bundleOf(
-//                ARG_RECIPE to recipe
-//            )
-//            val recFragment = RecipeFragment()
-//            recFragment.arguments = bundle
-//            replace(R.id.mainContainer, recFragment)
-//            setReorderingAllowed(true)
-//            addToBackStack(null)
-
-            val bundle = Bundle()
-            bundle.putParcelable(ARG_RECIPE, recipe)
-            val recFragment = RecipeFragment()
-            recFragment.arguments = bundle
-            replace(R.id.mainContainer, recFragment)
+            replace(R.id.mainContainer, RecipeFragment::class.java, bundle)
             setReorderingAllowed(true)
             addToBackStack(null)
         }
