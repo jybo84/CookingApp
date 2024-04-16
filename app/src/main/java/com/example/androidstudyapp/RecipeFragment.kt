@@ -11,6 +11,8 @@ class RecipeFragment : Fragment() {
 
     private val binding by lazy { FragmentRecipeBinding.inflate(layoutInflater) }
 
+    private val recipe by lazy { arguments?.parcelable<Recipe>(ARG_RECIPE) }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -21,5 +23,8 @@ class RecipeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val tvRecFragment = binding.tvRecipeInRecipeFragment
+        tvRecFragment.text = recipe?.title.toString()
     }
 }

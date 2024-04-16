@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.androidstudyapp.databinding.FragmentRecipesListBinding
@@ -50,11 +51,18 @@ class RecipesListFragment : Fragment() {
 
     fun openRecipeByRecipeId(id: Int) {
         parentFragmentManager.commit {
-            replace(R.id.mainContainer, RecipeFragment())
+
+            val recipe = STUB.getRecipeById(id)
+
+            val bundle = bundleOf(
+                ARG_RECIPE to recipe
+            )
+            replace(R.id.mainContainer, RecipeFragment::class.java, bundle)
             setReorderingAllowed(true)
             addToBackStack(null)
         }
     }
+
 
     private fun initRecyclerRecipe() {
         val adapter = RecipesListAdapter(STUB.getRecipesByCategoryId(categoryId))

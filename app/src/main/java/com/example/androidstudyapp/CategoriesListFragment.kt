@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.androidstudyapp.databinding.FragmentListCategoriesBinding
 
-
 class CategoriesListFragment : Fragment() {
 
     private val binding by lazy { FragmentListCategoriesBinding.inflate(layoutInflater) }
