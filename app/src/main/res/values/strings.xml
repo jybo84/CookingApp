@@ -5,6 +5,9 @@
     <string name="title_burgers">бургеры</string>
     <string name="image_for_burger_category">imageForBurgerCategory</string>
     <string name="image_list_category">imageListCategory</string>
+    <string name="title_ingredients">ингридиенты</string>
+    <string name="portions">Порции:</string>
+    <string name="cooking_method">способ приготовления</string>
 
 </resources>
 

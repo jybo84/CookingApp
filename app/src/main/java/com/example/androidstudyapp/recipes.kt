@@ -275,4 +275,10 @@ object STUB {
     fun getRecipeById(id: Int): Recipe? {
         return burgerRecipes.find { it.id == id }
     }
+
+    val ingredients = fun(recipe: Recipe): List<Ingredient>{
+        return burgerRecipes.flatMap { recipe.ingredients }
+
+    }
 }
+//В качестве dataSet использовать список типа Ingredient из переданного во фрагмент объекта Recipe.
