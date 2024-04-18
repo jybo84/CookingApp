@@ -6,8 +6,9 @@
     <string name="image_for_burger_category">imageForBurgerCategory</string>
     <string name="image_list_category">imageListCategory</string>
     <string name="title_ingredients">ингридиенты</string>
-    <string name="portions">Порции:</string>
+    <string name="portions">Порции: %1$d</string>
     <string name="cooking_method">способ приготовления</string>
+    <string name="ingr_accaunt">%1$s %2$s</string>
 
 </resources>
 

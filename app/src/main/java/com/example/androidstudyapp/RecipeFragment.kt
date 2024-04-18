@@ -13,6 +13,7 @@ class RecipeFragment : Fragment() {
 
     private val recipe by lazy { arguments?.parcelable<Recipe>(ARG_RECIPE) }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,8 +24,20 @@ class RecipeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val tvRecFragment = binding.tvRecipeInRecipeFragment
         tvRecFragment.text = recipe?.title.toString()
+
+        val listIngredients = recipe?.ingredients
+
+//        val adapter = listIngredients?.let { IngredientsAdapter(it) }
+        val adapter = IngredientsAdapter(recipe!!.ingredients)
+        binding.rvIngredients.adapter = adapter
+
+
+//        val layMan = LinearLayoutManager(requireContext())
+//        binding.rvIngredients.layoutManager = layMan
+//        binding.rvIngredients.addItemDecoration(DividerItemDecoration(binding.rvIngredients.context, layMan.orientation))
     }
+
+
 }

@@ -1,47 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingVertical="@dimen/padding_8dp"
-        >
+        android:paddingVertical="@dimen/padding_8dp">
 
         <TextView
-            android:layout_width="175dp"
+            android:id="@+id/nameOfIngredient"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="куринное яйцо"
-            android:textSize="14sp"
-            android:fontFamily="@font/montserrat_medium"
             android:layout_marginStart="12dp"
-            />
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="куринное яйцо"
+            android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/quantityAndUnitOfMeasure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
-            android:textSize="14sp"
             android:fontFamily="@font/montserrat_medium"
             android:gravity="end"
-            />
-
-        <TextView
-            android:layout_width="85dp"
-            android:layout_height="wrap_content"
-            android:text="штук"
+            android:text="5 штук"
             android:textSize="14sp"
-            android:fontFamily="@font/montserrat_medium"
-            android:gravity="end"
-
+            android:layout_marginEnd="12dp"
             />
-
-
-
-
 
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
+
+    <!-- TODO на строке 17 и 26 не ставится tools-->

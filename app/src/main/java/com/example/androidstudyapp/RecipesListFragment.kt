@@ -53,7 +53,6 @@ class RecipesListFragment : Fragment() {
         parentFragmentManager.commit {
 
             val recipe = STUB.getRecipeById(id)
-
             val bundle = bundleOf(
                 ARG_RECIPE to recipe
             )
