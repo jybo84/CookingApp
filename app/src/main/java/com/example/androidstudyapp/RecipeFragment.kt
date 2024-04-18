@@ -24,20 +24,23 @@ class RecipeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initUI()
+    }
+
+    private fun initUI() {
+        val listIngredients = recipe?.ingredients
+        val adapterIngredient = listIngredients?.let { IngredientsAdapter(it) }
+        binding.rvIngredients.adapter = adapterIngredient
+
+        val methodCook = recipe?.method
+        val adapterCookingMethod = methodCook?.let { CookingMethodAdapter(it) }
+        binding.rvMethod.adapter = adapterCookingMethod
+
         val tvRecFragment = binding.tvRecipeInRecipeFragment
         tvRecFragment.text = recipe?.title.toString()
-
-        val listIngredients = recipe?.ingredients
-
-//        val adapter = listIngredients?.let { IngredientsAdapter(it) }
-        val adapter = IngredientsAdapter(recipe!!.ingredients)
-        binding.rvIngredients.adapter = adapter
-
+    }
+}
 
 //        val layMan = LinearLayoutManager(requireContext())
 //        binding.rvIngredients.layoutManager = layMan
 //        binding.rvIngredients.addItemDecoration(DividerItemDecoration(binding.rvIngredients.context, layMan.orientation))
-    }
-
-
-}

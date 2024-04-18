@@ -86,9 +86,8 @@
                 android:id="@+id/rvIngredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/item_ingredient"
-
-                />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_ingredient" />
 
             <TextView
                 android:id="@+id/titleCookingMethod"
@@ -104,10 +103,12 @@
                 android:id="@+id/rvMethod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_cooking_method" />
 
 
         </LinearLayout>
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

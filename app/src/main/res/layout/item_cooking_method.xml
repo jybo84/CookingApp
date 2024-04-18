@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tvDescriptionMethodCooking"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fontFamily="@font/montserrat_medium"
     android:paddingHorizontal="12dp"
     android:paddingVertical="@dimen/margin_16dp"
-    android:text="Лук нарежьте кольцами и добавьте к фаршу. Обжаривайте вместе до золотистой корки."
+    tools:text="Лук нарежьте кольцами и добавьте к фаршу. Обжаривайте вместе до золотистой корки."
     android:textSize="14sp" />
-
-
