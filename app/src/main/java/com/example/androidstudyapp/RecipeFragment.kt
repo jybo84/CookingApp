@@ -1,6 +1,8 @@
 package com.example.androidstudyapp
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +15,7 @@ class RecipeFragment : Fragment() {
 
     private val recipe by lazy { arguments?.parcelable<Recipe>(ARG_RECIPE) }
 
+    private var recipeImageUrl: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,11 +39,29 @@ class RecipeFragment : Fragment() {
         val adapterCookingMethod = methodCook?.let { CookingMethodAdapter(it) }
         binding.rvMethod.adapter = adapterCookingMethod
 
-        val tvRecFragment = binding.tvRecipeInRecipeFragment
-        tvRecFragment.text = recipe?.title.toString()
+        val tvRecipeFragment = binding.tvRecipeInRecipeFragment
+        tvRecipeFragment.text = recipe?.title.toString()
+
+        getImageOfRecipe()
     }
+    private fun getImageOfRecipe(){
+        recipeImageUrl = arguments?.getString(ARG_RECIPE_IMAGE)
+        val recipeImage = binding.ivRecipe
+
+        try {
+            val ims = recipeImageUrl?.let { requireContext().assets.open(it) }
+            val picture = Drawable.createFromStream(ims, null)
+            recipeImage.setImageDrawable(picture)
+        } catch (ex: Exception) {
+            Log.e("mylog", "Error: $ex")
+        }
+    }
+
 }
+
 
 //        val layMan = LinearLayoutManager(requireContext())
 //        binding.rvIngredients.layoutManager = layMan
 //        binding.rvIngredients.addItemDecoration(DividerItemDecoration(binding.rvIngredients.context, layMan.orientation))
+
+//categoryImageUrl = arguments?.getString(ARG_CATEGORY_IMAGE_URL)
