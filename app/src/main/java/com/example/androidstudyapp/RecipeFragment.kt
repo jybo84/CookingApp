@@ -37,19 +37,18 @@ class RecipeFragment : Fragment() {
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun initUI() {
 
-
         val listIngredients = recipe?.ingredients
         val adapterIngredient = listIngredients?.let { IngredientsAdapter(it) }
         binding.rvIngredients.adapter = adapterIngredient
         val dividerItemIngredients = DividerItemDecoration(binding.rvIngredients.context, RecyclerView.VERTICAL)
-        dividerItemIngredients.setDrawable(resources.getDrawable(R.drawable.shape_divider))
+        dividerItemIngredients.setDrawable(resources.getDrawable(R.drawable.shape_divider, null))
         binding.rvIngredients.addItemDecoration(dividerItemIngredients)
 
         val methodCook = recipe?.method
         val adapterCookingMethod = methodCook?.let { CookingMethodAdapter(it) }
         binding.rvMethod.adapter = adapterCookingMethod
         val dividerItemMethod = DividerItemDecoration(binding.rvMethod.context, RecyclerView.VERTICAL)
-        dividerItemMethod.setDrawable(resources.getDrawable(R.drawable.shape_divider))
+        dividerItemMethod.setDrawable(resources.getDrawable(R.drawable.shape_divider, null))
         binding.rvMethod.addItemDecoration(dividerItemMethod)
 
         val tvRecipeFragment = binding.tvRecipeInRecipeFragment
