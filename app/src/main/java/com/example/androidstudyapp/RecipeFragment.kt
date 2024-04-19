@@ -34,31 +34,15 @@ class RecipeFragment : Fragment() {
     }
 
     private fun initUI() {
-
         val listIngredients = recipe?.ingredients
         val adapterIngredient = listIngredients?.let { IngredientsAdapter(it) }
         binding.rvIngredients.adapter = adapterIngredient
-
-        val divider = ResourcesCompat.getDrawable(resources, R.drawable.shape_divider, null)
-
-        val dividerItemIngredients =
-            DividerItemDecoration(binding.rvIngredients.context, RecyclerView.VERTICAL)
-        if (divider != null) {
-            dividerItemIngredients.setDrawable(divider)
-        }
-        binding.rvIngredients.addItemDecoration(dividerItemIngredients)
-
 
         val methodCook = recipe?.method
         val adapterCookingMethod = methodCook?.let { CookingMethodAdapter(it) }
         binding.rvMethod.adapter = adapterCookingMethod
 
-        val dividerItemMethod =
-            DividerItemDecoration(binding.rvMethod.context, RecyclerView.VERTICAL)
-        if (divider != null) {
-            dividerItemMethod.setDrawable(divider)
-        }
-        binding.rvMethod.addItemDecoration(dividerItemMethod)
+        addDivider()
 
         val tvRecipeFragment = binding.tvRecipeInRecipeFragment
         tvRecipeFragment.text = recipe?.title.toString()
@@ -77,5 +61,23 @@ class RecipeFragment : Fragment() {
         } catch (ex: Exception) {
             Log.e("mylog", "Error: $ex")
         }
+    }
+
+    private fun addDivider() {
+        val divider = ResourcesCompat.getDrawable(resources, R.drawable.shape_divider, null)
+
+        val dividerItemIngredients =
+            DividerItemDecoration(binding.rvIngredients.context, RecyclerView.VERTICAL)
+        if (divider != null) {
+            dividerItemIngredients.setDrawable(divider)
+        }
+        binding.rvIngredients.addItemDecoration(dividerItemIngredients)
+
+        val dividerItemMethod =
+            DividerItemDecoration(binding.rvMethod.context, RecyclerView.VERTICAL)
+        if (divider != null) {
+            dividerItemMethod.setDrawable(divider)
+        }
+        binding.rvMethod.addItemDecoration(dividerItemMethod)
     }
 }
