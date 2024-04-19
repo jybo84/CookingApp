@@ -33,7 +33,6 @@ class RecipeFragment : Fragment() {
         initUI()
     }
 
-
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun initUI() {
 
@@ -70,8 +69,4 @@ class RecipeFragment : Fragment() {
     }
 }
 
-
-//        val layMan = LinearLayoutManager(requireContext())
-//        binding.rvIngredients.layoutManager = layMan
-//        binding.rvIngredients.addItemDecoration(DividerItemDecoration(binding.rvIngredients.context, layMan.orientation))
 
