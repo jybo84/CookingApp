@@ -1,12 +1,12 @@
 package com.example.androidstudyapp
 
-import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
@@ -33,21 +33,31 @@ class RecipeFragment : Fragment() {
         initUI()
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
     private fun initUI() {
 
         val listIngredients = recipe?.ingredients
         val adapterIngredient = listIngredients?.let { IngredientsAdapter(it) }
         binding.rvIngredients.adapter = adapterIngredient
-        val dividerItemIngredients = DividerItemDecoration(binding.rvIngredients.context, RecyclerView.VERTICAL)
-        dividerItemIngredients.setDrawable(resources.getDrawable(R.drawable.shape_divider, null))
+
+        val divider = ResourcesCompat.getDrawable(resources, R.drawable.shape_divider, null)
+
+        val dividerItemIngredients =
+            DividerItemDecoration(binding.rvIngredients.context, RecyclerView.VERTICAL)
+        if (divider != null) {
+            dividerItemIngredients.setDrawable(divider)
+        }
         binding.rvIngredients.addItemDecoration(dividerItemIngredients)
+
 
         val methodCook = recipe?.method
         val adapterCookingMethod = methodCook?.let { CookingMethodAdapter(it) }
         binding.rvMethod.adapter = adapterCookingMethod
-        val dividerItemMethod = DividerItemDecoration(binding.rvMethod.context, RecyclerView.VERTICAL)
-        dividerItemMethod.setDrawable(resources.getDrawable(R.drawable.shape_divider, null))
+
+        val dividerItemMethod =
+            DividerItemDecoration(binding.rvMethod.context, RecyclerView.VERTICAL)
+        if (divider != null) {
+            dividerItemMethod.setDrawable(divider)
+        }
         binding.rvMethod.addItemDecoration(dividerItemMethod)
 
         val tvRecipeFragment = binding.tvRecipeInRecipeFragment
@@ -55,7 +65,8 @@ class RecipeFragment : Fragment() {
 
         getImageOfRecipe()
     }
-    private fun getImageOfRecipe(){
+
+    private fun getImageOfRecipe() {
         recipeImageUrl = arguments?.getString(ARG_RECIPE_IMAGE)
         val recipeImage = binding.ivRecipe
 
@@ -68,5 +79,3 @@ class RecipeFragment : Fragment() {
         }
     }
 }
-
-
