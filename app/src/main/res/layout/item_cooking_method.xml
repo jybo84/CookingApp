@@ -4,6 +4,7 @@
     android:id="@+id/tvDescriptionMethodCooking"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:backgroundTint="@color/white"
     android:fontFamily="@font/montserrat_medium"
     android:paddingHorizontal="12dp"
     android:paddingVertical="@dimen/margin_16dp"

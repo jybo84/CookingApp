@@ -1,5 +1,6 @@
 package com.example.androidstudyapp
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
 import com.example.androidstudyapp.databinding.FragmentRecipeBinding
 
 class RecipeFragment : Fragment() {
@@ -30,14 +33,24 @@ class RecipeFragment : Fragment() {
         initUI()
     }
 
+
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun initUI() {
+
+
         val listIngredients = recipe?.ingredients
         val adapterIngredient = listIngredients?.let { IngredientsAdapter(it) }
         binding.rvIngredients.adapter = adapterIngredient
+        val dividerItemIngredients = DividerItemDecoration(binding.rvIngredients.context, RecyclerView.VERTICAL)
+        dividerItemIngredients.setDrawable(resources.getDrawable(R.drawable.shape_divider))
+        binding.rvIngredients.addItemDecoration(dividerItemIngredients)
 
         val methodCook = recipe?.method
         val adapterCookingMethod = methodCook?.let { CookingMethodAdapter(it) }
         binding.rvMethod.adapter = adapterCookingMethod
+        val dividerItemMethod = DividerItemDecoration(binding.rvMethod.context, RecyclerView.VERTICAL)
+        dividerItemMethod.setDrawable(resources.getDrawable(R.drawable.shape_divider))
+        binding.rvMethod.addItemDecoration(dividerItemMethod)
 
         val tvRecipeFragment = binding.tvRecipeInRecipeFragment
         tvRecipeFragment.text = recipe?.title.toString()
@@ -56,7 +69,6 @@ class RecipeFragment : Fragment() {
             Log.e("mylog", "Error: $ex")
         }
     }
-
 }
 
 
@@ -64,4 +76,3 @@ class RecipeFragment : Fragment() {
 //        binding.rvIngredients.layoutManager = layMan
 //        binding.rvIngredients.addItemDecoration(DividerItemDecoration(binding.rvIngredients.context, layMan.orientation))
 
-//categoryImageUrl = arguments?.getString(ARG_CATEGORY_IMAGE_URL)
