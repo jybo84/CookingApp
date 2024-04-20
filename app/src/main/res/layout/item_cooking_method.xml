@@ -9,11 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/montserrat_regular"
         android:paddingHorizontal="12dp"
         android:paddingVertical="@dimen/margin_16dp"
         android:textSize="14sp"
         tools:text="Лук нарежьте кольцами и добавьте к фаршу. Обжаривайте вместе до золотистой корки." />
 
 </androidx.cardview.widget.CardView>
-

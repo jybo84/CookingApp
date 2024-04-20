@@ -8,7 +8,7 @@
     <string name="title_ingredients">ингридиенты</string>
     <string name="portions">Порции: %1$d</string>
     <string name="cooking_method">способ приготовления</string>
-    <string name="ingr_accaunt">%1$s %2$s</string>
+    <string name="ingredient_account">%1$s %2$s</string>
 
 </resources>
 

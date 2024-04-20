@@ -46,12 +46,10 @@
             android:layout_margin="@dimen/margin_16dp"
             android:orientation="vertical">
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
 
                 <TextView
                     android:id="@+id/titleIngredients"
@@ -59,7 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/title_ingredients"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/text_size_20sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -86,6 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:backgroundTint="@color/white"
                 tools:listitem="@layout/item_ingredient" />
 
             <TextView
@@ -101,9 +100,9 @@
                 android:id="@+id/rvMethod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_cooking_method" />
-
 
         </LinearLayout>
 

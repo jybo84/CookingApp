@@ -8,8 +8,10 @@
     <dimen name="button_favourites_margin_start">2dp</dimen>
     <dimen name="padding_8dp">8dp</dimen>
     <dimen name="text_size_rectangle_top">20sp</dimen>
-    <dimen name="text_size_16sp">16sp</dimen>
     <dimen name="fragment_recipe_list_height">224dp</dimen>
+    <dimen name="text_size_16sp">16sp</dimen>
+    <dimen name="text_size_20sp">20sp</dimen>
+
 </resources>
 
 

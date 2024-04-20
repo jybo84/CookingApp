@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_weight="1"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/montserrat_regular"
+            android:textAllCaps="true"
             android:textSize="14sp"
             tools:text="куринное яйцо" />
 
@@ -26,7 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/montserrat_regular"
+            android:textAllCaps="true"
             android:gravity="end"
             android:textSize="14sp"
             tools:text="5 штук" />
@@ -34,4 +36,3 @@
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
-
