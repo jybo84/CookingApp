@@ -34,17 +34,16 @@ class RecipeFragment : Fragment() {
 
     private fun initUI() {
         val divider = MaterialDividerItemDecoration(requireContext(), LinearLayout.VERTICAL)
+        this.context?.let { divider.setDividerColorResource(it, R.color.color_divider) }
 
         val listIngredients = recipe?.ingredients
         val adapterIngredient = listIngredients?.let { IngredientsAdapter(it) }
         binding.rvIngredients.adapter = adapterIngredient
-        this.context?.let { divider.setDividerColorResource(it, R.color.color_portions) }
         binding.rvIngredients.addItemDecoration(divider)
 
         val methodCook = recipe?.method
         val adapterCookingMethod = methodCook?.let { CookingMethodAdapter(it) }
         binding.rvMethod.adapter = adapterCookingMethod
-        this.context?.let { divider.setDividerColorResource(it, R.color.color_portions) }
         binding.rvMethod.addItemDecoration(divider)
 
         val tvRecipeFragment = binding.tvRecipeInRecipeFragment
