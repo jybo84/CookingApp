@@ -33,18 +33,16 @@ class RecipeFragment : Fragment() {
     }
 
     private fun initUI() {
-        val divider = MaterialDividerItemDecoration(requireContext(), LinearLayout.VERTICAL)
-        this.context?.let { divider.setDividerColorResource(it, R.color.color_divider) }
 
         val listIngredients = recipe?.ingredients
         val adapterIngredient = listIngredients?.let { IngredientsAdapter(it) }
         binding.rvIngredients.adapter = adapterIngredient
-        binding.rvIngredients.addItemDecoration(divider)
+        binding.rvIngredients.addItemDecoration(makeDivider())
 
         val methodCook = recipe?.method
         val adapterCookingMethod = methodCook?.let { CookingMethodAdapter(it) }
         binding.rvMethod.adapter = adapterCookingMethod
-        binding.rvMethod.addItemDecoration(divider)
+        binding.rvMethod.addItemDecoration(makeDivider())
 
         val tvRecipeFragment = binding.tvRecipeInRecipeFragment
         tvRecipeFragment.text = recipe?.title.toString()
@@ -63,5 +61,14 @@ class RecipeFragment : Fragment() {
         } catch (ex: Exception) {
             Log.e("mylog", "Error: $ex")
         }
+    }
+
+    private fun makeDivider(): MaterialDividerItemDecoration{
+        val divider = MaterialDividerItemDecoration(requireContext(), LinearLayout.VERTICAL)
+        this.context?.let { divider.setDividerColorResource(it, R.color.color_divider) }
+        divider.dividerInsetStart = 28
+        divider.dividerInsetEnd = 28
+        divider.isLastItemDecorated = false
+        return divider
     }
 }
