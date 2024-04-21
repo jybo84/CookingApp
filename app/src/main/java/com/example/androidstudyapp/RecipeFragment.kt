@@ -63,7 +63,7 @@ class RecipeFragment : Fragment() {
         }
     }
 
-    private fun makeDivider(): MaterialDividerItemDecoration{
+    private fun makeDivider(): MaterialDividerItemDecoration {
         val divider = MaterialDividerItemDecoration(requireContext(), LinearLayout.VERTICAL)
         this.context?.let { divider.setDividerColorResource(it, R.color.color_divider) }
         divider.dividerInsetStart = 28
