@@ -6,11 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
 import com.example.androidstudyapp.databinding.FragmentRecipeBinding
+import com.google.android.material.divider.MaterialDividerItemDecoration
 
 class RecipeFragment : Fragment() {
 
@@ -34,15 +33,19 @@ class RecipeFragment : Fragment() {
     }
 
     private fun initUI() {
+        val divider = MaterialDividerItemDecoration(requireContext(), LinearLayout.VERTICAL)
+
         val listIngredients = recipe?.ingredients
         val adapterIngredient = listIngredients?.let { IngredientsAdapter(it) }
         binding.rvIngredients.adapter = adapterIngredient
+        this.context?.let { divider.setDividerColorResource(it, R.color.color_portions) }
+        binding.rvIngredients.addItemDecoration(divider)
 
         val methodCook = recipe?.method
         val adapterCookingMethod = methodCook?.let { CookingMethodAdapter(it) }
         binding.rvMethod.adapter = adapterCookingMethod
-
-        addDivider()
+        this.context?.let { divider.setDividerColorResource(it, R.color.color_portions) }
+        binding.rvMethod.addItemDecoration(divider)
 
         val tvRecipeFragment = binding.tvRecipeInRecipeFragment
         tvRecipeFragment.text = recipe?.title.toString()
@@ -61,23 +64,5 @@ class RecipeFragment : Fragment() {
         } catch (ex: Exception) {
             Log.e("mylog", "Error: $ex")
         }
-    }
-
-    private fun addDivider() {
-        val divider = ResourcesCompat.getDrawable(resources, R.drawable.shape_divider, null)
-
-        val dividerItemIngredients =
-            DividerItemDecoration(binding.rvIngredients.context, RecyclerView.VERTICAL)
-        if (divider != null) {
-            dividerItemIngredients.setDrawable(divider)
-        }
-        binding.rvIngredients.addItemDecoration(dividerItemIngredients)
-
-        val dividerItemMethod =
-            DividerItemDecoration(binding.rvMethod.context, RecyclerView.VERTICAL)
-        if (divider != null) {
-            dividerItemMethod.setDrawable(divider)
-        }
-        binding.rvMethod.addItemDecoration(dividerItemMethod)
     }
 }
