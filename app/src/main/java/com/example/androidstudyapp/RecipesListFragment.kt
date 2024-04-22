@@ -52,17 +52,17 @@ class RecipesListFragment : Fragment() {
     fun openRecipeByRecipeId(id: Int) {
         parentFragmentManager.commit {
 
+            val recipeImage = STUB.getRecipeById(id)?.imageUrl
             val recipe = STUB.getRecipeById(id)
-
             val bundle = bundleOf(
-                ARG_RECIPE to recipe
+                ARG_RECIPE to recipe,
+                ARG_RECIPE_IMAGE to recipeImage
             )
             replace(R.id.mainContainer, RecipeFragment::class.java, bundle)
             setReorderingAllowed(true)
             addToBackStack(null)
         }
     }
-
 
     private fun initRecyclerRecipe() {
         val adapter = RecipesListAdapter(STUB.getRecipesByCategoryId(categoryId))

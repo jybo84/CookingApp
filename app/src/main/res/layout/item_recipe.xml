@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/padding_8dp"
-    android:layout_marginVertical="@dimen/padding_8dp"
+    android:layout_margin="@dimen/padding_8dp"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
@@ -30,7 +29,6 @@
             android:layout_width="match_parent"
             android:paddingHorizontal="@dimen/padding_8dp"
             app:layout_constrainedWidth="true"
-            app:layout_constraintHorizontal_bias="0.0"
             tools:text="классический гамбургер" />
 
     </LinearLayout>

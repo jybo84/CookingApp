@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="@dimen/padding_8dp">
+
+    <TextView
+        android:id="@+id/nameOfIngredient"
+        style="@style/StyleTextIngredient"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_12dp"
+        android:layout_weight="1"
+        tools:text="куринное яйцо" />
+
+    <TextView
+        android:id="@+id/quantityIngredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_5dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:gravity="end"
+        android:textSize="@dimen/text_size_14sp"
+        tools:text="5" />
+
+    <TextView
+        android:id="@+id/unitOfMeasureIngredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_12dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:gravity="end"
+        android:textSize="@dimen/text_size_14sp"
+        tools:text="штук" />
+
+</LinearLayout>
+

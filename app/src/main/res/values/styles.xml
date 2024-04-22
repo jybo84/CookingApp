@@ -20,6 +20,12 @@
         <item name="paddingStart">@dimen/padding_8dp</item>
     </style>
 
+    <style name="StyleTextIngredient" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
     <style name="StyleTopRectangle" parent="Widget.AppCompat.TextView">
         <item name="android:layout_marginStart">@dimen/margin_16dp</item>
         <item name="android:layout_marginBottom">@dimen/margin_16dp</item>
