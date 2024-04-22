@@ -11,9 +11,9 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/montserrat_regular"
-        android:paddingHorizontal="12dp"
+        android:paddingHorizontal="@dimen/margin_12dp"
         android:paddingVertical="@dimen/margin_16dp"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_14sp"
         tools:text="Лук нарежьте кольцами и добавьте к фаршу. Обжаривайте вместе до золотистой корки." />
 
 </LinearLayout>

@@ -8,25 +8,32 @@
 
     <TextView
         android:id="@+id/nameOfIngredient"
+        style="@style/StyleTextIngredient"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="@dimen/margin_12dp"
         android:layout_weight="1"
-        android:fontFamily="@font/montserrat_regular"
-        android:textAllCaps="true"
-        android:textSize="14sp"
         tools:text="куринное яйцо" />
 
     <TextView
-        android:id="@+id/quantityAndUnitOfMeasure"
+        android:id="@+id/quantityIngredients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="@dimen/margin_5dp"
         android:fontFamily="@font/montserrat_regular"
         android:gravity="end"
-        android:textAllCaps="true"
-        android:textSize="14sp"
-        tools:text="5 штук" />
+        android:textSize="@dimen/text_size_14sp"
+        tools:text="5" />
+
+    <TextView
+        android:id="@+id/unitOfMeasureIngredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_12dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:gravity="end"
+        android:textSize="@dimen/text_size_14sp"
+        tools:text="штук" />
 
 </LinearLayout>
 
