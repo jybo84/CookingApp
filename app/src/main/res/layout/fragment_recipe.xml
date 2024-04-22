@@ -93,14 +93,13 @@
                     </LinearLayout>
 
                     <SeekBar
-                        android:id="@+id/sb_numberOfPortions"
+                        android:id="@+id/sbNumberOfPortions"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:indeterminate="false"
                         android:max="5"
                         android:min="0"
                         android:paddingVertical="7dp"
-                        android:progress="2"
+                        android:progress="3"
                         android:progressDrawable="@drawable/custom_seekbar"
                         android:thumb="@drawable/thumb" />
 

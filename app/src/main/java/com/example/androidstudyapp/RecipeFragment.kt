@@ -26,12 +26,12 @@ class RecipeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return binding.root
-    }
+   }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
-        makeSeekBar()
+       makeSeekBar()
     }
 
     private fun initUI() {
@@ -50,8 +50,6 @@ class RecipeFragment : Fragment() {
         tvRecipeFragment.text = recipe?.title.toString()
 
         getImageOfRecipe()
-
-
     }
 
     private fun getImageOfRecipe() {
@@ -77,19 +75,20 @@ class RecipeFragment : Fragment() {
     }
 
     private fun makeSeekBar() {
-        binding.sbNumberOfPortions.setOnSeekBarChangeListener(object :
-            SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                binding.quantityPortions.text = progress.toString()
-            }
+       binding.sbNumberOfPortions.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
+           override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+               TODO("Not yet implemented")
+           }
 
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                TODO("Not yet implemented")
-            }
+           override fun onStartTrackingTouch(seekBar: SeekBar?) {
+               TODO("Not yet implemented")
+           }
 
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                TODO("Not yet implemented")
-            }
-        })
+           override fun onStopTrackingTouch(seekBar: SeekBar?) {
+               TODO("Not yet implemented")
+           }
+
+       }
+       )
     }
 }
