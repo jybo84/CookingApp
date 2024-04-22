@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import com.example.androidstudyapp.databinding.FragmentRecipeBinding
 import com.google.android.material.divider.MaterialDividerItemDecoration
@@ -30,6 +31,7 @@ class RecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
+        makeSeekBar()
     }
 
     private fun initUI() {
@@ -48,6 +50,8 @@ class RecipeFragment : Fragment() {
         tvRecipeFragment.text = recipe?.title.toString()
 
         getImageOfRecipe()
+
+
     }
 
     private fun getImageOfRecipe() {
@@ -70,5 +74,22 @@ class RecipeFragment : Fragment() {
         divider.dividerInsetEnd = 28
         divider.isLastItemDecorated = false
         return divider
+    }
+
+    private fun makeSeekBar() {
+        binding.sbNumberOfPortions.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                binding.quantityPortions.text = progress.toString()
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                TODO("Not yet implemented")
+            }
+        })
     }
 }

@@ -14,6 +14,8 @@ class IngredientsAdapter(private val dataSet: List<Ingredient>) :
         val unitOfMeasureIngredients = binding.unitOfMeasureIngredients
     }
 
+     var  quantity = 0
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             ItemIngredientBinding.inflate(
@@ -32,5 +34,9 @@ class IngredientsAdapter(private val dataSet: List<Ingredient>) :
         holder.quantityIngredient.text = ingredient.quantity
         holder.unitOfMeasureIngredients.text = ingredient.unitOfMeasure
 
+    }
+
+    private fun updateIngredients( progress: Int): Int{
+        return progress
     }
 }
