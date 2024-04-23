@@ -14,7 +14,7 @@ class IngredientsAdapter(private val dataSet: List<Ingredient>) :
         val unitOfMeasureIngredients = binding.unitOfMeasureIngredients
     }
 
-      var  quantity = 0
+    var quantity = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -35,12 +35,7 @@ class IngredientsAdapter(private val dataSet: List<Ingredient>) :
         holder.unitOfMeasureIngredients.text = ingredient.unitOfMeasure
     }
 
-     fun updateIngredients(progress: Int){
-         quantity = progress
-    }
-
-    fun getBundleProgress(){
-
+    fun updateIngredients(progress: Int) {
     }
 }
 
