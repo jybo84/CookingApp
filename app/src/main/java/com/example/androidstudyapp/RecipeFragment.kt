@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.SeekBar
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.example.androidstudyapp.databinding.FragmentRecipeBinding
 import com.google.android.material.divider.MaterialDividerItemDecoration
@@ -19,6 +20,12 @@ class RecipeFragment : Fragment() {
     private val recipe by lazy { arguments?.parcelable<Recipe>(ARG_RECIPE) }
 
     private var recipeImageUrl: String? = null
+
+    var startPoint = 0
+    var endPoint = 0
+    val totalPoint = endPoint - startPoint
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +58,10 @@ class RecipeFragment : Fragment() {
         getImageOfRecipe()
 
         makeSeekBar()
+
+//        if ((totalPoint) != startPoint){
+//            IngredientsAdapter().updateIngredients(totalPoint)
+//        }
     }
 
     private fun getImageOfRecipe() {
@@ -83,19 +94,21 @@ class RecipeFragment : Fragment() {
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                var startPoint = 0
                 if (seekBar != null) {
                     startPoint = seekBar.progress
                 }
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                var endPoint = 0
                 if (seekBar != null) {
                     endPoint = seekBar.progress
                 }
             }
         })
+        val bundleProgress = bundleOf(
+            "wwww" to totalPoint
+        )
+
     }
 }
 //В IngredientsAdapter создать метод updateIngredients(), который будет принимать целочисленное значение progress.

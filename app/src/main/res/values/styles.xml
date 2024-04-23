@@ -26,6 +26,12 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
+    <style name="StyleTextNumberPortions" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/montserrat_semi_bold</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:textColor">@color/color_portions</item>
+    </style>
+
     <style name="StyleTopRectangle" parent="Widget.AppCompat.TextView">
         <item name="android:layout_marginStart">@dimen/margin_16dp</item>
         <item name="android:layout_marginBottom">@dimen/margin_16dp</item>

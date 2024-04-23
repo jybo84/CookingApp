@@ -17,22 +17,20 @@
 
     <TextView
         android:id="@+id/quantityIngredients"
+        style="@style/StyleTextIngredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_5dp"
-        android:fontFamily="@font/montserrat_regular"
         android:gravity="end"
-        android:textSize="@dimen/text_size_14sp"
         tools:text="5" />
 
     <TextView
         android:id="@+id/unitOfMeasureIngredients"
+        style="@style/StyleTextIngredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_12dp"
-        android:fontFamily="@font/montserrat_regular"
         android:gravity="end"
-        android:textSize="@dimen/text_size_14sp"
         tools:text="штук" />
 
 </LinearLayout>

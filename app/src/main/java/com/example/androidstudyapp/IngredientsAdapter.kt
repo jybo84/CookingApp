@@ -14,7 +14,7 @@ class IngredientsAdapter(private val dataSet: List<Ingredient>) :
         val unitOfMeasureIngredients = binding.unitOfMeasureIngredients
     }
 
-    var quantity = 0
+    var quantity: Int? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -36,8 +36,9 @@ class IngredientsAdapter(private val dataSet: List<Ingredient>) :
     }
 
     fun updateIngredients(progress: Int) {
+
     }
-}
+    }
 
 
 //В IngredientsAdapter создать метод updateIngredients(), который будет принимать целочисленное значение progress.
