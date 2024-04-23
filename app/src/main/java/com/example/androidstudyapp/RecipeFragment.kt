@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.SeekBar
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.example.androidstudyapp.databinding.FragmentRecipeBinding
 import com.google.android.material.divider.MaterialDividerItemDecoration
@@ -20,18 +21,26 @@ class RecipeFragment : Fragment() {
 
     private var recipeImageUrl: String? = null
 
+    var startPoint = 0
+    var endPoint = 0
+    val totalPoint = endPoint - startPoint
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return binding.root
-   }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
-       makeSeekBar()
+
+        if(totalPoint!= startPoint){
+
+        }
+
     }
 
     private fun initUI() {
@@ -50,6 +59,8 @@ class RecipeFragment : Fragment() {
         tvRecipeFragment.text = recipe?.title.toString()
 
         getImageOfRecipe()
+
+        makeSeekBar()
     }
 
     private fun getImageOfRecipe() {
@@ -75,20 +86,35 @@ class RecipeFragment : Fragment() {
     }
 
     private fun makeSeekBar() {
-       binding.sbNumberOfPortions.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
-           override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-               TODO("Not yet implemented")
-           }
+        binding.sbNumberOfPortions.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                binding.quantityPortions.text = progress.toString()
+            }
 
-           override fun onStartTrackingTouch(seekBar: SeekBar?) {
-               TODO("Not yet implemented")
-           }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                if (seekBar != null) {
+                    startPoint = seekBar.progress
+                }
+            }
 
-           override fun onStopTrackingTouch(seekBar: SeekBar?) {
-               TODO("Not yet implemented")
-           }
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                if (seekBar != null) {
+                    endPoint = seekBar.progress
+                }
+            }
+        })
 
-       }
-       )
+        val bundleProgress = bundleOf(
+
+        )
     }
+
+
+
+
 }
+//В IngredientsAdapter создать метод updateIngredients(), который будет принимать целочисленное значение progress.
+//При изменении прогресса вызывать во фрагменте созданный метод и передавать значение progress.
+//В IngredientsAdapter создать переменную quantity и обновлять ее значение при вызове updateIngredients(),
+//использовать эту переменную для перемножения количества ингредиентов при байндинге элементов.

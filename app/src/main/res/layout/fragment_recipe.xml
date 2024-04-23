@@ -94,14 +94,10 @@
 
                     <SeekBar
                         android:id="@+id/sbNumberOfPortions"
+                        style="@style/styleSeekBar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:max="5"
-                        android:min="0"
-                        android:paddingVertical="7dp"
-                        android:progress="3"
-                        android:progressDrawable="@drawable/custom_seekbar"
-                        android:thumb="@drawable/thumb" />
+                        android:progressDrawable="@drawable/shape_seekbar_progress" />
 
                 </LinearLayout>
 
