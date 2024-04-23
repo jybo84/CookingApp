@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidstudyapp.databinding.ItemIngredientBinding
+import java.text.DecimalFormat
 
 class IngredientsAdapter(private val dataSet: List<Ingredient>) :
     RecyclerView.Adapter<IngredientsAdapter.ViewHolder>() {
@@ -14,7 +15,8 @@ class IngredientsAdapter(private val dataSet: List<Ingredient>) :
         val unitOfMeasureIngredients = binding.unitOfMeasureIngredients
     }
 
-    var quantity: Int? = null
+    private var quantity: Int = 1
+    private val quantityFormat = DecimalFormat("#.#")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -31,20 +33,13 @@ class IngredientsAdapter(private val dataSet: List<Ingredient>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val ingredient: Ingredient = dataSet[position]
         holder.nameOfIngredient.text = ingredient.description
-        holder.quantityIngredient.text = ingredient.quantity
+        holder.quantityIngredient.text =
+            quantityFormat.format(ingredient.quantity.toFloat() * quantity)
         holder.unitOfMeasureIngredients.text = ingredient.unitOfMeasure
     }
 
     fun updateIngredients(progress: Int) {
-
+        quantity = progress
+        notifyDataSetChanged()
     }
-    }
-
-
-//В IngredientsAdapter создать метод updateIngredients(), который будет принимать целочисленное значение progress.
-//При изменении прогресса вызывать во фрагменте созданный метод и передавать значение progress.
-//В IngredientsAdapter создать переменную quantity и обновлять ее значение при вызове updateIngredients(),
-//использовать эту переменную для перемножения количества ингредиентов при байндинге элементов.
-
-//Добавить проверку для перемноженного значения на целостность числа. Если полученное число не целое,
-//отображать значение с точкой (с одним знаком после точки). В ином случае отображать только целое число.
+}

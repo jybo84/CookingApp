@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.SeekBar
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.example.androidstudyapp.databinding.FragmentRecipeBinding
 import com.google.android.material.divider.MaterialDividerItemDecoration
@@ -21,11 +20,7 @@ class RecipeFragment : Fragment() {
 
     private var recipeImageUrl: String? = null
 
-    var startPoint = 0
-    var endPoint = 0
-    val totalPoint = endPoint - startPoint
-
-
+    val adapterIngredient by lazy { recipe?.ingredients?.let { IngredientsAdapter(it) } }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,8 +37,8 @@ class RecipeFragment : Fragment() {
 
     private fun initUI() {
 
-        val listIngredients = recipe?.ingredients
-        val adapterIngredient = listIngredients?.let { IngredientsAdapter(it) }
+//        val listIngredients = recipe?.ingredients
+//        val adapterIngredient = listIngredients?.let { IngredientsAdapter(it) }
         binding.rvIngredients.adapter = adapterIngredient
         binding.rvIngredients.addItemDecoration(makeDivider())
 
@@ -58,10 +53,6 @@ class RecipeFragment : Fragment() {
         getImageOfRecipe()
 
         makeSeekBar()
-
-//        if ((totalPoint) != startPoint){
-//            IngredientsAdapter().updateIngredients(totalPoint)
-//        }
     }
 
     private fun getImageOfRecipe() {
@@ -91,27 +82,15 @@ class RecipeFragment : Fragment() {
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 binding.quantityPortions.text = progress.toString()
+
+                adapterIngredient?.updateIngredients(progress)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                if (seekBar != null) {
-                    startPoint = seekBar.progress
-                }
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                if (seekBar != null) {
-                    endPoint = seekBar.progress
-                }
             }
         })
-        val bundleProgress = bundleOf(
-            "wwww" to totalPoint
-        )
-
     }
 }
-//В IngredientsAdapter создать метод updateIngredients(), который будет принимать целочисленное значение progress.
-//При изменении прогресса вызывать во фрагменте созданный метод и передавать значение progress.
-//В IngredientsAdapter создать переменную quantity и обновлять ее значение при вызове updateIngredients(),
-//использовать эту переменную для перемножения количества ингредиентов при байндинге элементов.
