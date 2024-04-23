@@ -11,6 +11,7 @@
     <dimen name="margin_6dp">6dp</dimen>
     <dimen name="padding_8dp">8dp</dimen>
     <dimen name="padding_7dp">7dp</dimen>
+    <dimen name="padding_0dp">0dp</dimen>
     <dimen name="fragment_recipe_list_height">224dp</dimen>
     <dimen name="text_size_16sp">16sp</dimen>
     <dimen name="text_size_14sp">14sp</dimen>
