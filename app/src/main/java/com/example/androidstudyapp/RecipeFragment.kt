@@ -112,7 +112,6 @@ class RecipeFragment : Fragment() {
 
 
 
-
 }
 //В IngredientsAdapter создать метод updateIngredients(), который будет принимать целочисленное значение progress.
 //При изменении прогресса вызывать во фрагменте созданный метод и передавать значение progress.
