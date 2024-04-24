@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import com.example.androidstudyapp.databinding.FragmentRecipeBinding
 import com.google.android.material.divider.MaterialDividerItemDecoration
@@ -18,6 +19,8 @@ class RecipeFragment : Fragment() {
     private val recipe by lazy { arguments?.parcelable<Recipe>(ARG_RECIPE) }
 
     private var recipeImageUrl: String? = null
+
+    val adapterIngredient by lazy { recipe?.ingredients?.let { IngredientsAdapter(it) } }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,8 +37,8 @@ class RecipeFragment : Fragment() {
 
     private fun initUI() {
 
-        val listIngredients = recipe?.ingredients
-        val adapterIngredient = listIngredients?.let { IngredientsAdapter(it) }
+//        val listIngredients = recipe?.ingredients
+//        val adapterIngredient = listIngredients?.let { IngredientsAdapter(it) }
         binding.rvIngredients.adapter = adapterIngredient
         binding.rvIngredients.addItemDecoration(makeDivider())
 
@@ -48,6 +51,8 @@ class RecipeFragment : Fragment() {
         tvRecipeFragment.text = recipe?.title.toString()
 
         getImageOfRecipe()
+
+        makeSeekBar()
     }
 
     private fun getImageOfRecipe() {
@@ -70,5 +75,22 @@ class RecipeFragment : Fragment() {
         divider.dividerInsetEnd = 28
         divider.isLastItemDecorated = false
         return divider
+    }
+
+    private fun makeSeekBar() {
+        binding.sbNumberOfPortions.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                binding.quantityPortions.text = progress.toString()
+
+                adapterIngredient?.updateIngredients(progress)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+            }
+        })
     }
 }

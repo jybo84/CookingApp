@@ -14,7 +14,7 @@
         <item name="fontFamily">@font/montserrat_alternates_semi_bold</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/color_text_top_rectangle</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/text_size_14sp</item>
         <item name="android:layout_height">32dp</item>
         <item name="android:paddingVertical">@dimen/padding_8dp</item>
         <item name="paddingStart">@dimen/padding_8dp</item>
@@ -22,8 +22,14 @@
 
     <style name="StyleTextIngredient" parent="TextAppearance.AppCompat">
         <item name="fontFamily">@font/montserrat_regular</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/text_size_14sp</item>
         <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="StyleTextNumberPortions" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/montserrat_semi_bold</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:textColor">@color/color_portions</item>
     </style>
 
     <style name="StyleTopRectangle" parent="Widget.AppCompat.TextView">
@@ -41,8 +47,16 @@
         <item name="android:paddingHorizontal">@dimen/padding_8dp</item>
         <item name="android:paddingBottom">@dimen/padding_8dp</item>
         <item name="android:textColor">@color/color_item</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+    </style>
 
+    <style name="styleSeekBar" parent="Widget.AppCompat.SeekBar">
+        <item name="android:progress">1</item>
+        <item name="android:max">5</item>
+        <item name="android:min">1</item>
+        <item name="android:thumb">@drawable/shape_seekbar_thumb</item>
+        <item name="android:paddingVertical">@dimen/padding_7dp</item>
+        <item name="android:paddingHorizontal">0dp</item>
     </style>
 
 </resources>

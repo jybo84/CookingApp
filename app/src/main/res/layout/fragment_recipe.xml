@@ -62,17 +62,41 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/titleNumberOfServings"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginVertical="6dp"
-                        android:fontFamily="@font/montserrat_semi_bold"
-                        android:text="@string/portions"
-                        android:textColor="@color/color_portions"
-                        android:textSize="@dimen/text_size_16sp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/titlePortions"
+                            style="@style/StyleTextNumberPortions"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/margin_6dp"
+                            android:layout_marginEnd="@dimen/margin_5dp"
+                            android:text="@string/portions" />
+
+                        <TextView
+                            android:id="@+id/quantityPortions"
+                            style="@style/StyleTextNumberPortions"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="@dimen/margin_6dp"
+                            android:text="@string/numberPortions_1" />
+
+                    </LinearLayout>
+
+                    <SeekBar
+                        android:id="@+id/sbNumberOfPortions"
+                        style="@style/styleSeekBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/padding_2dp"
+                        android:paddingEnd="@dimen/padding_0dp"
+
+                        android:progressDrawable="@drawable/shape_seekbar_progress" />
 
                 </LinearLayout>
 
@@ -82,6 +106,7 @@
                 android:id="@+id/rvIngredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16dp"
                 android:background="@drawable/shape_rv_in_recipe"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_ingredient" />
@@ -92,7 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/cooking_method"
-                android:textSize="20sp" />
+                android:textSize="@dimen/text_size_20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvMethod"
