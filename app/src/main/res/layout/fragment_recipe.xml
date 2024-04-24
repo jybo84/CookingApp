@@ -93,7 +93,7 @@
                         style="@style/styleSeekBar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingStart="@dimen/padding_0dp"
+                        android:paddingStart="@dimen/padding_2dp"
                         android:paddingEnd="@dimen/padding_0dp"
 
                         android:progressDrawable="@drawable/shape_seekbar_progress" />
