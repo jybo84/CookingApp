@@ -40,6 +40,6 @@ class IngredientsAdapter(private val dataSet: List<Ingredient>) :
 
     fun updateIngredients(progress: Int) {
         quantity = progress
-        notifyDataSetChanged()
+        notifyItemRangeChanged(0, itemCount)
     }
 }
