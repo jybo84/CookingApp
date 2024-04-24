@@ -51,7 +51,7 @@
     </style>
 
     <style name="styleSeekBar" parent="Widget.AppCompat.SeekBar">
-        <item name="android:progress">2</item>
+        <item name="android:progress">1</item>
         <item name="android:max">5</item>
         <item name="android:min">1</item>
         <item name="android:thumb">@drawable/shape_seekbar_thumb</item>
