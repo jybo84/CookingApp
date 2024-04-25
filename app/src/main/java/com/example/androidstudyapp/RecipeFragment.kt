@@ -1,5 +1,6 @@
 package com.example.androidstudyapp
 
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
@@ -53,6 +54,8 @@ class RecipeFragment : Fragment() {
         getImageOfRecipe()
 
         makeSeekBar()
+
+        makeHeartFull()
     }
 
     private fun getImageOfRecipe() {
@@ -92,5 +95,12 @@ class RecipeFragment : Fragment() {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
             }
         })
+    }
+
+    private fun makeHeartFull(): View{
+        var heartFull = binding.ibHeartFull
+        heartFull.setBackgroundColor(Color.TRANSPARENT)
+
+        return heartFull
     }
 }
