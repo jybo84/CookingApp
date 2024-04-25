@@ -1,6 +1,5 @@
 package com.example.androidstudyapp
 
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
@@ -22,6 +21,9 @@ class RecipeFragment : Fragment() {
     private var recipeImageUrl: String? = null
 
     val adapterIngredient by lazy { recipe?.ingredients?.let { IngredientsAdapter(it) } }
+
+    private var isFavourite = true
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +57,12 @@ class RecipeFragment : Fragment() {
 
         makeSeekBar()
 
-        makeHeartFull()
+       makeHeard()
+
+        binding.ibHeartFavourites.setOnClickListener {
+//            isFavourite = !isFavourite
+//        makeHeard()
+        }
     }
 
     private fun getImageOfRecipe() {
@@ -97,10 +104,23 @@ class RecipeFragment : Fragment() {
         })
     }
 
-    private fun makeHeartFull(): View{
-        var heartFull = binding.ibHeartFull
-        heartFull.setBackgroundColor(Color.TRANSPARENT)
-
-        return heartFull
+    fun makeHeard() {
+        binding.ibHeartFavourites.setImageResource(
+            if (isFavourite) {
+                R.drawable.wwww
+            } else {
+                R.drawable.ic_heart_empty
+            }
+        )
     }
+
+//    private fun logicIbHeartFavourites(){
+//        if(flag)
+//            binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_empty_2)
+//        else{
+//            !flag
+//            binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_full)
+//
+//        }
+//    }
 }
