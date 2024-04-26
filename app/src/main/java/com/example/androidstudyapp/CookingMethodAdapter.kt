@@ -10,7 +10,6 @@ class CookingMethodAdapter(private val dataSet: List<String>) :
 
     class ViewHolder(binding: ItemCookingMethodBinding) : RecyclerView.ViewHolder(binding.root) {
         val tvDescriptionMethodCooking = binding.tvDescriptionMethodCooking
-        val tvNumberItemCookingMethod = binding.tvNumberItemCookingMethod
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,9 +25,6 @@ class CookingMethodAdapter(private val dataSet: List<String>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val methodCooking = dataSet[position]
-        holder.tvDescriptionMethodCooking.text = methodCooking
-        holder.tvNumberItemCookingMethod.text =
-            holder.tvNumberItemCookingMethod.resources.getString(R.string.cookingNumber, position + 1)
-
+        holder.tvDescriptionMethodCooking.text = (position + 1).toString() + ". " + methodCooking
     }
 }
