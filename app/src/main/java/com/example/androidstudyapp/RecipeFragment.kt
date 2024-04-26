@@ -57,11 +57,13 @@ class RecipeFragment : Fragment() {
 
         makeSeekBar()
 
-       makeHeard()
+        makeFavouriteHeard()
+
 
         binding.ibHeartFavourites.setOnClickListener {
-//            isFavourite = !isFavourite
-//        makeHeard()
+            isFavourite = !isFavourite
+            makeFavouriteHeard()
+
         }
     }
 
@@ -104,23 +106,12 @@ class RecipeFragment : Fragment() {
         })
     }
 
-    fun makeHeard() {
-        binding.ibHeartFavourites.setImageResource(
-            if (isFavourite) {
-                R.drawable.wwww
-            } else {
-                R.drawable.ic_heart_empty
-            }
-        )
+    private fun makeFavouriteHeard() {
+        if (isFavourite)
+            binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_full)
+        else {
+            !isFavourite
+            binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_empty)
+        }
     }
-
-//    private fun logicIbHeartFavourites(){
-//        if(flag)
-//            binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_empty_2)
-//        else{
-//            !flag
-//            binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_full)
-//
-//        }
-//    }
 }
