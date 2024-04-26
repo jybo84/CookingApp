@@ -59,11 +59,9 @@ class RecipeFragment : Fragment() {
 
         makeFavouriteHeard()
 
-
         binding.ibHeartFavourites.setOnClickListener {
             isFavourite = !isFavourite
             makeFavouriteHeard()
-
         }
     }
 

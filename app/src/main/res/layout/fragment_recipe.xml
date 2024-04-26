@@ -46,6 +46,8 @@
                 android:layout_marginEnd="@dimen/margin_16dp"
                 android:background="@android:color/transparent"
                 android:scaleType="fitXY"
+                android:clickable="true"
+                android:focusable="true"
                 android:foreground="?attr/selectableItemBackground"
                 tools:src="@drawable/ic_heart_empty"
                 app:layout_constraintEnd_toEndOf="parent"
