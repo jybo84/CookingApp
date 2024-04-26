@@ -107,9 +107,7 @@ class RecipeFragment : Fragment() {
     private fun makeFavouriteHeard() {
         if (isFavourite)
             binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_full)
-        else {
-            !isFavourite
+        else
             binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_empty)
-        }
     }
 }

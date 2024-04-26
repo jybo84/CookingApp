@@ -25,6 +25,7 @@ class CookingMethodAdapter(private val dataSet: List<String>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val methodCooking = dataSet[position]
-        holder.tvDescriptionMethodCooking.text = (position + 1).toString() + ". " + methodCooking
+//        holder.tvDescriptionMethodCooking.text = (position + 1).toString() + ". " + methodCooking
+        holder.tvDescriptionMethodCooking.text = "${position + 1}. $methodCooking"
     }
 }
