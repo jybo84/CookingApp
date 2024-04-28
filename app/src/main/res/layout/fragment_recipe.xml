@@ -38,6 +38,22 @@
                 tools:ignore="MissingConstraints"
                 tools:text="@string/title_burgers" />
 
+            <ImageButton
+                android:id="@+id/ibHeartFavourites"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:layout_marginEnd="@dimen/margin_16dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                tools:src="@drawable/ic_heart_empty"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout

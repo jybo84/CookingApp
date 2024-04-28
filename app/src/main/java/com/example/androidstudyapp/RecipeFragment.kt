@@ -22,6 +22,9 @@ class RecipeFragment : Fragment() {
 
     val adapterIngredient by lazy { recipe?.ingredients?.let { IngredientsAdapter(it) } }
 
+    private var isFavourite = true
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,6 +56,13 @@ class RecipeFragment : Fragment() {
         getImageOfRecipe()
 
         makeSeekBar()
+
+        makeFavouriteHeard()
+
+        binding.ibHeartFavourites.setOnClickListener {
+            isFavourite = !isFavourite
+            makeFavouriteHeard()
+        }
     }
 
     private fun getImageOfRecipe() {
@@ -92,5 +102,12 @@ class RecipeFragment : Fragment() {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
             }
         })
+    }
+
+    private fun makeFavouriteHeard() {
+        if (isFavourite)
+            binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_full)
+        else
+            binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_empty)
     }
 }
