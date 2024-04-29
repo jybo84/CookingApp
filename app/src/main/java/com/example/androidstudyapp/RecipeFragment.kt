@@ -1,5 +1,7 @@
 package com.example.androidstudyapp
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
@@ -22,8 +24,15 @@ class RecipeFragment : Fragment() {
 
     val adapterIngredient by lazy { recipe?.ingredients?.let { IngredientsAdapter(it) } }
 
-    private var isFavourite = true
+    private var isFavourite = false
 
+
+    private val sharedPrefs: SharedPreferences by lazy {
+        requireActivity().getSharedPreferences(
+            FAVOURITES_PREFS,
+            Context.MODE_PRIVATE
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,11 +66,25 @@ class RecipeFragment : Fragment() {
 
         makeSeekBar()
 
+
+        if(getFavorites().contains(recipe?.id.toString()))
+            isFavourite = true
+
+
         makeFavouriteHeard()
 
         binding.ibHeartFavourites.setOnClickListener {
             isFavourite = !isFavourite
             makeFavouriteHeard()
+
+            val listFav = getFavorites()
+            if(isFavourite ){
+             saveFavorites(listFav + recipe?.id.toString())
+            }
+            else{
+                saveFavorites(listFav - recipe?.id.toString())
+          }
+
         }
     }
 
@@ -110,4 +133,26 @@ class RecipeFragment : Fragment() {
         else
             binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_empty)
     }
+
+
+
+    private fun saveFavorites(listFavouriteRecipe: Set<String>) {
+
+        val editor = sharedPrefs.edit()
+        editor?.putStringSet(KEY, listFavouriteRecipe)
+        editor?.apply()
+    }
+
+    private fun getFavorites(): Set<String> {
+
+        val savedFav = sharedPrefs.getStringSet(KEY, emptySet() )?: emptySet()
+        return  HashSet(savedFav)
+    }
+
+    companion object {
+        private const val FAVOURITES_PREFS = "favourites_prefs"
+        private const val KEY = "key"
+    }
 }
+
+
