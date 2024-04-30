@@ -91,6 +91,7 @@ class RecipeFragment : Fragment() {
         divider.dividerInsetEnd = 28
         divider.isLastItemDecorated = false
         return divider
+        
     }
 
     private fun makeSeekBar() {
