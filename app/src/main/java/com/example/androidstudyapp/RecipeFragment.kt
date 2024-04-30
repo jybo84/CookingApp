@@ -16,15 +16,10 @@ import com.google.android.material.divider.MaterialDividerItemDecoration
 class RecipeFragment : Fragment() {
 
     private val binding by lazy { FragmentRecipeBinding.inflate(layoutInflater) }
-
     private val recipe by lazy { arguments?.parcelable<Recipe>(ARG_RECIPE) }
-
     private var recipeImageUrl: String? = null
-
     val adapterIngredient by lazy { recipe?.ingredients?.let { IngredientsAdapter(it) } }
-
     private var isFavourite = false
-
     private val sharedPrefs by lazy {
         requireActivity().getSharedPreferences(FILE_COLLECTION_MY_ID, Context.MODE_PRIVATE)
     }
@@ -44,9 +39,6 @@ class RecipeFragment : Fragment() {
     }
 
     private fun initUI() {
-
-//        val listIngredients = recipe?.ingredients
-//        val adapterIngredient = listIngredients?.let { IngredientsAdapter(it) }
         binding.rvIngredients.adapter = adapterIngredient
         binding.rvIngredients.addItemDecoration(makeDivider())
 
@@ -127,12 +119,12 @@ class RecipeFragment : Fragment() {
 
     private fun saveFavorites(listIdFavouritesRecipes: Set<String>) {
         val editor = sharedPrefs.edit()
-        editor?.putStringSet(KEY, listIdFavouritesRecipes)
+        editor?.putStringSet(FAVORITE_PREFS_KEY, listIdFavouritesRecipes)
         editor?.apply()
     }
 
     private fun getFavorites(): Set<String> {
-        val savedList = sharedPrefs.getStringSet(KEY, emptySet()) ?: emptySet()
+        val savedList = sharedPrefs.getStringSet(FAVORITE_PREFS_KEY, emptySet()) ?: emptySet()
         return HashSet(savedList)
     }
 }
