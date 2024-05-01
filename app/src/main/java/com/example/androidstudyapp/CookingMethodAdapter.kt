@@ -22,12 +22,11 @@ class CookingMethodAdapter(private val dataSet: List<String>) :
 
     override fun getItemCount() = dataSet.size
 
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val methodCooking = dataSet[position]
-//        holder.tvDescriptionMethodCooking.text = (position + 1).toString() + ". " + methodCooking
-       holder.tvDescriptionMethodCooking.text = "${position + 1}. $methodCooking"
-//       holder.tvDescriptionMethodCooking.text =
-//           holder.tvDescriptionMethodCooking.resources.getString(position + 1, methodCooking)
+        holder.tvDescriptionMethodCooking.text =
+            holder.tvDescriptionMethodCooking.resources.getString(
+                R.string.ingredient_account,position + 1, methodCooking
+            )
     }
 }
