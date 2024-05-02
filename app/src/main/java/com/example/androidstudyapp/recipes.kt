@@ -276,5 +276,10 @@ object STUB {
         return burgerRecipes.find { it.id == id }
     }
 
+
+    fun getRecipesByIds(listIdFavourites: Set<Int>): List<Recipe>{
+        return burgerRecipes.filter { listIdFavourites.contains(it.id) }
+    }
+
 }
 

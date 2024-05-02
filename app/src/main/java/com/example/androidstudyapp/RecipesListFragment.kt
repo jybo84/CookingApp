@@ -15,7 +15,7 @@ import com.example.androidstudyapp.databinding.FragmentRecipesListBinding
 class RecipesListFragment : Fragment() {
 
     private val binding by lazy { FragmentRecipesListBinding.inflate(layoutInflater) }
-    private var categoryId: Int? = null
+    var categoryId: Int? = null
     private var categoryName: String? = null
     private var categoryImageUrl: String? = null
 
@@ -64,7 +64,7 @@ class RecipesListFragment : Fragment() {
         }
     }
 
-    private fun initRecyclerRecipe() {
+     private fun initRecyclerRecipe() {
         val adapter = RecipesListAdapter(STUB.getRecipesByCategoryId(categoryId))
         binding.rvRecipe.adapter = adapter
         adapter.setOnClickListenerRecipe(object : RecipesListAdapter.OnItemClickListenerRecipe {

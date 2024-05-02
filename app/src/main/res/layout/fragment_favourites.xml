@@ -1,17 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/color_background"
-    tools:context=".FavouritesFragment">
+    android:orientation="vertical"
+    tools:context=".CategoriesListFragment">
 
-    <TextView
-        style="@style/StyleTopRectangle"
-        android:layout_width="159dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="164dp"
-        android:background="@drawable/shape_top_rectangle"
-        android:text="@string/title_favourites" />
+    <androidx.constraintlayout.widget.ConstraintLayout
 
-</FrameLayout>
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_recipe_list_height">
+
+        <ImageView
+            android:id="@+id/ivRecipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/image_for_burger_category"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bcg_favorites"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvCategory"
+            style="@style/StyleTopRectangle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_top_rectangle"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/title_favourites" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFavouriteRecipeList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/padding_8dp"
+        android:layout_marginVertical="@dimen/padding_8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/item_recipe" />
+
+</LinearLayout>
