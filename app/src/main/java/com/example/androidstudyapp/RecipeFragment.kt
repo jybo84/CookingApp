@@ -19,11 +19,9 @@ class RecipeFragment : Fragment() {
     private val recipe by lazy { arguments?.parcelable<Recipe>(ARG_RECIPE) }
     private var recipeImageUrl: String? = null
     val adapterIngredient by lazy { recipe?.ingredients?.let { IngredientsAdapter(it) } }
-    private var isFavourite = false
     private val sharedPrefs by lazy {
         requireActivity().getSharedPreferences(FILE_COLLECTION_MY_ID, Context.MODE_PRIVATE)
     }
-
 
 
     override fun onCreateView(
@@ -55,27 +53,24 @@ class RecipeFragment : Fragment() {
 
         makeSeekBar()
 
-        if (getFavorites().contains(recipe?.id.toString()))
-            isFavourite = true
-
         makeFavouriteHeard()
 
         binding.ibHeartFavourites.setOnClickListener {
-            isFavourite = !isFavourite
-            makeFavouriteHeard()
 
             val myListRecipes = getFavorites()
-            if (isFavourite)
-                saveFavorites(myListRecipes + recipe?.id.toString())
-            else
-                saveFavorites(myListRecipes - recipe?.id.toString())
+            if (getFavorites().contains(recipe?.id.toString()))
+                myListRecipes.remove(recipe?.id.toString())
+            else myListRecipes.add(recipe?.id.toString())
+
+            saveFavorites(myListRecipes)
+
+            makeFavouriteHeard()
         }
     }
 
     private fun getImageOfRecipe() {
         recipeImageUrl = arguments?.getString(ARG_RECIPE_IMAGE)
         val recipeImage = binding.ivRecipe
-
         try {
             val ims = recipeImageUrl?.let { requireContext().assets.open(it) }
             val picture = Drawable.createFromStream(ims, null)
@@ -88,8 +83,9 @@ class RecipeFragment : Fragment() {
     private fun makeDivider(): MaterialDividerItemDecoration {
         val divider = MaterialDividerItemDecoration(requireContext(), LinearLayout.VERTICAL)
         this.context?.let { divider.setDividerColorResource(it, R.color.color_divider) }
-        divider.dividerInsetStart = 28
-        divider.dividerInsetEnd = 28
+        val sizeInset = resources.getDimensionPixelSize(R.dimen.divider_inset)
+        divider.dividerInsetStart = sizeInset
+        divider.dividerInsetEnd = sizeInset
         divider.isLastItemDecorated = false
         return divider
     }
@@ -112,19 +108,19 @@ class RecipeFragment : Fragment() {
     }
 
     private fun makeFavouriteHeard() {
-        if (isFavourite)
+        if (getFavorites().contains(recipe?.id.toString()))
             binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_full)
         else
             binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_empty)
     }
 
     private fun saveFavorites(listIdFavouritesRecipes: Set<String>) {
-        val editor = sharedPrefs.edit()
-        editor?.putStringSet(FAVORITE_PREFS_KEY, listIdFavouritesRecipes)
-        editor?.apply()
+        with(sharedPrefs.edit()) {
+            putStringSet(FAVORITE_PREFS_KEY, listIdFavouritesRecipes)
+        }.apply()
     }
 
-    private fun getFavorites(): Set<String> {
+    private fun getFavorites(): MutableSet<String> {
         val savedList = sharedPrefs.getStringSet(FAVORITE_PREFS_KEY, emptySet()) ?: emptySet()
         return HashSet(savedList)
     }
