@@ -9,6 +9,7 @@
     <dimen name="margin_12dp">12dp</dimen>
     <dimen name="margin_5dp">5dp</dimen>
     <dimen name="margin_6dp">6dp</dimen>
+    <dimen name="margin_202dp">202dp</dimen>
     <dimen name="padding_8dp">8dp</dimen>
     <dimen name="padding_7dp">7dp</dimen>
     <dimen name="padding_2dp">2dp</dimen>

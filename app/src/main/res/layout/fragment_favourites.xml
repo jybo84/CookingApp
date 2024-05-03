@@ -31,12 +31,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_top_rectangle"
+            android:text="@string/title_favourites"
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/title_favourites" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvHoth"
+        style="@style/StyleTextNumberPortions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_202dp"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/button_padding_horizontal_20dp"
+        android:text="@string/favourite_empty"
+        android:textColor="@color/color_empty_list"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFavouriteRecipeList"

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.androidstudyapp.databinding.FragmentFavouritesBinding
@@ -13,31 +14,26 @@ import com.example.androidstudyapp.databinding.FragmentFavouritesBinding
 class FavouritesFragment : Fragment() {
 
     private val binding by lazy { FragmentFavouritesBinding.inflate(layoutInflater) }
-
     private val sharedPrefs by lazy {
         requireActivity().getSharedPreferences(FILE_COLLECTION_MY_ID, Context.MODE_PRIVATE)
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initRecycleViewFavourites()
-
-
+        start()
     }
 
     private fun initRecycleViewFavourites() {
-      val adapter = RecipesListAdapter(STUB.getRecipesByIds(getFavorites()))
-
-
+        val adapter =
+            RecipesListAdapter(STUB.getRecipesByIds(getFavorites().map { it.toInt() }.toSet()))
         binding.rvFavouriteRecipeList.adapter = adapter
         adapter.setOnClickListenerRecipe(object : RecipesListAdapter.OnItemClickListenerRecipe {
             override fun onItemClickRecipe(recipeId: Int) {
@@ -48,11 +44,9 @@ class FavouritesFragment : Fragment() {
 
     private fun openRecipesByCategoryId(categoryId: Int) {
         parentFragmentManager.commit {
-
             val category = STUB.getCategories().find {
                 it.id == categoryId
             } ?: return
-
             val categoryName = category.title
             val categoryImageUrl = category.imageUrl
             val bundle = bundleOf(
@@ -68,10 +62,14 @@ class FavouritesFragment : Fragment() {
         }
     }
 
-    private fun getFavorites(): Set<Int> {
-        val savedList: Set<String> = sharedPrefs.getStringSet(FAVORITE_PREFS_KEY, emptySet()) ?: emptySet()
-        val sevedListMaped: List<Int> = savedList.map { it.toInt() }
-        val sevedListMapedSet: Set<Int> = sevedListMaped.toSet()
-        return HashSet(sevedListMapedSet)
+    private fun getFavorites(): Set<String> {
+        val savedList: Set<String> =
+            sharedPrefs.getStringSet(FAVORITE_PREFS_KEY, emptySet()) ?: emptySet()
+        return HashSet(savedList)
+    }
+
+    private fun start() {
+        binding.tvHoth.isVisible = getFavorites().isEmpty()
+        initRecycleViewFavourites()
     }
 }
