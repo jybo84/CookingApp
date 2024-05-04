@@ -19,11 +19,10 @@ class RecipeFragment : Fragment() {
     private val recipe by lazy { arguments?.parcelable<Recipe>(ARG_RECIPE) }
     private var recipeImageUrl: String? = null
     val adapterIngredient by lazy { recipe?.ingredients?.let { IngredientsAdapter(it) } }
+    private val adapterCookingMethod by lazy { recipe?.method?.let { CookingMethodAdapter(it) } }
     private val sharedPrefs by lazy {
         requireActivity().getSharedPreferences(FILE_COLLECTION_MY_ID, Context.MODE_PRIVATE)
     }
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,12 +37,10 @@ class RecipeFragment : Fragment() {
         initUI()
     }
 
-     private fun initUI() {
+    private fun initUI() {
         binding.rvIngredients.adapter = adapterIngredient
         binding.rvIngredients.addItemDecoration(makeDivider())
 
-        val methodCook = recipe?.method
-        val adapterCookingMethod = methodCook?.let { CookingMethodAdapter(it) }
         binding.rvMethod.adapter = adapterCookingMethod
         binding.rvMethod.addItemDecoration(makeDivider())
 
@@ -122,8 +119,8 @@ class RecipeFragment : Fragment() {
     }
 
     private fun getFavorites(): MutableSet<String> {
-        val savedList: Set<String> = sharedPrefs.getStringSet(FAVORITE_PREFS_KEY, emptySet()) ?: emptySet()
+        val savedList: Set<String> =
+            sharedPrefs.getStringSet(FAVORITE_PREFS_KEY, emptySet()) ?: emptySet()
         return HashSet(savedList)
     }
 }
-
