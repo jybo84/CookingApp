@@ -67,7 +67,7 @@ class RecipeFragment : Fragment() {
         }
     }
 
-    fun getImageOfRecipe() {
+    private fun getImageOfRecipe() {
         recipeImageUrl = arguments?.getString(ARG_RECIPE_IMAGE)
         val recipeImage = binding.ivRecipe
         try {
@@ -79,7 +79,7 @@ class RecipeFragment : Fragment() {
         }
     }
 
-    fun makeDivider(): MaterialDividerItemDecoration {
+    private fun makeDivider(): MaterialDividerItemDecoration {
         val divider = MaterialDividerItemDecoration(requireContext(), LinearLayout.VERTICAL)
         this.context?.let { divider.setDividerColorResource(it, R.color.color_divider) }
         val sizeInset = resources.getDimensionPixelSize(R.dimen.divider_inset)

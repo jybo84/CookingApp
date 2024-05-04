@@ -28,7 +28,8 @@ class FavouritesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        start()
+        binding.tvEmptyFavouriteList.isVisible = getFavorites().isEmpty()
+        initRecycleViewFavourites()
     }
 
     private fun initRecycleViewFavourites() {
@@ -37,12 +38,12 @@ class FavouritesFragment : Fragment() {
         binding.rvFavouriteRecipeList.adapter = adapter
         adapter.setOnClickListenerRecipe(object : RecipesListAdapter.OnItemClickListenerRecipe {
             override fun onItemClickRecipe(recipeId: Int) {
-                openRecipesByCategoryId(recipeId)
+                openRecipesByRecipeId(recipeId)
             }
         })
     }
 
-    private fun openRecipesByCategoryId(categoryId: Int) {
+    private fun openRecipesByRecipeId(categoryId: Int) {
         parentFragmentManager.commit {
             val category = STUB.getCategories().find {
                 it.id == categoryId
@@ -66,10 +67,5 @@ class FavouritesFragment : Fragment() {
         val savedList: Set<String> =
             sharedPrefs.getStringSet(FAVORITE_PREFS_KEY, emptySet()) ?: emptySet()
         return HashSet(savedList)
-    }
-
-    private fun start() {
-        binding.tvEmptyFavouriteList.isVisible = getFavorites().isEmpty()
-        initRecycleViewFavourites()
     }
 }
