@@ -38,26 +38,21 @@ class FavouritesFragment : Fragment() {
         binding.rvFavouriteRecipeList.adapter = adapter
         adapter.setOnClickListenerRecipe(object : RecipesListAdapter.OnItemClickListenerRecipe {
             override fun onItemClickRecipe(recipeId: Int) {
-                openRecipesByRecipeId(recipeId)
+
+                openRecipeByRecipeId(recipeId)
             }
         })
     }
 
-    private fun openRecipesByRecipeId(categoryId: Int) {
+    fun openRecipeByRecipeId(id: Int) {
         parentFragmentManager.commit {
-            val category = STUB.getCategories().find {
-                it.id == categoryId
-            } ?: return
-            val categoryName = category.title
-            val categoryImageUrl = category.imageUrl
+            val recipeImage = STUB.getRecipeById(id)?.imageUrl
+            val recipe = STUB.getRecipeById(id)
             val bundle = bundleOf(
-                ARG_CATEGORY_ID to categoryId,
-                ARG_CATEGORY_NAME to categoryName,
-                ARG_CATEGORY_IMAGE_URL to categoryImageUrl
+                ARG_RECIPE to recipe,
+                ARG_RECIPE_IMAGE to recipeImage
             )
-            val frag = RecipesListFragment()
-            frag.arguments = bundle
-            replace(R.id.mainContainer, frag)
+            replace(R.id.mainContainer, RecipeFragment::class.java, bundle)
             setReorderingAllowed(true)
             addToBackStack(null)
         }
