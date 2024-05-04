@@ -36,7 +36,7 @@ class RecipeFragment : Fragment() {
         initUI()
     }
 
-     fun initUI() {
+     private fun initUI() {
         binding.rvIngredients.adapter = adapterIngredient
         binding.rvIngredients.addItemDecoration(makeDivider())
 

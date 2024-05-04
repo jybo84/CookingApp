@@ -69,7 +69,7 @@ class FavouritesFragment : Fragment() {
     }
 
     private fun start() {
-        binding.tvHoth.isVisible = getFavorites().isEmpty()
+        binding.tvEmptyFavouriteList.isVisible = getFavorites().isEmpty()
         initRecycleViewFavourites()
     }
 }

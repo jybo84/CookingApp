@@ -39,17 +39,13 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/tvHoth"
-        style="@style/StyleTextNumberPortions"
+        android:id="@+id/tvEmptyFavouriteList"
+        style="@style/StyleSTUB"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_16dp"
         android:layout_marginTop="@dimen/margin_202dp"
-        android:gravity="center"
-        android:paddingHorizontal="@dimen/button_padding_horizontal_20dp"
         android:text="@string/favourite_empty"
-        android:textColor="@color/color_empty_list"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFavouriteRecipeList"
