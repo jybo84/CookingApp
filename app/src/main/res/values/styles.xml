@@ -32,6 +32,15 @@
         <item name="android:textColor">@color/color_portions</item>
     </style>
 
+    <style name="StyleSTUB" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/montserrat_light</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:textColor">@color/color_empty_list</item>
+        <item name="android:paddingHorizontal">25dp</item>
+        <item name="android:layout_marginHorizontal">@dimen/button_padding_horizontal_20dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <style name="StyleTopRectangle" parent="Widget.AppCompat.TextView">
         <item name="android:layout_marginStart">@dimen/margin_16dp</item>
         <item name="android:layout_marginBottom">@dimen/margin_16dp</item>
@@ -46,7 +55,7 @@
         <item name="fontFamily">@font/montserrat_medium</item>
         <item name="android:paddingHorizontal">@dimen/padding_8dp</item>
         <item name="android:paddingBottom">@dimen/padding_8dp</item>
-        <item name="android:textColor">@color/color_item</item>
+        <item name="android:textColor">"@color/color_empty_list"</item>
         <item name="android:textSize">@dimen/text_size_12sp</item>
     </style>
 

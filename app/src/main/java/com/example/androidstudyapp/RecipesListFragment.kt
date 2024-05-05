@@ -22,7 +22,7 @@ class RecipesListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return binding.root
     }
 
@@ -50,7 +50,6 @@ class RecipesListFragment : Fragment() {
     }
 
     fun openRecipeByRecipeId(id: Int) {
-        parentFragmentManager.commit {
 
             val recipeImage = STUB.getRecipeById(id)?.imageUrl
             val recipe = STUB.getRecipeById(id)
@@ -58,13 +57,15 @@ class RecipesListFragment : Fragment() {
                 ARG_RECIPE to recipe,
                 ARG_RECIPE_IMAGE to recipeImage
             )
+
+            parentFragmentManager.commit {
             replace(R.id.mainContainer, RecipeFragment::class.java, bundle)
             setReorderingAllowed(true)
             addToBackStack(null)
         }
     }
 
-    private fun initRecyclerRecipe() {
+     private fun initRecyclerRecipe() {
         val adapter = RecipesListAdapter(STUB.getRecipesByCategoryId(categoryId))
         binding.rvRecipe.adapter = adapter
         adapter.setOnClickListenerRecipe(object : RecipesListAdapter.OnItemClickListenerRecipe {
