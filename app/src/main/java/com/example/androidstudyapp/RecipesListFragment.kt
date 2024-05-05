@@ -15,14 +15,14 @@ import com.example.androidstudyapp.databinding.FragmentRecipesListBinding
 class RecipesListFragment : Fragment() {
 
     private val binding by lazy { FragmentRecipesListBinding.inflate(layoutInflater) }
-    var categoryId: Int? = null
+    private var categoryId: Int? = null
     private var categoryName: String? = null
     private var categoryImageUrl: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return binding.root
     }
 
@@ -50,7 +50,6 @@ class RecipesListFragment : Fragment() {
     }
 
     fun openRecipeByRecipeId(id: Int) {
-        parentFragmentManager.commit {
 
             val recipeImage = STUB.getRecipeById(id)?.imageUrl
             val recipe = STUB.getRecipeById(id)
@@ -58,6 +57,8 @@ class RecipesListFragment : Fragment() {
                 ARG_RECIPE to recipe,
                 ARG_RECIPE_IMAGE to recipeImage
             )
+
+            parentFragmentManager.commit {
             replace(R.id.mainContainer, RecipeFragment::class.java, bundle)
             setReorderingAllowed(true)
             addToBackStack(null)
