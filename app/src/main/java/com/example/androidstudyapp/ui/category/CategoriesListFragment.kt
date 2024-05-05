@@ -1,4 +1,4 @@
-package com.example.androidstudyapp
+package com.example.androidstudyapp.ui.category
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,13 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import com.example.androidstudyapp.ARG_CATEGORY_ID
+import com.example.androidstudyapp.ARG_CATEGORY_IMAGE_URL
+import com.example.androidstudyapp.ARG_CATEGORY_NAME
+import com.example.androidstudyapp.R
 import com.example.androidstudyapp.databinding.FragmentListCategoriesBinding
+import com.example.androidstudyapp.model.STUB
+import com.example.androidstudyapp.ui.RecipesListFragment
 
 class CategoriesListFragment : Fragment() {
 

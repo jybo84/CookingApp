@@ -1,8 +1,9 @@
-package com.example.androidstudyapp
+package com.example.androidstudyapp.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.androidstudyapp.R
 import com.example.androidstudyapp.databinding.ItemCookingMethodBinding
 
 class CookingMethodAdapter(private val dataSet: List<String>) :

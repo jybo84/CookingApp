@@ -1,4 +1,4 @@
-package com.example.androidstudyapp
+package com.example.androidstudyapp.ui
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -10,7 +10,14 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.SeekBar
 import androidx.fragment.app.Fragment
+import com.example.androidstudyapp.ARG_RECIPE
+import com.example.androidstudyapp.ARG_RECIPE_IMAGE
+import com.example.androidstudyapp.FAVORITE_PREFS_KEY
+import com.example.androidstudyapp.FILE_COLLECTION_MY_ID
+import com.example.androidstudyapp.R
+import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.databinding.FragmentRecipeBinding
+import com.example.androidstudyapp.parcelable
 import com.google.android.material.divider.MaterialDividerItemDecoration
 
 class RecipeFragment : Fragment() {

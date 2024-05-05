@@ -1,13 +1,15 @@
-package com.example.androidstudyapp
+package com.example.androidstudyapp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.fragment.app.add
+import androidx.fragment.app.commit
+import com.example.androidstudyapp.R
 import com.example.androidstudyapp.databinding.ActivityMainBinding
+import com.example.androidstudyapp.ui.category.CategoriesListFragment
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 

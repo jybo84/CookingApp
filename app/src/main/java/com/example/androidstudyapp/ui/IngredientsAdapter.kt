@@ -1,8 +1,9 @@
-package com.example.androidstudyapp
+package com.example.androidstudyapp.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.androidstudyapp.data.Ingredient
 import com.example.androidstudyapp.databinding.ItemIngredientBinding
 import java.text.DecimalFormat
 

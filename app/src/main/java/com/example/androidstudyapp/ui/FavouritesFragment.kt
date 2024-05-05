@@ -1,4 +1,4 @@
-package com.example.androidstudyapp
+package com.example.androidstudyapp.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -9,6 +9,12 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import com.example.androidstudyapp.ARG_RECIPE
+import com.example.androidstudyapp.ARG_RECIPE_IMAGE
+import com.example.androidstudyapp.FAVORITE_PREFS_KEY
+import com.example.androidstudyapp.FILE_COLLECTION_MY_ID
+import com.example.androidstudyapp.R
+import com.example.androidstudyapp.model.STUB
 import com.example.androidstudyapp.databinding.FragmentFavouritesBinding
 
 class FavouritesFragment : Fragment() {
