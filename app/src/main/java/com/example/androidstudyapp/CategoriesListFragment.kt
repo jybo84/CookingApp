@@ -43,6 +43,7 @@ class CategoriesListFragment : Fragment() {
                 it.id == categoryId
             } ?: return
 
+
             val categoryName = category.title
             val categoryImageUrl = category.imageUrl
             val bundle = bundleOf(
