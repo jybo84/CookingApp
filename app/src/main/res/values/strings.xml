@@ -13,6 +13,7 @@
     <string name="cookingNumber">%1$d.</string>
     <string name="numberPortions_1">1</string>
     <string name="favourite_empty">Вы еще не добавили ни одного рецепта в избранное</string>
+    <string name="favourite_heart">favouriteHeart</string>
 
 </resources>
 

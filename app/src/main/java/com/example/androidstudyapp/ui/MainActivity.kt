@@ -10,6 +10,7 @@ import androidx.fragment.app.commit
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.databinding.ActivityMainBinding
 import com.example.androidstudyapp.ui.category.CategoriesListFragment
+import com.example.androidstudyapp.ui.recipe.favourites.FavouritesFragment
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 

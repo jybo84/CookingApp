@@ -1,4 +1,4 @@
-package com.example.androidstudyapp.ui
+package com.example.androidstudyapp.ui.category
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

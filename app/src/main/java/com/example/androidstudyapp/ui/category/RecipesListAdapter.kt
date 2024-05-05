@@ -1,4 +1,4 @@
-package com.example.androidstudyapp.ui
+package com.example.androidstudyapp.ui.category
 
 import android.graphics.drawable.Drawable
 import android.util.Log

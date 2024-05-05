@@ -1,4 +1,4 @@
-package com.example.androidstudyapp.ui
+package com.example.androidstudyapp.ui.recipe.listRecipe
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -9,14 +9,16 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
-import com.example.androidstudyapp.ARG_CATEGORY_ID
-import com.example.androidstudyapp.ARG_CATEGORY_IMAGE_URL
-import com.example.androidstudyapp.ARG_CATEGORY_NAME
-import com.example.androidstudyapp.ARG_RECIPE
-import com.example.androidstudyapp.ARG_RECIPE_IMAGE
 import com.example.androidstudyapp.R
-import com.example.androidstudyapp.model.STUB
+import com.example.androidstudyapp.data.ARG_CATEGORY_ID
+import com.example.androidstudyapp.data.ARG_CATEGORY_IMAGE_URL
+import com.example.androidstudyapp.data.ARG_CATEGORY_NAME
+import com.example.androidstudyapp.data.ARG_RECIPE
+import com.example.androidstudyapp.data.ARG_RECIPE_IMAGE
 import com.example.androidstudyapp.databinding.FragmentRecipesListBinding
+import com.example.androidstudyapp.model.STUB
+import com.example.androidstudyapp.ui.category.RecipesListAdapter
+import com.example.androidstudyapp.ui.recipe.recipe.RecipeFragment
 
 
 class RecipesListFragment : Fragment() {

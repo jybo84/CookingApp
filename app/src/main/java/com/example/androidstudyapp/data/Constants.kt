@@ -1,4 +1,4 @@
-package com.example.androidstudyapp
+package com.example.androidstudyapp.data
 
 const val ARG_CATEGORY_ID = "arg_category_id"
 const val ARG_CATEGORY_NAME = "ard_category_name"
