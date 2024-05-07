@@ -10,13 +10,13 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.androidstudyapp.R
-import com.example.androidstudyapp.model.STUB
-import com.example.androidstudyapp.databinding.FragmentFavouritesBinding
 import com.example.androidstudyapp.data.ARG_RECIPE
 import com.example.androidstudyapp.data.ARG_RECIPE_IMAGE
 import com.example.androidstudyapp.data.FAVORITE_PREFS_KEY
 import com.example.androidstudyapp.data.FILE_COLLECTION_MY_ID
-import com.example.androidstudyapp.ui.category.RecipesListAdapter
+import com.example.androidstudyapp.databinding.FragmentFavouritesBinding
+import com.example.androidstudyapp.model.STUB
+import com.example.androidstudyapp.ui.recipe.RecipesListAdapter
 import com.example.androidstudyapp.ui.recipe.recipe.RecipeFragment
 
 class FavouritesFragment : Fragment() {

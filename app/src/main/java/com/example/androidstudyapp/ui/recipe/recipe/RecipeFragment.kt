@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.SeekBar
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.data.ARG_RECIPE
 import com.example.androidstudyapp.data.ARG_RECIPE_IMAGE
@@ -33,6 +34,8 @@ class RecipeFragment : Fragment() {
         requireActivity().getSharedPreferences(FILE_COLLECTION_MY_ID, Context.MODE_PRIVATE)
     }
 
+    private val viewModel : RecipeViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,6 +47,10 @@ class RecipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
+
+        viewModel.state.observe(viewLifecycleOwner){
+            Log.i("!!!", it.isFavourite.toString())
+        }
     }
 
     private fun initUI() {

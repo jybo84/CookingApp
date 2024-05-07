@@ -17,7 +17,7 @@ import com.example.androidstudyapp.data.ARG_RECIPE
 import com.example.androidstudyapp.data.ARG_RECIPE_IMAGE
 import com.example.androidstudyapp.databinding.FragmentRecipesListBinding
 import com.example.androidstudyapp.model.STUB
-import com.example.androidstudyapp.ui.category.RecipesListAdapter
+import com.example.androidstudyapp.ui.recipe.RecipesListAdapter
 import com.example.androidstudyapp.ui.recipe.recipe.RecipeFragment
 
 
