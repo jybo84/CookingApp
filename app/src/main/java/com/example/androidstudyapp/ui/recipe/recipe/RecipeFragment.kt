@@ -34,7 +34,7 @@ class RecipeFragment : Fragment() {
         requireActivity().getSharedPreferences(FILE_COLLECTION_MY_ID, Context.MODE_PRIVATE)
     }
 
-    private val viewModel : RecipeViewModel by viewModels()
+    private val viewModel: RecipeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +48,7 @@ class RecipeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initUI()
 
-        viewModel.state.observe(viewLifecycleOwner){
+        viewModel.state.observe(viewLifecycleOwner) {
             Log.i("!!!", it.isFavourite.toString())
         }
     }

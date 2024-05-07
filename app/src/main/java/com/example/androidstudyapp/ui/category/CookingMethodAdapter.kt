@@ -27,7 +27,7 @@ class CookingMethodAdapter(private val dataSet: List<String>) :
         val methodCooking = dataSet[position]
         holder.tvDescriptionMethodCooking.text =
             holder.tvDescriptionMethodCooking.resources.getString(
-                R.string.ingredient_account,position + 1, methodCooking
+                R.string.ingredient_account, position + 1, methodCooking
             )
     }
 }
