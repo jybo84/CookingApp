@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.data.ARG_CATEGORY_ID
 import com.example.androidstudyapp.data.ARG_CATEGORY_IMAGE_URL
@@ -68,7 +69,7 @@ class RecipesListFragment : Fragment() {
             )
 
             parentFragmentManager.commit {
-            replace(R.id.mainContainer, RecipeFragment::class.java, bundle)
+            replace<RecipeFragment>(R.id.mainContainer, args =  bundle)
             setReorderingAllowed(true)
             addToBackStack(null)
         }
