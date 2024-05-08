@@ -8,14 +8,15 @@ import com.example.androidstudyapp.data.Recipe
 
 class RecipeViewModel : ViewModel() {
 
-    data class RecipeState(
-        var recipe: Recipe? = null,
-        var recipeImageUrl: String? = null,
-        var isFavourite: Boolean = false,
-    )
-
     private val _state = MutableLiveData(RecipeState())
     val state: LiveData<RecipeState> = _state
+
+    data class RecipeState(
+        val recipe: Recipe? = null,
+        val recipeImageUrl: String? = null,
+        val isFavourite: Boolean = false,
+        val quantityPortions: Int = 1,
+    )
 
     init {
         _state.value = RecipeState(isFavourite = true)
