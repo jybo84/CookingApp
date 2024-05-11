@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.data.ARG_RECIPE
 import com.example.androidstudyapp.data.ARG_RECIPE_IMAGE
@@ -26,13 +27,15 @@ import com.google.android.material.divider.MaterialDividerItemDecoration
 class RecipeFragment : Fragment() {
 
     private val binding by lazy { FragmentRecipeBinding.inflate(layoutInflater) }
-    private val recipe by lazy { arguments?.parcelable<Recipe>(ARG_RECIPE) }
-    private var recipeImageUrl: String? = null
-    val adapterIngredient by lazy { recipe?.ingredients?.let { IngredientsAdapter(it) } }
-    private val adapterCookingMethod by lazy { recipe?.method?.let { CookingMethodAdapter(it) } }
-    private val sharedPrefs by lazy {
-        requireActivity().getSharedPreferences(FILE_COLLECTION_MY_ID, Context.MODE_PRIVATE)
-    }
+//    private val recipe by lazy { arguments?.parcelable<Recipe>(ARG_RECIPE) }
+//    private var recipeImageUrl: String? = null
+    private val recipeId by lazy {requireArguments().getInt("ARG_RECIPE_ID")}
+
+    private var adapterIngredient : IngredientsAdapter? = null
+     private var adapterCookingMethod : CookingMethodAdapter? = null
+//    private val sharedPrefs by lazy {
+//        requireActivity().getSharedPreferences(FILE_COLLECTION_MY_ID, Context.MODE_PRIVATE)
+//    }
 
     private val viewModel: RecipeViewModel by viewModels()
 
@@ -51,23 +54,12 @@ class RecipeFragment : Fragment() {
         viewModel.state.observe(viewLifecycleOwner) {
             Log.i("!!!", it.isFavourite.toString())
         }
+
+        if (savedInstanceState == null)
+            viewModel.loadRecipe(recipeId)
     }
 
     private fun initUI() {
-        binding.rvIngredients.adapter = adapterIngredient
-        binding.rvIngredients.addItemDecoration(makeDivider())
-
-        binding.rvMethod.adapter = adapterCookingMethod
-        binding.rvMethod.addItemDecoration(makeDivider())
-
-        val tvRecipeFragment = binding.tvRecipeInRecipeFragment
-        tvRecipeFragment.text = recipe?.title.toString()
-
-        getImageOfRecipe()
-
-        makeSeekBar()
-
-        makeFavouriteHeard()
 
         binding.ibHeartFavourites.setOnClickListener {
 
@@ -80,10 +72,31 @@ class RecipeFragment : Fragment() {
 
             makeFavouriteHeard()
         }
+
+        viewModel.state.observe(viewLifecycleOwner) {state ->
+
+             adapterIngredient = state.recipe?.ingredients?.let { IngredientsAdapter(it) }
+             adapterCookingMethod = state.recipe?.method?.let { CookingMethodAdapter(it) }
+
+            binding.rvIngredients.adapter = adapterIngredient
+            binding.rvIngredients.addItemDecoration(makeDivider())
+
+            binding.rvMethod.adapter = adapterCookingMethod
+            binding.rvMethod.addItemDecoration(makeDivider())
+
+            val tvRecipeFragment = binding.tvRecipeInRecipeFragment
+            tvRecipeFragment.text = state.recipe?.title.toString()
+
+            state.recipe?.let { getImageOfRecipe(it) }
+
+            makeSeekBar()
+
+            makeFavouriteHeard()
+        }
     }
 
-    private fun getImageOfRecipe() {
-        recipeImageUrl = arguments?.getString(ARG_RECIPE_IMAGE)
+    private fun getImageOfRecipe(recipe: Recipe) {
+         val recipeImageUrl = recipe.imageUrl
         val recipeImage = binding.ivRecipe
         try {
             val ims = recipeImageUrl?.let { requireContext().assets.open(it) }
@@ -134,9 +147,9 @@ class RecipeFragment : Fragment() {
         }.apply()
     }
 
-    private fun getFavorites(): MutableSet<String> {
-        val savedList: Set<String> =
-            sharedPrefs.getStringSet(FAVORITE_PREFS_KEY, emptySet()) ?: emptySet()
-        return HashSet(savedList)
-    }
+//    private fun getFavorites(): MutableSet<String> {
+//        val savedList: Set<String> =
+//            sharedPrefs.getStringSet(FAVORITE_PREFS_KEY, emptySet()) ?: emptySet()
+//        return HashSet(savedList)
+//    }
 }
