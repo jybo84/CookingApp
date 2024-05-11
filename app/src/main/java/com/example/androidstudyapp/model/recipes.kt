@@ -1,4 +1,8 @@
-package com.example.androidstudyapp
+package com.example.androidstudyapp.model
+
+import com.example.androidstudyapp.data.Category
+import com.example.androidstudyapp.data.Ingredient
+import com.example.androidstudyapp.data.Recipe
 
 object STUB {
     private val categories = mutableListOf(

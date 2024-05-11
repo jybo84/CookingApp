@@ -1,4 +1,4 @@
-package com.example.androidstudyapp
+package com.example.androidstudyapp.ui.recipe.listRecipe
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -9,7 +9,17 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import androidx.fragment.app.replace
+import com.example.androidstudyapp.R
+import com.example.androidstudyapp.data.ARG_CATEGORY_ID
+import com.example.androidstudyapp.data.ARG_CATEGORY_IMAGE_URL
+import com.example.androidstudyapp.data.ARG_CATEGORY_NAME
+import com.example.androidstudyapp.data.ARG_RECIPE
+import com.example.androidstudyapp.data.ARG_RECIPE_IMAGE
 import com.example.androidstudyapp.databinding.FragmentRecipesListBinding
+import com.example.androidstudyapp.model.STUB
+import com.example.androidstudyapp.ui.recipe.RecipesListAdapter
+import com.example.androidstudyapp.ui.recipe.recipe.RecipeFragment
 
 
 class RecipesListFragment : Fragment() {
@@ -51,21 +61,21 @@ class RecipesListFragment : Fragment() {
 
     fun openRecipeByRecipeId(id: Int) {
 
-            val recipeImage = STUB.getRecipeById(id)?.imageUrl
-            val recipe = STUB.getRecipeById(id)
-            val bundle = bundleOf(
-                ARG_RECIPE to recipe,
-                ARG_RECIPE_IMAGE to recipeImage
-            )
+        val recipeImage = STUB.getRecipeById(id)?.imageUrl
+        val recipe = STUB.getRecipeById(id)
+        val bundle = bundleOf(
+            ARG_RECIPE to recipe,
+            ARG_RECIPE_IMAGE to recipeImage
+        )
 
-            parentFragmentManager.commit {
-            replace(R.id.mainContainer, RecipeFragment::class.java, bundle)
+        parentFragmentManager.commit {
+            replace<RecipeFragment>(R.id.mainContainer, args = bundle)
             setReorderingAllowed(true)
             addToBackStack(null)
         }
     }
 
-     private fun initRecyclerRecipe() {
+    private fun initRecyclerRecipe() {
         val adapter = RecipesListAdapter(STUB.getRecipesByCategoryId(categoryId))
         binding.rvRecipe.adapter = adapter
         adapter.setOnClickListenerRecipe(object : RecipesListAdapter.OnItemClickListenerRecipe {

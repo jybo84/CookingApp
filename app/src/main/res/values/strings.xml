@@ -3,16 +3,16 @@
     <string name="title_categories">категории</string>
     <string name="title_favourites">избранное</string>
     <string name="title_burgers">бургеры</string>
-    <string name="image_for_burger_category">imageForBurgerCategory</string>
-    <string name="image_list_category">imageListCategory</string>
+    <string name="image_for_burger_category">изображение категории - Бургеры</string>
+    <string name="image_list_category">изображение списка категорий</string>
     <string name="title_ingredients">ингредиенты</string>
     <string name="portions">Порции:</string>
-    <string name="number_of_portions"> %1$d</string>
     <string name="cooking_method">способ приготовления</string>
     <string name="ingredient_account">%1$d %2$s</string>
     <string name="cookingNumber">%1$d.</string>
     <string name="numberPortions_1">1</string>
     <string name="favourite_empty">Вы еще не добавили ни одного рецепта в избранное</string>
+    <string name="favourite_heart">отметка избранного рецепта</string>
 
 </resources>
 

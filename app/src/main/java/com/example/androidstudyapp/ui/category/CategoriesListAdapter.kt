@@ -1,10 +1,11 @@
-package com.example.androidstudyapp
+package com.example.androidstudyapp.ui.category
 
 import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.androidstudyapp.data.Category
 import com.example.androidstudyapp.databinding.ItemCategoryBinding
 
 class CategoriesListAdapter(private val dataSet: List<Category>) :

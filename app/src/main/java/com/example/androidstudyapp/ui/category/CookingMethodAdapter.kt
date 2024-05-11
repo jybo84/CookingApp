@@ -1,8 +1,9 @@
-package com.example.androidstudyapp
+package com.example.androidstudyapp.ui.category
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.androidstudyapp.R
 import com.example.androidstudyapp.databinding.ItemCookingMethodBinding
 
 class CookingMethodAdapter(private val dataSet: List<String>) :
@@ -26,7 +27,7 @@ class CookingMethodAdapter(private val dataSet: List<String>) :
         val methodCooking = dataSet[position]
         holder.tvDescriptionMethodCooking.text =
             holder.tvDescriptionMethodCooking.resources.getString(
-                R.string.ingredient_account,position + 1, methodCooking
+                R.string.ingredient_account, position + 1, methodCooking
             )
     }
 }

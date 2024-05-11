@@ -1,10 +1,11 @@
-package com.example.androidstudyapp
+package com.example.androidstudyapp.ui.recipe
 
 import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.databinding.ItemRecipeBinding
 
 class RecipesListAdapter(private val dataSet: List<Recipe>) :

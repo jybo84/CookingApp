@@ -1,4 +1,4 @@
-package com.example.androidstudyapp
+package com.example.androidstudyapp.ui.category
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,14 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import androidx.fragment.app.replace
+import com.example.androidstudyapp.R
+import com.example.androidstudyapp.data.ARG_CATEGORY_ID
+import com.example.androidstudyapp.data.ARG_CATEGORY_IMAGE_URL
+import com.example.androidstudyapp.data.ARG_CATEGORY_NAME
 import com.example.androidstudyapp.databinding.FragmentListCategoriesBinding
+import com.example.androidstudyapp.model.STUB
+import com.example.androidstudyapp.ui.recipe.listRecipe.RecipesListFragment
 
 class CategoriesListFragment : Fragment() {
 
@@ -49,10 +56,9 @@ class CategoriesListFragment : Fragment() {
             ARG_CATEGORY_NAME to categoryName,
             ARG_CATEGORY_IMAGE_URL to categoryImageUrl
         )
-        val recipeFragment = RecipesListFragment()
+
         parentFragmentManager.commit {
-            recipeFragment.arguments = bundle
-            replace(R.id.mainContainer, recipeFragment)
+            replace<RecipesListFragment>(R.id.mainContainer, args = bundle)
             setReorderingAllowed(true)
             addToBackStack(null)
         }
