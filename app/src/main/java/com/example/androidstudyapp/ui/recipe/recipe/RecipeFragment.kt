@@ -24,7 +24,7 @@ class RecipeFragment : Fragment() {
     private val recipeId by lazy { requireArguments().getInt(ARG_RECIPE_ID) }
     private var adapterIngredient: IngredientsAdapter? = null
     private var adapterCookingMethod: CookingMethodAdapter? = null
-    private val viewModel: RecipeViewModel by viewModels()
+    private val recipeViewModel: RecipeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,28 +36,30 @@ class RecipeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initUI()
 
-        viewModel.state.observe(viewLifecycleOwner) {
+        recipeViewModel.state.observe(viewLifecycleOwner) {
             Log.i("!!!", it.isFavourite.toString())
         }
 
         if (savedInstanceState == null)
-            viewModel.loadRecipe(recipeId)
+            recipeViewModel.loadRecipe(recipeId)
+
+        initUI()
     }
+
+
 
     private fun initUI() {
 
         binding.ibHeartFavourites.setOnClickListener {
-            viewModel.onFavoritesClicked()
+            recipeViewModel.onFavoritesClicked()
         }
 
-        viewModel.state.observe(viewLifecycleOwner) { state ->
+        recipeViewModel.state.observe(viewLifecycleOwner) { state ->
 
-            adapterIngredient = state.recipe?.ingredients?.let { IngredientsAdapter(it) }
+           adapterIngredient = state.recipe?.ingredients?.let { IngredientsAdapter(it) }
             binding.rvIngredients.adapter = adapterIngredient
             binding.rvIngredients.addItemDecoration(makeDivider())
-
 
             adapterCookingMethod = state.recipe?.method?.let { CookingMethodAdapter(it) }
             binding.rvMethod.adapter = adapterCookingMethod
@@ -70,7 +72,7 @@ class RecipeFragment : Fragment() {
 
             makeSeekBar()
 
-            makeFavouriteHeard()
+            makeFavouriteHeard(state.isFavourite)
 
         }
     }
@@ -79,7 +81,7 @@ class RecipeFragment : Fragment() {
         val recipeImageUrl = recipe.imageUrl
         val recipeImage = binding.ivRecipe
         try {
-            val ims = recipeImageUrl?.let { requireContext().assets.open(it) }
+            val ims = recipeImageUrl.let { requireContext().assets.open(it) }
             val picture = Drawable.createFromStream(ims, null)
             recipeImage.setImageDrawable(picture)
         } catch (ex: Exception) {
@@ -115,8 +117,8 @@ class RecipeFragment : Fragment() {
     }
 
     // TODO здесь
-    private fun makeFavouriteHeard() {
-        if (viewModel.getFavorites().contains(recipeId.toString()))
+    private fun makeFavouriteHeard(isFavourite: Boolean) {
+        if (isFavourite)
             binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_full)
         else
             binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_empty)

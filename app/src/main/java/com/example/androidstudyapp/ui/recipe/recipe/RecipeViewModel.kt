@@ -33,26 +33,31 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
 
     fun loadRecipe(recipeId: Int) {
         //TODO 'load from network'
-        RecipeState(
+        _state.value = RecipeState(
             recipe = STUB.getRecipeById(recipeId),
             isFavourite = getFavorites().contains(recipeId.toString()),
-            portionsCount = state.value?.portionsCount ?: 1
+            portionsCount = state.value?.portionsCount ?: 1,
         )
     }
-    fun getFavorites(): MutableSet<String> {
+
+    private fun getFavorites(): MutableSet<String> {
         val savedList: Set<String> =
             sharedPrefs.getStringSet(FAVORITE_PREFS_KEY, emptySet()) ?: emptySet()
         return HashSet(savedList)
     }
 
-    fun onFavoritesClicked(){
+    fun onFavoritesClicked() {
         val myListRecipes = getFavorites()
         if (myListRecipes.contains(state.value?.recipe?.id.toString()))
             myListRecipes.remove(state.value?.recipe?.toString())
         else state.value?.recipe?.toString()?.let { myListRecipes.add(it) }
 
-        _state.value = state.value?.copy(isFavourite = getFavorites().contains(state.value.toString()))
+        saveFavorites(myListRecipes)
+
+        _state.value =
+            state.value?.copy(isFavourite = getFavorites().contains(state.value?.recipe?.id.toString()))
     }
+
     private fun saveFavorites(listIdFavouritesRecipes: Set<String>) {
         with(sharedPrefs.edit()) {
             putStringSet(FAVORITE_PREFS_KEY, listIdFavouritesRecipes)
