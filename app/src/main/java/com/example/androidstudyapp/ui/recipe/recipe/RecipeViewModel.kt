@@ -39,10 +39,23 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
             portionsCount = state.value?.portionsCount ?: 1
         )
     }
-    private fun getFavorites(): MutableSet<String> {
+    fun getFavorites(): MutableSet<String> {
         val savedList: Set<String> =
             sharedPrefs.getStringSet(FAVORITE_PREFS_KEY, emptySet()) ?: emptySet()
         return HashSet(savedList)
     }
 
+    fun onFavoritesClicked(){
+        val myListRecipes = getFavorites()
+        if (myListRecipes.contains(state.value?.recipe?.id.toString()))
+            myListRecipes.remove(state.value?.recipe?.toString())
+        else state.value?.recipe?.toString()?.let { myListRecipes.add(it) }
+
+        _state.value = state.value?.copy(isFavourite = getFavorites().contains(state.value.toString()))
+    }
+    private fun saveFavorites(listIdFavouritesRecipes: Set<String>) {
+        with(sharedPrefs.edit()) {
+            putStringSet(FAVORITE_PREFS_KEY, listIdFavouritesRecipes)
+        }.apply()
+    }
 }

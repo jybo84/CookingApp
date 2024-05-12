@@ -1,6 +1,5 @@
 package com.example.androidstudyapp.ui.recipe.recipe
 
-import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
@@ -11,32 +10,20 @@ import android.widget.LinearLayout
 import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.example.androidstudyapp.R
-import com.example.androidstudyapp.data.ARG_RECIPE
-import com.example.androidstudyapp.data.ARG_RECIPE_IMAGE
-import com.example.androidstudyapp.data.FAVORITE_PREFS_KEY
-import com.example.androidstudyapp.data.FILE_COLLECTION_MY_ID
+import com.example.androidstudyapp.data.ARG_RECIPE_ID
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.databinding.FragmentRecipeBinding
 import com.example.androidstudyapp.ui.category.CookingMethodAdapter
 import com.example.androidstudyapp.ui.category.IngredientsAdapter
-import com.example.androidstudyapp.ui.parcelable
 import com.google.android.material.divider.MaterialDividerItemDecoration
 
 class RecipeFragment : Fragment() {
 
     private val binding by lazy { FragmentRecipeBinding.inflate(layoutInflater) }
-//    private val recipe by lazy { arguments?.parcelable<Recipe>(ARG_RECIPE) }
-//    private var recipeImageUrl: String? = null
-    private val recipeId by lazy {requireArguments().getInt("ARG_RECIPE_ID")}
-
-    private var adapterIngredient : IngredientsAdapter? = null
-     private var adapterCookingMethod : CookingMethodAdapter? = null
-//    private val sharedPrefs by lazy {
-//        requireActivity().getSharedPreferences(FILE_COLLECTION_MY_ID, Context.MODE_PRIVATE)
-//    }
-
+    private val recipeId by lazy { requireArguments().getInt(ARG_RECIPE_ID) }
+    private var adapterIngredient: IngredientsAdapter? = null
+    private var adapterCookingMethod: CookingMethodAdapter? = null
     private val viewModel: RecipeViewModel by viewModels()
 
     override fun onCreateView(
@@ -62,25 +49,17 @@ class RecipeFragment : Fragment() {
     private fun initUI() {
 
         binding.ibHeartFavourites.setOnClickListener {
-
-            val myListRecipes = getFavorites()
-            if (getFavorites().contains(recipe?.id.toString()))
-                myListRecipes.remove(recipe?.id.toString())
-            else myListRecipes.add(recipe?.id.toString())
-
-            saveFavorites(myListRecipes)
-
-            makeFavouriteHeard()
+            viewModel.onFavoritesClicked()
         }
 
-        viewModel.state.observe(viewLifecycleOwner) {state ->
+        viewModel.state.observe(viewLifecycleOwner) { state ->
 
-             adapterIngredient = state.recipe?.ingredients?.let { IngredientsAdapter(it) }
-             adapterCookingMethod = state.recipe?.method?.let { CookingMethodAdapter(it) }
-
+            adapterIngredient = state.recipe?.ingredients?.let { IngredientsAdapter(it) }
             binding.rvIngredients.adapter = adapterIngredient
             binding.rvIngredients.addItemDecoration(makeDivider())
 
+
+            adapterCookingMethod = state.recipe?.method?.let { CookingMethodAdapter(it) }
             binding.rvMethod.adapter = adapterCookingMethod
             binding.rvMethod.addItemDecoration(makeDivider())
 
@@ -92,11 +71,12 @@ class RecipeFragment : Fragment() {
             makeSeekBar()
 
             makeFavouriteHeard()
+
         }
     }
 
     private fun getImageOfRecipe(recipe: Recipe) {
-         val recipeImageUrl = recipe.imageUrl
+        val recipeImageUrl = recipe.imageUrl
         val recipeImage = binding.ivRecipe
         try {
             val ims = recipeImageUrl?.let { requireContext().assets.open(it) }
@@ -134,22 +114,11 @@ class RecipeFragment : Fragment() {
         })
     }
 
+    // TODO здесь
     private fun makeFavouriteHeard() {
-        if (getFavorites().contains(recipe?.id.toString()))
+        if (viewModel.getFavorites().contains(recipeId.toString()))
             binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_full)
         else
             binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_empty)
     }
-
-    private fun saveFavorites(listIdFavouritesRecipes: Set<String>) {
-        with(sharedPrefs.edit()) {
-            putStringSet(FAVORITE_PREFS_KEY, listIdFavouritesRecipes)
-        }.apply()
-    }
-
-//    private fun getFavorites(): MutableSet<String> {
-//        val savedList: Set<String> =
-//            sharedPrefs.getStringSet(FAVORITE_PREFS_KEY, emptySet()) ?: emptySet()
-//        return HashSet(savedList)
-//    }
 }
