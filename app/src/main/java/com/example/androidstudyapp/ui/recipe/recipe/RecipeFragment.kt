@@ -47,8 +47,6 @@ class RecipeFragment : Fragment() {
         initUI()
     }
 
-
-
     private fun initUI() {
 
         binding.ibHeartFavourites.setOnClickListener {
@@ -116,7 +114,6 @@ class RecipeFragment : Fragment() {
         })
     }
 
-    // TODO здесь
     private fun makeFavouriteHeard(isFavourite: Boolean) {
         if (isFavourite)
             binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_full)
