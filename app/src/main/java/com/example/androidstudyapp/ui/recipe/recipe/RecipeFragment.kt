@@ -55,7 +55,7 @@ class RecipeFragment : Fragment() {
 
         recipeViewModel.state.observe(viewLifecycleOwner) { state ->
 
-           adapterIngredient = state.recipe?.ingredients?.let { IngredientsAdapter(it) }
+            adapterIngredient = state.recipe?.ingredients?.let { IngredientsAdapter(it) }
             binding.rvIngredients.adapter = adapterIngredient
             binding.rvIngredients.addItemDecoration(makeDivider())
 
@@ -71,7 +71,6 @@ class RecipeFragment : Fragment() {
             makeSeekBar()
 
             makeFavouriteHeard(state.isFavourite)
-
         }
     }
 
