@@ -10,8 +10,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.androidstudyapp.R
-import com.example.androidstudyapp.data.ARG_RECIPE
-import com.example.androidstudyapp.data.ARG_RECIPE_IMAGE
+import com.example.androidstudyapp.data.ARG_RECIPE_ID
 import com.example.androidstudyapp.data.FAVORITE_PREFS_KEY
 import com.example.androidstudyapp.data.FILE_COLLECTION_MY_ID
 import com.example.androidstudyapp.databinding.FragmentFavouritesBinding
@@ -54,11 +53,8 @@ class FavouritesFragment : Fragment() {
 
     fun openRecipeByRecipeId(id: Int) {
         parentFragmentManager.commit {
-            val recipeImage = STUB.getRecipeById(id)?.imageUrl
-            val recipe = STUB.getRecipeById(id)
             val bundle = bundleOf(
-                ARG_RECIPE to recipe,
-                ARG_RECIPE_IMAGE to recipeImage
+                ARG_RECIPE_ID to id,
             )
             replace(R.id.mainContainer, RecipeFragment::class.java, bundle)
             setReorderingAllowed(true)

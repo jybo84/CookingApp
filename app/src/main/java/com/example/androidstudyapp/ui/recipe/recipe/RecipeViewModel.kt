@@ -50,7 +50,7 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
         val myListRecipes = getFavorites()
         if (myListRecipes.contains(state.value?.recipe?.id.toString()))
             myListRecipes.remove(state.value?.recipe?.toString())
-        else state.value?.recipe?.toString()?.let { myListRecipes.add(it) }
+        else state.value?.recipe?.id?.toString()?.let { myListRecipes.add(it) }
 
         saveFavorites(myListRecipes)
 
