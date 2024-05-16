@@ -78,6 +78,5 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
             Log.e("mylog", "Error: $ex")
             return null
         }
-
     }
 }
