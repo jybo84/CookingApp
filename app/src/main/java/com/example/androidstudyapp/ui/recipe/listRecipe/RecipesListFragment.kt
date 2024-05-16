@@ -14,8 +14,7 @@ import com.example.androidstudyapp.R
 import com.example.androidstudyapp.data.ARG_CATEGORY_ID
 import com.example.androidstudyapp.data.ARG_CATEGORY_IMAGE_URL
 import com.example.androidstudyapp.data.ARG_CATEGORY_NAME
-import com.example.androidstudyapp.data.ARG_RECIPE
-import com.example.androidstudyapp.data.ARG_RECIPE_IMAGE
+import com.example.androidstudyapp.data.ARG_RECIPE_ID
 import com.example.androidstudyapp.databinding.FragmentRecipesListBinding
 import com.example.androidstudyapp.model.STUB
 import com.example.androidstudyapp.ui.recipe.RecipesListAdapter
@@ -60,12 +59,8 @@ class RecipesListFragment : Fragment() {
     }
 
     fun openRecipeByRecipeId(id: Int) {
-
-        val recipeImage = STUB.getRecipeById(id)?.imageUrl
-        val recipe = STUB.getRecipeById(id)
         val bundle = bundleOf(
-            ARG_RECIPE to recipe,
-            ARG_RECIPE_IMAGE to recipeImage
+            ARG_RECIPE_ID to id,
         )
 
         parentFragmentManager.commit {
