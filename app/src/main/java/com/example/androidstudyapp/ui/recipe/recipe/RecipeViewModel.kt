@@ -69,7 +69,6 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     private fun getImageOfRecipe(imageUrl: String?): Drawable? {
-
         try {
             val ims = imageUrl?.let { getApplication<Application>().assets.open(it) }
             val picture = Drawable.createFromStream(ims, null)
