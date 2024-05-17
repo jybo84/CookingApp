@@ -1,6 +1,5 @@
 package com.example.androidstudyapp.ui.recipe.recipe
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.data.ARG_RECIPE_ID
-import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.databinding.FragmentRecipeBinding
 import com.example.androidstudyapp.ui.category.CookingMethodAdapter
 import com.example.androidstudyapp.ui.category.IngredientsAdapter
@@ -66,7 +64,7 @@ class RecipeFragment : Fragment() {
             val tvRecipeFragment = binding.tvRecipeInRecipeFragment
             tvRecipeFragment.text = state.recipe?.title.toString()
 
-            state.recipe?.let { getImageOfRecipe(it) }
+            binding.ivRecipe.setImageDrawable(state.recipeImage)
 
             makeSeekBar()
 
@@ -74,17 +72,6 @@ class RecipeFragment : Fragment() {
         }
     }
 
-    private fun getImageOfRecipe(recipe: Recipe) {
-        val recipeImageUrl = recipe.imageUrl
-        val recipeImage = binding.ivRecipe
-        try {
-            val ims = recipeImageUrl.let { requireContext().assets.open(it) }
-            val picture = Drawable.createFromStream(ims, null)
-            recipeImage.setImageDrawable(picture)
-        } catch (ex: Exception) {
-            Log.e("mylog", "Error: $ex")
-        }
-    }
 
     private fun makeDivider(): MaterialDividerItemDecoration {
         val divider = MaterialDividerItemDecoration(requireContext(), LinearLayout.VERTICAL)
