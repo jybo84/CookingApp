@@ -66,6 +66,9 @@ class RecipeFragment : Fragment() {
 
             binding.ivRecipe.setImageDrawable(state.recipeImage)
 
+            binding.quantityPortions.text = state.portionsCount.toString()
+
+
             makeSeekBar()
 
             makeFavouriteHeard(state.isFavourite)
@@ -89,7 +92,8 @@ class RecipeFragment : Fragment() {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 binding.quantityPortions.text = progress.toString()
 
-                adapterIngredient?.updateIngredients(progress)
+                recipeViewModel.setCountPortions(progress)
+                    ?.let { adapterIngredient?.updateIngredients(it) }
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {

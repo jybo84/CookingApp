@@ -24,7 +24,7 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
     data class RecipeState(
         val recipe: Recipe? = null,
         val isFavourite: Boolean = false,
-        val portionsCount: Int = 1,
+        var portionsCount: Int = 1,
         val recipeImage: Drawable? = null,
     )
 
@@ -77,5 +77,10 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
             Log.e("mylog", "Error: $ex")
             return null
         }
+    }
+
+    fun setCountPortions(count: Int): Int?{
+        state.value?.portionsCount = count
+        return state.value?.portionsCount
     }
 }
