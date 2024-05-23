@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.SeekBar
+import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.androidstudyapp.R
@@ -94,27 +95,31 @@ class RecipeFragment : Fragment() {
     }
 
     private fun makeSeekBar() {
-        binding.sbNumberOfPortions.setOnSeekBarChangeListener(object :
-            SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                binding.quantityPortions.text = progress.toString()
+        binding.sbNumberOfPortions.setOnSeekBarChangeListener(
 
-                recipeViewModel.setCountPortions(progress)
-                    ?.let { adapterIngredient?.updateIngredients(it) }
-            }
+            PortionSeekBarListener{recipeViewModel.setCountPortions( )}
 
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            }
-        })
-    }
+        )}
 
     private fun makeFavouriteHeard(isFavourite: Boolean) {
         if (isFavourite)
             binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_full)
         else
             binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_empty)
+    }
+
+    class PortionSeekBarListener(val onChangeIngredients: (Int) -> Unit): OnSeekBarChangeListener{
+
+        override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+            onChangeIngredients(progress)
+        }
+
+        override fun onStartTrackingTouch(seekBar: SeekBar?) {
+            TODO("Not yet implemented")
+        }
+
+        override fun onStopTrackingTouch(seekBar: SeekBar?) {
+            TODO("Not yet implemented")
+        }
     }
 }
