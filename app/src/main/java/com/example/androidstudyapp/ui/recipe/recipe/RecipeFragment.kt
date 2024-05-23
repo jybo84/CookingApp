@@ -85,9 +85,11 @@ class RecipeFragment : Fragment() {
         val divider = MaterialDividerItemDecoration(requireContext(), LinearLayout.VERTICAL)
         this.context?.let { divider.setDividerColorResource(it, R.color.color_divider) }
         val sizeInset = resources.getDimensionPixelSize(R.dimen.divider_inset)
-        divider.dividerInsetStart = sizeInset
-        divider.dividerInsetEnd = sizeInset
-        divider.isLastItemDecorated = false
+        divider.apply {
+            dividerInsetStart = sizeInset
+            dividerInsetEnd = sizeInset
+            divider.isLastItemDecorated = false
+        }
         return divider
     }
 
