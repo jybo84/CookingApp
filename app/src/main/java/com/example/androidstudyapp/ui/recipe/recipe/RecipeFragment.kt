@@ -56,10 +56,6 @@ class RecipeFragment : Fragment() {
 
         recipeViewModel.state.observe(viewLifecycleOwner) { state ->
 
-            adapterCookingMethod = state.recipe?.method?.let { CookingMethodAdapter(it) }
-            binding.rvMethod.adapter = adapterCookingMethod
-            binding.rvMethod.addItemDecoration(makeDivider())
-
             val tvRecipeFragment = binding.tvRecipeInRecipeFragment
             tvRecipeFragment.text = state.recipe?.title.toString()
 
@@ -95,12 +91,15 @@ class RecipeFragment : Fragment() {
         return divider
     }
 
-    private fun makeSeekBar() {
-        binding.sbNumberOfPortions.setOnSeekBarChangeListener(
+        private fun makeSeekBar() {
+        binding.sbNumberOfPortions.setOnSeekBarChangeListener(PortionSeekBarListener{
+             fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                binding.quantityPortions.text = progress.toString()
 
-            PortionSeekBarListener { recipeViewModel.setCountPortions() }
-
-        )
+                recipeViewModel.setCountPortions(progress)
+                    ?.let { adapterIngredient?.updateIngredients(it) }
+            }
+        })
     }
 
     private fun makeFavouriteHeard(isFavourite: Boolean) {
@@ -110,8 +109,10 @@ class RecipeFragment : Fragment() {
             binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_empty)
     }
 
-    class PortionSeekBarListener(val onChangeIngredients: (Int) -> Unit) : OnSeekBarChangeListener {
+    inner class PortionSeekBarListener(val onChangeIngredients: (Int) -> Unit) :
+        OnSeekBarChangeListener {
 
+            val portionSeekBarListener : PortionSeekBarListener? = null
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
             onChangeIngredients(progress)
         }
@@ -125,3 +126,21 @@ class RecipeFragment : Fragment() {
         }
     }
 }
+
+//    private fun makeSeekBar() {
+//        binding.sbNumberOfPortions.setOnSeekBarChangeListener(object :
+//            SeekBar.OnSeekBarChangeListener {
+//            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+//                binding.quantityPortions.text = progress.toString()
+//
+//                recipeViewModel.setCountPortions(progress)
+//                    ?.let { adapterIngredient?.updateIngredients(it) }
+//            }
+//
+//            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+//            }
+//
+//            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+//            }
+//        })
+//    }
