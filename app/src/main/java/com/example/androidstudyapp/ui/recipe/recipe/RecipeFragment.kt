@@ -91,13 +91,11 @@ class RecipeFragment : Fragment() {
         return divider
     }
 
-        private fun makeSeekBar() {
-        binding.sbNumberOfPortions.setOnSeekBarChangeListener(PortionSeekBarListener{
-
+    private fun makeSeekBar() {
+        binding.sbNumberOfPortions.setOnSeekBarChangeListener(PortionSeekBarListener {
             binding.quantityPortions.text = it.toString()
-
-                recipeViewModel.setCountPortions(it)
-                    ?.let { adapterIngredient?.updateIngredients(it) }
+            recipeViewModel.setCountPortions(it)
+                ?.let { adapterIngredient?.updateIngredients(it) }
         })
     }
 
@@ -117,29 +115,11 @@ class RecipeFragment : Fragment() {
         }
 
         override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            TODO("Not yet implemented")
+
         }
 
         override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            TODO("Not yet implemented")
+
         }
     }
 }
-
-//    private fun makeSeekBar() {
-//        binding.sbNumberOfPortions.setOnSeekBarChangeListener(object :
-//            SeekBar.OnSeekBarChangeListener {
-//            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-//                binding.quantityPortions.text = progress.toString()
-//
-//                recipeViewModel.setCountPortions(progress)
-//                    ?.let { adapterIngredient?.updateIngredients(it) }
-//            }
-//
-//            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-//            }
-//
-//            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-//            }
-//        })
-//    }
