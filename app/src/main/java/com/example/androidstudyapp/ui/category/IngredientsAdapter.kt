@@ -7,7 +7,7 @@ import com.example.androidstudyapp.data.Ingredient
 import com.example.androidstudyapp.databinding.ItemIngredientBinding
 import java.text.DecimalFormat
 
-class IngredientsAdapter(private val dataSet: List<Ingredient>) :
+class IngredientsAdapter(var dataSet: List<Ingredient>) :
     RecyclerView.Adapter<IngredientsAdapter.ViewHolder>() {
 
     class ViewHolder(binding: ItemIngredientBinding) : RecyclerView.ViewHolder(binding.root) {

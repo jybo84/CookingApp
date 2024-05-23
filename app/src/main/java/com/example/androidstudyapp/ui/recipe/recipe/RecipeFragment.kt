@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.data.ARG_RECIPE_ID
 import com.example.androidstudyapp.databinding.FragmentRecipeBinding
+import com.example.androidstudyapp.model.STUB
 import com.example.androidstudyapp.ui.category.CookingMethodAdapter
 import com.example.androidstudyapp.ui.category.IngredientsAdapter
 import com.google.android.material.divider.MaterialDividerItemDecoration
@@ -43,6 +44,7 @@ class RecipeFragment : Fragment() {
             recipeViewModel.loadRecipe(recipeId)
 
         initUI()
+        makeAdapters()
     }
 
     private fun initUI() {
@@ -52,10 +54,6 @@ class RecipeFragment : Fragment() {
         }
 
         recipeViewModel.state.observe(viewLifecycleOwner) { state ->
-
-            adapterIngredient = state.recipe?.ingredients?.let { IngredientsAdapter(it) }
-            binding.rvIngredients.adapter = adapterIngredient
-            binding.rvIngredients.addItemDecoration(makeDivider())
 
             adapterCookingMethod = state.recipe?.method?.let { CookingMethodAdapter(it) }
             binding.rvMethod.adapter = adapterCookingMethod
@@ -68,11 +66,20 @@ class RecipeFragment : Fragment() {
 
             binding.quantityPortions.text = state.portionsCount.toString()
 
-
             makeSeekBar()
 
             makeFavouriteHeard(state.isFavourite)
         }
+    }
+
+    private fun makeAdapters(){
+        adapterIngredient = STUB.getRecipeById(recipeId)?.ingredients?.let { IngredientsAdapter(it) }
+        binding.rvIngredients.adapter = adapterIngredient
+        binding.rvIngredients.addItemDecoration(makeDivider())
+
+        adapterCookingMethod = STUB.getRecipeById(recipeId)?.method?.let { CookingMethodAdapter(it) }
+        binding.rvMethod.adapter = adapterCookingMethod
+        binding.rvMethod.addItemDecoration(makeDivider())
     }
 
 
