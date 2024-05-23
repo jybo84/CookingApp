@@ -73,16 +73,17 @@ class RecipeFragment : Fragment() {
         }
     }
 
-    private fun makeAdapters(){
-        adapterIngredient = STUB.getRecipeById(recipeId)?.ingredients?.let { IngredientsAdapter(it) }
+    private fun makeAdapters() {
+        adapterIngredient =
+            STUB.getRecipeById(recipeId)?.ingredients?.let { IngredientsAdapter(it) }
         binding.rvIngredients.adapter = adapterIngredient
         binding.rvIngredients.addItemDecoration(makeDivider())
 
-        adapterCookingMethod = STUB.getRecipeById(recipeId)?.method?.let { CookingMethodAdapter(it) }
+        adapterCookingMethod =
+            STUB.getRecipeById(recipeId)?.method?.let { CookingMethodAdapter(it) }
         binding.rvMethod.adapter = adapterCookingMethod
         binding.rvMethod.addItemDecoration(makeDivider())
     }
-
 
     private fun makeDivider(): MaterialDividerItemDecoration {
         val divider = MaterialDividerItemDecoration(requireContext(), LinearLayout.VERTICAL)
@@ -97,9 +98,10 @@ class RecipeFragment : Fragment() {
     private fun makeSeekBar() {
         binding.sbNumberOfPortions.setOnSeekBarChangeListener(
 
-            PortionSeekBarListener{recipeViewModel.setCountPortions( )}
+            PortionSeekBarListener { recipeViewModel.setCountPortions() }
 
-        )}
+        )
+    }
 
     private fun makeFavouriteHeard(isFavourite: Boolean) {
         if (isFavourite)
@@ -108,7 +110,7 @@ class RecipeFragment : Fragment() {
             binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_empty)
     }
 
-    class PortionSeekBarListener(val onChangeIngredients: (Int) -> Unit): OnSeekBarChangeListener{
+    class PortionSeekBarListener(val onChangeIngredients: (Int) -> Unit) : OnSeekBarChangeListener {
 
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
             onChangeIngredients(progress)
