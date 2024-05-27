@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.SeekBar
+import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.data.ARG_RECIPE_ID
 import com.example.androidstudyapp.databinding.FragmentRecipeBinding
+import com.example.androidstudyapp.model.STUB
 import com.example.androidstudyapp.ui.category.CookingMethodAdapter
 import com.example.androidstudyapp.ui.category.IngredientsAdapter
 import com.google.android.material.divider.MaterialDividerItemDecoration
@@ -43,6 +45,7 @@ class RecipeFragment : Fragment() {
             recipeViewModel.loadRecipe(recipeId)
 
         initUI()
+        makeAdapters()
     }
 
     private fun initUI() {
@@ -53,14 +56,6 @@ class RecipeFragment : Fragment() {
 
         recipeViewModel.state.observe(viewLifecycleOwner) { state ->
 
-            adapterIngredient = state.recipe?.ingredients?.let { IngredientsAdapter(it) }
-            binding.rvIngredients.adapter = adapterIngredient
-            binding.rvIngredients.addItemDecoration(makeDivider())
-
-            adapterCookingMethod = state.recipe?.method?.let { CookingMethodAdapter(it) }
-            binding.rvMethod.adapter = adapterCookingMethod
-            binding.rvMethod.addItemDecoration(makeDivider())
-
             val tvRecipeFragment = binding.tvRecipeInRecipeFragment
             tvRecipeFragment.text = state.recipe?.title.toString()
 
@@ -68,39 +63,41 @@ class RecipeFragment : Fragment() {
 
             binding.quantityPortions.text = state.portionsCount.toString()
 
-
             makeSeekBar()
 
             makeFavouriteHeard(state.isFavourite)
         }
     }
 
+    private fun makeAdapters() {
+        adapterIngredient =
+            STUB.getRecipeById(recipeId)?.ingredients?.let { IngredientsAdapter(it) }
+        binding.rvIngredients.adapter = adapterIngredient
+        binding.rvIngredients.addItemDecoration(makeDivider())
+
+        adapterCookingMethod =
+            STUB.getRecipeById(recipeId)?.method?.let { CookingMethodAdapter(it) }
+        binding.rvMethod.adapter = adapterCookingMethod
+        binding.rvMethod.addItemDecoration(makeDivider())
+    }
 
     private fun makeDivider(): MaterialDividerItemDecoration {
         val divider = MaterialDividerItemDecoration(requireContext(), LinearLayout.VERTICAL)
         this.context?.let { divider.setDividerColorResource(it, R.color.color_divider) }
         val sizeInset = resources.getDimensionPixelSize(R.dimen.divider_inset)
-        divider.dividerInsetStart = sizeInset
-        divider.dividerInsetEnd = sizeInset
-        divider.isLastItemDecorated = false
+        divider.apply {
+            dividerInsetStart = sizeInset
+            dividerInsetEnd = sizeInset
+            divider.isLastItemDecorated = false
+        }
         return divider
     }
 
     private fun makeSeekBar() {
-        binding.sbNumberOfPortions.setOnSeekBarChangeListener(object :
-            SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                binding.quantityPortions.text = progress.toString()
-
-                recipeViewModel.setCountPortions(progress)
-                    ?.let { adapterIngredient?.updateIngredients(it) }
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-            }
+        binding.sbNumberOfPortions.setOnSeekBarChangeListener(PortionSeekBarListener {
+            binding.quantityPortions.text = it.toString()
+            recipeViewModel.setCountPortions(it)
+                ?.let { adapterIngredient?.updateIngredients(it) }
         })
     }
 
@@ -109,5 +106,22 @@ class RecipeFragment : Fragment() {
             binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_full)
         else
             binding.ibHeartFavourites.setImageResource(R.drawable.ic_heart_empty)
+    }
+
+    inner class PortionSeekBarListener(val onChangeIngredients: (Int) -> Unit) :
+        OnSeekBarChangeListener {
+
+        override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+            onChangeIngredients(progress)
+
+        }
+
+        override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+        }
+
+        override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+        }
     }
 }

@@ -79,8 +79,11 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
-    fun setCountPortions(count: Int): Int?{
+    fun setCountPortions(count: Int): Int? {
         state.value?.portionsCount = count
         return state.value?.portionsCount
     }
 }
+
+
+
