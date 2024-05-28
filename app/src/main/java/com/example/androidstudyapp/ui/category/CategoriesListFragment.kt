@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import androidx.fragment.app.viewModels
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.data.ARG_CATEGORY_ID
 import com.example.androidstudyapp.data.ARG_CATEGORY_IMAGE_URL
@@ -19,6 +20,7 @@ import com.example.androidstudyapp.ui.recipe.listRecipe.RecipesListFragment
 class CategoriesListFragment : Fragment() {
 
     private val binding by lazy { FragmentListCategoriesBinding.inflate(layoutInflater) }
+    val categoriesListViewModel: CategoriesListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +32,11 @@ class CategoriesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        categoriesListViewModel.state.observe(viewLifecycleOwner){
+
+        }
+
         initRecycler()
     }
 
