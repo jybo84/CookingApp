@@ -10,6 +10,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import androidx.fragment.app.viewModels
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.data.ARG_CATEGORY_ID
 import com.example.androidstudyapp.data.ARG_RECIPE_ID
@@ -24,6 +25,8 @@ class RecipesListFragment : Fragment() {
 
     private val binding by lazy { FragmentRecipesListBinding.inflate(layoutInflater) }
     private var categoryId = arguments?.getInt(ARG_CATEGORY_ID)
+
+    val recipeListViewModel: RecipesListViewModel by viewModels()
 
 
     override fun onCreateView(
