@@ -26,7 +26,7 @@ class RecipesListFragment : Fragment() {
     private val binding by lazy { FragmentRecipesListBinding.inflate(layoutInflater) }
     private var categoryId = arguments?.getInt(ARG_CATEGORY_ID)
 
-    val recipeListViewModel: RecipesListViewModel by viewModels()
+    private val recipeListViewModel: RecipesListViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -38,16 +38,23 @@ class RecipesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        recipeListViewModel.state.observe(viewLifecycleOwner) {
+
+        }
+        if (savedInstanceState == null)
+            categoryId?.let { recipeListViewModel.loadListRecipe(it) }
+
         getBundleArg()
         initRecyclerRecipe()
 
 
-        binding.tvCategory.text = categoryId?.let { getCatById(it)?.title }
+        binding.tvCategory.text = categoryId?.let { getCategoryById(it)?.title }
         val ivListCategoryOfRecipe = binding.ivRecipe
 
         try {
-            val ims =
-                categoryId?.let { getCatById(it)?.imageUrl?.let { requireContext().assets.open(it) } }
+            val ims = categoryId?.let {getCategoryById(it)?.imageUrl?.let {
+                        requireContext().assets.open(it) }
+                }
             val picture = Drawable.createFromStream(ims, null)
             ivListCategoryOfRecipe.setImageDrawable(picture)
         } catch (ex: Exception) {
@@ -57,6 +64,16 @@ class RecipesListFragment : Fragment() {
 
     private fun getBundleArg() {
         categoryId = arguments?.getInt(ARG_CATEGORY_ID)
+    }
+
+    private fun initRecyclerRecipe() {
+        val adapter = RecipesListAdapter(STUB.getRecipesByCategoryId(categoryId))
+        binding.rvRecipe.adapter = adapter
+        adapter.setOnClickListenerRecipe(object : RecipesListAdapter.OnItemClickListenerRecipe {
+            override fun onItemClickRecipe(recipeId: Int) {
+                openRecipeByRecipeId(recipeId)
+            }
+        })
     }
 
     fun openRecipeByRecipeId(id: Int) {
@@ -71,17 +88,8 @@ class RecipesListFragment : Fragment() {
         }
     }
 
-    private fun initRecyclerRecipe() {
-        val adapter = RecipesListAdapter(STUB.getRecipesByCategoryId(categoryId))
-        binding.rvRecipe.adapter = adapter
-        adapter.setOnClickListenerRecipe(object : RecipesListAdapter.OnItemClickListenerRecipe {
-            override fun onItemClickRecipe(recipeId: Int) {
-                openRecipeByRecipeId(recipeId)
-            }
-        })
-    }
 
-    fun getCatById(id: Int): Category? {
+    private fun getCategoryById(id: Int): Category? {
         return STUB.getCategories().find { it.id == id }
     }
 }
