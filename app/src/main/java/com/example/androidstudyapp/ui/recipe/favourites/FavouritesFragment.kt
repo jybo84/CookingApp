@@ -9,6 +9,7 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import androidx.fragment.app.viewModels
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.data.ARG_RECIPE_ID
 import com.example.androidstudyapp.data.FAVORITE_PREFS_KEY
@@ -25,6 +26,8 @@ class FavouritesFragment : Fragment() {
         requireActivity().getSharedPreferences(FILE_COLLECTION_MY_ID, Context.MODE_PRIVATE)
     }
 
+    val favouritesViewModel: FavouritesViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +38,11 @@ class FavouritesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        favouritesViewModel.state.observe(viewLifecycleOwner){
+
+        }
+
         binding.tvEmptyFavouriteList.isVisible = getFavorites().isEmpty()
         initRecycleViewFavourites()
     }
