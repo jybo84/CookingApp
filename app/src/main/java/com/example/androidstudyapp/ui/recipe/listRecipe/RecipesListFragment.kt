@@ -12,9 +12,8 @@ import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.data.ARG_CATEGORY_ID
-import com.example.androidstudyapp.data.ARG_CATEGORY_IMAGE_URL
-import com.example.androidstudyapp.data.ARG_CATEGORY_NAME
 import com.example.androidstudyapp.data.ARG_RECIPE_ID
+import com.example.androidstudyapp.data.Category
 import com.example.androidstudyapp.databinding.FragmentRecipesListBinding
 import com.example.androidstudyapp.model.STUB
 import com.example.androidstudyapp.ui.recipe.RecipesListAdapter
@@ -24,9 +23,8 @@ import com.example.androidstudyapp.ui.recipe.recipe.RecipeFragment
 class RecipesListFragment : Fragment() {
 
     private val binding by lazy { FragmentRecipesListBinding.inflate(layoutInflater) }
-    private var categoryId: Int? = null
-    private var categoryName: String? = null
-    private var categoryImageUrl: String? = null
+    private var categoryId = arguments?.getInt(ARG_CATEGORY_ID)
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,11 +38,13 @@ class RecipesListFragment : Fragment() {
         getBundleArg()
         initRecyclerRecipe()
 
-        binding.tvCategory.text = categoryName
+
+        binding.tvCategory.text = categoryId?.let { getCatById(it)?.title }
         val ivListCategoryOfRecipe = binding.ivRecipe
 
         try {
-            val ims = categoryImageUrl?.let { requireContext().assets.open(it) }
+            val ims =
+                categoryId?.let { getCatById(it)?.imageUrl?.let { requireContext().assets.open(it) } }
             val picture = Drawable.createFromStream(ims, null)
             ivListCategoryOfRecipe.setImageDrawable(picture)
         } catch (ex: Exception) {
@@ -54,8 +54,6 @@ class RecipesListFragment : Fragment() {
 
     private fun getBundleArg() {
         categoryId = arguments?.getInt(ARG_CATEGORY_ID)
-        categoryName = arguments?.getString(ARG_CATEGORY_NAME)
-        categoryImageUrl = arguments?.getString(ARG_CATEGORY_IMAGE_URL)
     }
 
     fun openRecipeByRecipeId(id: Int) {
@@ -78,5 +76,9 @@ class RecipesListFragment : Fragment() {
                 openRecipeByRecipeId(recipeId)
             }
         })
+    }
+
+    fun getCatById(id: Int): Category? {
+        return STUB.getCategories().find { it.id == id }
     }
 }
