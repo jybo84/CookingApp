@@ -28,7 +28,6 @@ class RecipesListFragment : Fragment() {
 
     private val recipeListViewModel: RecipesListViewModel by viewModels()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,27 +37,28 @@ class RecipesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recipeListViewModel.state.observe(viewLifecycleOwner) {
 
-        }
+        getBundleArg()
+
         if (savedInstanceState == null)
             categoryId?.let { recipeListViewModel.loadListRecipe(it) }
 
-        getBundleArg()
-        initRecyclerRecipe()
+        recipeListViewModel.state.observe(viewLifecycleOwner) {
+            binding.tvCategory.text = categoryId?.let { getCategoryById(it)?.title }
+            val ivListCategoryOfRecipe = binding.ivRecipe
 
-
-        binding.tvCategory.text = categoryId?.let { getCategoryById(it)?.title }
-        val ivListCategoryOfRecipe = binding.ivRecipe
-
-        try {
-            val ims = categoryId?.let {getCategoryById(it)?.imageUrl?.let {
-                        requireContext().assets.open(it) }
+            try {
+                val ims = categoryId?.let {
+                    getCategoryById(it)?.imageUrl?.let {
+                        requireContext().assets.open(it)
+                    }
                 }
-            val picture = Drawable.createFromStream(ims, null)
-            ivListCategoryOfRecipe.setImageDrawable(picture)
-        } catch (ex: Exception) {
-            Log.e("mylog", "Error: $ex")
+                val picture = Drawable.createFromStream(ims, null)
+                ivListCategoryOfRecipe.setImageDrawable(picture)
+            } catch (ex: Exception) {
+                Log.e("mylog", "Error: $ex")
+            }
+            initRecyclerRecipe()
         }
     }
 
@@ -87,7 +87,6 @@ class RecipesListFragment : Fragment() {
             addToBackStack(null)
         }
     }
-
 
     private fun getCategoryById(id: Int): Category? {
         return STUB.getCategories().find { it.id == id }
