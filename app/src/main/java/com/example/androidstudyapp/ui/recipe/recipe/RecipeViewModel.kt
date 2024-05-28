@@ -84,6 +84,3 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
         return state.value?.portionsCount
     }
 }
-
-
-

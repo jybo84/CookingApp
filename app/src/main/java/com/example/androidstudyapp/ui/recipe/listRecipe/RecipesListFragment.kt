@@ -1,8 +1,6 @@
 package com.example.androidstudyapp.ui.recipe.listRecipe
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +12,8 @@ import androidx.fragment.app.viewModels
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.data.ARG_CATEGORY_ID
 import com.example.androidstudyapp.data.ARG_RECIPE_ID
-import com.example.androidstudyapp.data.Category
+import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.databinding.FragmentRecipesListBinding
-import com.example.androidstudyapp.model.STUB
 import com.example.androidstudyapp.ui.recipe.RecipesListAdapter
 import com.example.androidstudyapp.ui.recipe.recipe.RecipeFragment
 
@@ -41,24 +38,15 @@ class RecipesListFragment : Fragment() {
         getBundleArg()
 
         if (savedInstanceState == null)
-            categoryId?.let { recipeListViewModel.loadListRecipe(it) }
+            categoryId?.let { recipeListViewModel.loadRecipes(it) }
 
-        recipeListViewModel.state.observe(viewLifecycleOwner) {
-            binding.tvCategory.text = categoryId?.let { getCategoryById(it)?.title }
-            val ivListCategoryOfRecipe = binding.ivRecipe
-
-            try {
-                val ims = categoryId?.let {
-                    getCategoryById(it)?.imageUrl?.let {
-                        requireContext().assets.open(it)
-                    }
-                }
-                val picture = Drawable.createFromStream(ims, null)
-                ivListCategoryOfRecipe.setImageDrawable(picture)
-            } catch (ex: Exception) {
-                Log.e("mylog", "Error: $ex")
+        recipeListViewModel.state.observe(viewLifecycleOwner) { state ->
+            binding.apply {
+                tvCategory.text = state.categoryName
+                ivRecipe.setImageDrawable(state.categoryImage)
             }
-            initRecyclerRecipe()
+
+            initRecyclerRecipe(state.recipes)
         }
     }
 
@@ -66,8 +54,9 @@ class RecipesListFragment : Fragment() {
         categoryId = arguments?.getInt(ARG_CATEGORY_ID)
     }
 
-    private fun initRecyclerRecipe() {
-        val adapter = RecipesListAdapter(STUB.getRecipesByCategoryId(categoryId))
+    private fun initRecyclerRecipe(list: List<Recipe>) {
+
+        val adapter = RecipesListAdapter(list)
         binding.rvRecipe.adapter = adapter
         adapter.setOnClickListenerRecipe(object : RecipesListAdapter.OnItemClickListenerRecipe {
             override fun onItemClickRecipe(recipeId: Int) {
@@ -86,9 +75,5 @@ class RecipesListFragment : Fragment() {
             setReorderingAllowed(true)
             addToBackStack(null)
         }
-    }
-
-    private fun getCategoryById(id: Int): Category? {
-        return STUB.getCategories().find { it.id == id }
     }
 }
