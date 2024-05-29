@@ -35,7 +35,7 @@
         android:id="@+id/categoriesListFragment"
         android:name="com.example.androidstudyapp.ui.category.CategoriesListFragment"
         android:label="fragment_recipes_list"
-        tools:layout="@layout/fragment_recipes_list" >
+        tools:layout="@layout/fragment_list_categories" >
         <action
             android:id="@+id/action_categoriesListFragment_to_recipesListFragment"
             app:destination="@id/recipesListFragment" />
