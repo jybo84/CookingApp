@@ -37,8 +37,7 @@ class RecipesListFragment : Fragment() {
 
         getBundleArg()
 
-        if (savedInstanceState == null)
-            categoryId?.let { recipeListViewModel.loadRecipes(it) }
+        categoryId?.let { recipeListViewModel.loadRecipes(it) }
 
         recipeListViewModel.state.observe(viewLifecycleOwner) { state ->
             binding.apply {
