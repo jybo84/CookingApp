@@ -1,11 +1,48 @@
 package com.example.androidstudyapp.ui.recipe.listRecipe
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import android.graphics.drawable.Drawable
+import android.util.Log
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.example.androidstudyapp.data.Category
+import com.example.androidstudyapp.data.Recipe
+import com.example.androidstudyapp.model.STUB
 
-class RecipesListViewModel : ViewModel() {
+class RecipesListViewModel(application: Application) : AndroidViewModel(application) {
     data class RecipeListState(
-        var categoryId: Int? = null,
         var categoryName: String? = null,
-        var categoryImageUrl: String? = null,
+        var categoryImage: Drawable? = null,
+        var recipes: List<Recipe> = emptyList(),
     )
+
+    private val _state = MutableLiveData(RecipeListState())
+    val state: LiveData<RecipeListState> = _state
+
+    fun loadRecipes(categoryId: Int) {
+        _state.value = RecipeListState(
+            categoryName = getCategoryById(categoryId)?.title,
+            categoryImage = loadImageCategory(categoryId),
+            recipes = STUB.getRecipesByCategoryId(categoryId)
+        )
+    }
+
+    private fun loadImageCategory(categoryId: Int): Drawable? {
+        try {
+            val ims = getCategoryById(categoryId)?.imageUrl?.let {
+                getApplication<Application>().assets.open(it)
+            }
+            val picture = Drawable.createFromStream(ims, null)
+            return picture
+
+        } catch (ex: Exception) {
+            Log.e("mylog", "Error: $ex")
+            return null
+        }
+    }
+
+    private fun getCategoryById(id: Int): Category? {
+        return STUB.getCategories().find { it.id == id }
+    }
 }

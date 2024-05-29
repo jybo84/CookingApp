@@ -110,18 +110,14 @@ class RecipeFragment : Fragment() {
 
     inner class PortionSeekBarListener(val onChangeIngredients: (Int) -> Unit) :
         OnSeekBarChangeListener {
-
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
             onChangeIngredients(progress)
-
         }
 
         override fun onStartTrackingTouch(seekBar: SeekBar?) {
-
         }
 
         override fun onStopTrackingTouch(seekBar: SeekBar?) {
-
         }
     }
 }
