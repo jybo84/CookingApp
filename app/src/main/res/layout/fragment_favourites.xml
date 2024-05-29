@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/color_background"
     android:orientation="vertical"
+    tools:layout="@layout/fragment_favourites"
     tools:context=".ui.category.CategoriesListFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
