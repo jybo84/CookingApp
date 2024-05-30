@@ -23,15 +23,17 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        navCont = findNavController(R.id.mainContainer)
+
 
         binding.apply {
             buttonFavourites.setOnClickListener {
+                navCont = findNavController(R.id.mainContainer)
                 navCont.navigate(
                     R.id.favouritesFragment
                 )
             }
             buttonCategory.setOnClickListener {
+                navCont = findNavController(R.id.mainContainer)
                 navCont.navigate(
                     R.id.categoriesListFragment
                 )
