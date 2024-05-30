@@ -11,6 +11,8 @@ import com.example.androidstudyapp.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+//    private var navController: NavController =
+//        (supportFragmentManager.findFragmentById(R.id.mainContainer) as NavHostFragment).navController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +23,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             insets
         }
 
-        val navController = findNavController(R.id.mainContainer)
+       val navController = findNavController(R.id.mainContainer)
 
         binding.apply {
             buttonFavourites.setOnClickListener {
