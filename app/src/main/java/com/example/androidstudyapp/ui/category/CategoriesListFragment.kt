@@ -52,15 +52,6 @@ class CategoriesListFragment : Fragment() {
         val bundle = bundleOf(
             ARG_CATEGORY_ID to categoryId,
         )
-//        parentFragmentManager.commit {
-//            replace<RecipesListFragment>(R.id.mainContainer, args = bundle)
-//            setReorderingAllowed(true)
-//            addToBackStack(null)
-
-//        }
-        findNavController().navigate(R.id.action_categoriesListFragment_to_recipesListFragment, bundle)
+        findNavController().navigate(R.id.action_categoriesListFragment_to_recipesListFragment, bundle )
     }
-
-
 }
-
