@@ -23,14 +23,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.apply {
-            buttonFavourites.setOnClickListener {
-                val navController = findNavController(R.id.mainContainer)
-                navController.navigate(R.id.favouritesFragment)
-            }
-            buttonCategory.setOnClickListener {
-                val navController = findNavController(R.id.mainContainer)
-                navController.navigate(R.id.categoriesListFragment)
-            }
+            buttonFavourites.setOnClickListener { findNavController(R.id.mainContainer).navigate(R.id.favouritesFragment) }
+
+            buttonCategory.setOnClickListener { findNavController(R.id.mainContainer).navigate(R.id.categoriesListFragment) }
         }
     }
 }
