@@ -4,17 +4,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    private var navCont: NavController =
-        (supportFragmentManager.findFragmentById(R.id.mainContainer) as NavHostFragment).navController
+//    private var navController: NavController =
+//        (supportFragmentManager.findFragmentById(R.id.mainContainer) as NavHostFragment).navController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -24,20 +22,15 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             insets
         }
 
-
-        binding.apply {
-            buttonFavourites.setOnClickListener {
-                navCont = findNavController(R.id.mainContainer)
-                navCont.navigate(
-                    R.id.favouritesFragment
-                )
-            }
-            buttonCategory.setOnClickListener {
-                navCont = findNavController(R.id.mainContainer)
-                navCont.navigate(
-                    R.id.categoriesListFragment
-                )
-            }
+    binding.apply {
+        buttonFavourites.setOnClickListener {
+            val navController = findNavController(R.id.mainContainer)
+            navController.navigate(R.id.favouritesFragment)
+        }
+        buttonCategory.setOnClickListener {
+            val navController = findNavController(R.id.mainContainer)
+            navController.navigate(R.id.categoriesListFragment)
+        }
         }
     }
 }
