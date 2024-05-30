@@ -60,15 +60,6 @@ class RecipesListFragment : Fragment() {
     }
 
     fun openRecipeByRecipeId(id: Int) {
-//        val bundle = bundleOf(
-//            ARG_RECIPE_ID to id,
-//        )
-//
-//        parentFragmentManager.commit {
-//            replace<RecipeFragment>(R.id.mainContainer, args = bundle)
-//            setReorderingAllowed(true)
-//            addToBackStack(null)
-//        }
         val action = RecipesListFragmentDirections.actionRecipesListFragmentToRecipeFragment(recipeId = id)
         findNavController().navigate(action)
     }
