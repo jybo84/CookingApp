@@ -12,6 +12,8 @@ class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
+    private val nav by lazy { findNavController(R.id.mainContainer) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -23,9 +25,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.apply {
-            buttonFavourites.setOnClickListener { findNavController(R.id.mainContainer).navigate(R.id.favouritesFragment) }
+            buttonFavourites.setOnClickListener {nav.navigate(R.id.favouritesFragment) }
 
-            buttonCategory.setOnClickListener { findNavController(R.id.mainContainer).navigate(R.id.categoriesListFragment) }
+            buttonCategory.setOnClickListener {nav.navigate(R.id.categoriesListFragment) }
         }
     }
 }
