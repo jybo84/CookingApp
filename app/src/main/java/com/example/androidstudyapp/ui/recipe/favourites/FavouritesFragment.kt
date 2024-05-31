@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.androidstudyapp.R
+import com.example.androidstudyapp.data.ARG_RECIPE_ID
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.databinding.FragmentFavouritesBinding
 import com.example.androidstudyapp.ui.recipe.RecipesListAdapter
@@ -50,8 +53,7 @@ class FavouritesFragment : Fragment() {
     }
 
     fun openRecipeByRecipeId(id: Int) {
-        val action =
-            FavouritesFragmentDirections.actionFavouritesFragmentToRecipeFragment(recipeId = id)
-        findNavController().navigate(action)
+        val bundle = bundleOf(ARG_RECIPE_ID to id)
+        findNavController().navigate(R.id.recipeFragment, bundle)
     }
 }
