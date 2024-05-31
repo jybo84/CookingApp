@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.androidstudyapp.R
@@ -54,11 +53,7 @@ class FavouritesFragment : Fragment() {
     }
 
     fun openRecipeByRecipeId(id: Int) {
-        parentFragmentManager.commit {
-            val bundle = bundleOf(
-                ARG_RECIPE_ID to id,
-            )
-            findNavController().navigate(R.id.action_recipesListFragment_to_recipeFragment, bundle)
-        }
+        val bundle = bundleOf(ARG_RECIPE_ID to id)
+        findNavController().navigate(R.id.recipeFragment, bundle)
     }
 }

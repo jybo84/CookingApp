@@ -63,10 +63,8 @@ class RecipesListFragment : Fragment() {
     }
 
     fun openRecipeByRecipeId(id: Int) {
-        val bundle = bundleOf(
-            ARG_RECIPE_ID to id,
-        )
-        findNavController().navigate(R.id.action_recipesListFragment_to_recipeFragment, bundle)
+        val bundle = bundleOf(ARG_RECIPE_ID to id)
+        findNavController().navigate(R.id.recipeFragment, bundle)
     }
 }
 
