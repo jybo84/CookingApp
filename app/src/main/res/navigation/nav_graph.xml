@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/categoriesListFragment">
+
+    <fragment
+        android:id="@+id/favouritesFragment"
+        android:name="com.example.androidstudyapp.ui.recipe.favourites.FavouritesFragment"
+        tools:layout="@layout/fragment_favourites"
+        android:label="FavouritesFragment" >
+        <action
+            android:id="@+id/action_favouritesFragment_to_recipeFragment"
+            app:destination="@id/recipeFragment" />
+        <action
+            android:id="@+id/action_favouritesFragment_to_categoriesListFragment"
+            app:destination="@id/categoriesListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipesListFragment"
+        android:name="com.example.androidstudyapp.ui.recipe.listRecipe.RecipesListFragment"
+        tools:layout="@layout/fragment_recipes_list"
+        android:label="RecipesListFragment" >
+        <action
+            android:id="@+id/action_recipesListFragment_to_recipeFragment"
+            app:destination="@id/recipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeFragment"
+        android:name="com.example.androidstudyapp.ui.recipe.recipe.RecipeFragment"
+        android:label="fragment_recipe"
+        tools:layout="@layout/fragment_recipe" />
+    <fragment
+        android:id="@+id/categoriesListFragment"
+        android:name="com.example.androidstudyapp.ui.category.CategoriesListFragment"
+        android:label="fragment_recipes_list"
+        tools:layout="@layout/fragment_list_categories" >
+        <action
+            android:id="@+id/action_categoriesListFragment_to_recipesListFragment"
+            app:destination="@id/recipesListFragment" />
+    </fragment>
+</navigation>

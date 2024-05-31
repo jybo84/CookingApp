@@ -34,4 +34,3 @@ class FavouritesViewModel(application: Application) : AndroidViewModel(applicati
         )
     }
 }
-

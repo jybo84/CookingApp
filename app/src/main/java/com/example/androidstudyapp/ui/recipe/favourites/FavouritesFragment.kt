@@ -7,14 +7,13 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.data.ARG_RECIPE_ID
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.databinding.FragmentFavouritesBinding
 import com.example.androidstudyapp.ui.recipe.RecipesListAdapter
-import com.example.androidstudyapp.ui.recipe.recipe.RecipeFragment
 
 class FavouritesFragment : Fragment() {
 
@@ -54,13 +53,7 @@ class FavouritesFragment : Fragment() {
     }
 
     fun openRecipeByRecipeId(id: Int) {
-        parentFragmentManager.commit {
-            val bundle = bundleOf(
-                ARG_RECIPE_ID to id,
-            )
-            replace(R.id.mainContainer, RecipeFragment::class.java, bundle)
-            setReorderingAllowed(true)
-            addToBackStack(null)
-        }
+        val bundle = bundleOf(ARG_RECIPE_ID to id)
+        findNavController().navigate(R.id.recipeFragment, bundle)
     }
 }
