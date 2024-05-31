@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.androidstudyapp.R
 import com.example.androidstudyapp.data.ARG_CATEGORY_ID
-import com.example.androidstudyapp.data.ARG_RECIPE_ID
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.databinding.FragmentRecipesListBinding
 import com.example.androidstudyapp.ui.recipe.RecipesListAdapter
@@ -20,7 +17,6 @@ class RecipesListFragment : Fragment() {
 
     private val binding by lazy { FragmentRecipesListBinding.inflate(layoutInflater) }
     private var categoryId = arguments?.getInt(ARG_CATEGORY_ID)
-
     private val recipeListViewModel: RecipesListViewModel by viewModels()
 
     override fun onCreateView(
@@ -63,8 +59,8 @@ class RecipesListFragment : Fragment() {
     }
 
     fun openRecipeByRecipeId(id: Int) {
-        val bundle = bundleOf(ARG_RECIPE_ID to id)
-        findNavController().navigate(R.id.recipeFragment, bundle)
+        val action =
+            RecipesListFragmentDirections.actionRecipesListFragmentToRecipeFragment(recipeId = id)
+        findNavController().navigate(action)
     }
 }
-
