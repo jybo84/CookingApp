@@ -17,7 +17,6 @@ class RecipesListFragment : Fragment() {
 
     private val binding by lazy { FragmentRecipesListBinding.inflate(layoutInflater) }
     private var categoryId = arguments?.getInt(ARG_CATEGORY_ID)
-
     private val recipeListViewModel: RecipesListViewModel by viewModels()
 
     override fun onCreateView(
@@ -60,7 +59,8 @@ class RecipesListFragment : Fragment() {
     }
 
     fun openRecipeByRecipeId(id: Int) {
-        val action = RecipesListFragmentDirections.actionRecipesListFragmentToRecipeFragment(recipeId = id)
+        val action =
+            RecipesListFragmentDirections.actionRecipesListFragmentToRecipeFragment(recipeId = id)
         findNavController().navigate(action)
     }
 }
