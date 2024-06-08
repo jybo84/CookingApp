@@ -64,3 +64,4 @@ class RecipesListFragment : Fragment() {
         findNavController().navigate(action)
     }
 }
+
