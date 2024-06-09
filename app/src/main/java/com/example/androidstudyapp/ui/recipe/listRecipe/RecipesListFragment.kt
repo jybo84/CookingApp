@@ -12,7 +12,6 @@ import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.databinding.FragmentRecipesListBinding
 import com.example.androidstudyapp.ui.recipe.RecipesListAdapter
 
-
 class RecipesListFragment : Fragment() {
 
     private val binding by lazy { FragmentRecipesListBinding.inflate(layoutInflater) }
