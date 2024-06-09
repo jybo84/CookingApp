@@ -21,7 +21,6 @@ import com.google.android.material.divider.MaterialDividerItemDecoration
 class RecipeFragment : Fragment() {
 
     private val binding by lazy { FragmentRecipeBinding.inflate(layoutInflater) }
-//    private val recipeId by lazy { requireArguments().getInt(ARG_RECIPE_ID) }
     private var adapterIngredient: IngredientsAdapter? = null
     private var adapterCookingMethod: CookingMethodAdapter? = null
     private val recipeViewModel: RecipeViewModel by viewModels()
