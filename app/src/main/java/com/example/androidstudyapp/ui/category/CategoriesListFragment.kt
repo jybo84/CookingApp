@@ -51,7 +51,7 @@ class CategoriesListFragment : Fragment() {
 
         findNavController().navigate(
             CategoriesListFragmentDirections.actionCategoriesListFragmentToRecipesListFragment(
-                category.id
+                category
             )
         )
     }
