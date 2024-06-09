@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_recipesListFragment_to_recipeFragment"
             app:destination="@id/recipeFragment" />
+        <argument
+            android:name="recipeId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/recipeFragment"
@@ -43,5 +46,8 @@
         <action
             android:id="@+id/action_categoriesListFragment_to_recipesListFragment"
             app:destination="@id/recipesListFragment" />
+        <argument
+            android:name="category"
+            app:argType="com.example.androidstudyapp.data.Category" />
     </fragment>
 </navigation>

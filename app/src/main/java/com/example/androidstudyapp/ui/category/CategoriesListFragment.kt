@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.androidstudyapp.data.Category
 import com.example.androidstudyapp.databinding.FragmentListCategoriesBinding
+import com.example.androidstudyapp.model.STUB
 
 class CategoriesListFragment : Fragment() {
 
@@ -39,12 +40,19 @@ class CategoriesListFragment : Fragment() {
         binding.rvCategories.adapter = adapter
         adapter.setOnItemClickListener(object : CategoriesListAdapter.OnItemClickListener {
             override fun onItemClick(categoryId: Int) {
-                openRecipesByCategoryId()
+                openRecipesByCategoryId(categoryId)
             }
         })
     }
 
-    fun openRecipesByCategoryId() {
-        findNavController().navigate(CategoriesListFragmentDirections.actionCategoriesListFragmentToRecipesListFragment())
+    fun openRecipesByCategoryId(categoryId: Int) {
+        val category: Category =
+            STUB.getCategories().find { it.id == categoryId } ?: throw IllegalArgumentException()
+
+        findNavController().navigate(
+            CategoriesListFragmentDirections.actionCategoriesListFragmentToRecipesListFragment(
+                category.id
+            )
+        )
     }
 }
