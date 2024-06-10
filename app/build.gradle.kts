@@ -2,10 +2,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-parcelize")
-    id("androidx.navigation.safeargs.kotlin")
+    alias(libs.plugins.androidxNavigationSafeArgs)
 }
-
-
 
 android {
     namespace = "com.example.androidstudyapp"
