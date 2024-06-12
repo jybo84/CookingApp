@@ -37,21 +37,18 @@ class MainActivity : AppCompatActivity() {
 
         Log.i("MyLog", "Метод onCreate() выполняется на потоке: Main")
 
-
         val myThread = Thread {
             val url = URL("https://recipes.androidsprint.ru/api/category")
             val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
             connection.connect()
 
-            val body = "responseBody: ${connection.inputStream.bufferedReader().readText()}"
+           val body: String = "responseBody: ${connection.inputStream.bufferedReader().readText()}"
+
             Log.i("MyLog", body)
             Log.i("MyLog", "Выполняю запрос в потоке myThread")
             Log.i("MyLog", "_________________________________")
 
-
-
-
-
+            parseResponse(body)
         }
 
         myThread.start()
@@ -71,6 +68,4 @@ class MainActivity : AppCompatActivity() {
         Log.i("MyLog", "description: ${item.description}")
         Log.i("MyLog", "imageUrl: ${item.imageUrl}")
     }
-
-
 }
