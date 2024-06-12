@@ -55,17 +55,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun parseResponse(response: String) {
-        val responseObject = JSONObject(response)
-        val item = Category(
-            responseObject.getJSONObject("responseBody").getInt("id"),
-            responseObject.getJSONObject("responseBody").getString("title"),
-            responseObject.getJSONObject("responseBody").getString("description"),
-            responseObject.getJSONObject("responseBody").getString("imageUrl"),
-        )
+        val responseObject = JSONObject(response).getJSONArray(response)
+        for (el in 0..responseObject.length()) {
+            val item = Category(
+                responseObject.getJSONObject(el).getInt("id"),
+                responseObject.getJSONObject(el).getString("title"),
+                responseObject.getJSONObject(el).getString("description"),
+                responseObject.getJSONObject(el).getString("imageUrl"),
+            )
 
-        Log.i("MyLog", "id: ${item.id}")
-        Log.i("MyLog", "title: ${item.title}")
-        Log.i("MyLog", "description: ${item.description}")
-        Log.i("MyLog", "imageUrl: ${item.imageUrl}")
+            Log.i("MyLog", "id: ${item.id}")
+            Log.i("MyLog", "title: ${item.title}")
+            Log.i("MyLog", "description: ${item.description}")
+            Log.i("MyLog", "imageUrl: ${item.imageUrl}")
+        }
     }
 }
