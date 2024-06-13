@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             val body: String = connection.inputStream.bufferedReader().readText()
 
             Log.i("MyLog", "responseBody: $body")
-            Log.i("MyLog", "Выполняю запрос в потоке myThread")
+            Log.i("MyLog", "Выполняю запрос в отдельном, НЕ UI, потоке")
             Log.i("MyLog", "_________________________________")
 
             parseResponse(body)
