@@ -12,6 +12,7 @@ import com.example.androidstudyapp.databinding.ActivityMainBinding
 import org.json.JSONArray
 import java.net.HttpURLConnection
 import java.net.URL
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,14 +36,15 @@ class MainActivity : AppCompatActivity() {
             buttonCategory.setOnClickListener { navController.navigate(R.id.categoriesListFragment) }
         }
 
+        Log.i("MyLog", "   ")
         Log.i("MyLog", "Метод onCreate() выполняется на потоке: Main")
 
-        val myThread = Thread {
-             val url = URL("https://recipes.androidsprint.ru/api/category")
+        thread {
+            val url = URL("https://recipes.androidsprint.ru/api/category")
             val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
             connection.connect()
 
-           val body: String =  connection.inputStream.bufferedReader().readText()
+            val body: String = connection.inputStream.bufferedReader().readText()
 
             Log.i("MyLog", "responseBody: $body")
             Log.i("MyLog", "Выполняю запрос в потоке myThread")
@@ -50,7 +52,6 @@ class MainActivity : AppCompatActivity() {
 
             parseResponse(body)
         }
-       myThread.start()
     }
 
     private fun parseResponse(response: String) {
@@ -63,10 +64,7 @@ class MainActivity : AppCompatActivity() {
                 responseObject.getJSONObject(el).getString("imageUrl"),
             )
 
-            Log.i("MyLog", "id: ${item.id}")
-            Log.i("MyLog", "title: ${item.title}")
-            Log.i("MyLog", "description: ${item.description}")
-            Log.i("MyLog", "imageUrl: ${item.imageUrl}")
+            Log.i("MyLog", item.toString())
         }
     }
 }
