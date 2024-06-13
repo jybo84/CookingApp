@@ -9,7 +9,7 @@ import androidx.navigation.findNavController
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.data.Category
 import com.example.androidstudyapp.databinding.ActivityMainBinding
-import org.json.JSONObject
+import org.json.JSONArray
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -38,24 +38,23 @@ class MainActivity : AppCompatActivity() {
         Log.i("MyLog", "Метод onCreate() выполняется на потоке: Main")
 
         val myThread = Thread {
-            val url = URL("https://recipes.androidsprint.ru/api/category")
+             val url = URL("https://recipes.androidsprint.ru/api/category")
             val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
             connection.connect()
 
-           val body: String = "responseBody: ${connection.inputStream.bufferedReader().readText()}"
+           val body: String =  connection.inputStream.bufferedReader().readText()
 
-            Log.i("MyLog", body)
+            Log.i("MyLog", "responseBody: $body")
             Log.i("MyLog", "Выполняю запрос в потоке myThread")
             Log.i("MyLog", "_________________________________")
 
             parseResponse(body)
         }
-
-        myThread.start()
+       myThread.start()
     }
 
     private fun parseResponse(response: String) {
-        val responseObject = JSONObject(response).getJSONArray(response)
+        val responseObject = JSONArray(response)
         for (el in 0..responseObject.length()) {
             val item = Category(
                 responseObject.getJSONObject(el).getInt("id"),
