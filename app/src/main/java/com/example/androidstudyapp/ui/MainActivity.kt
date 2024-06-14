@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun parseResponse(response: String) {
         val responseObject = JSONArray(response)
-        for (el in 0..responseObject.length()) {
+        for (el in 0..<responseObject.length()) {
             val item = Category(
                 responseObject.getJSONObject(el).getInt("id"),
                 responseObject.getJSONObject(el).getString("title"),
