@@ -55,4 +55,5 @@ dependencies {
     implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
 }
