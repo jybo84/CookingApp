@@ -65,27 +65,36 @@ class MainActivity : AppCompatActivity() {
                 Log.i("MyLog", "_________________________________")
             }
 
-            val response = okHttpClient.newCall(request).execute().body?.string()
+            val response: String? = okHttpClient.newCall(request).execute().body?.string()
 
-            val categories = response?.let { parseResponse(it) }
+            val categories = response?.let { parseResponseCategory(it) }
 
             categories?.forEach {
                 threadPool.execute {
 
-                    val recipesUrl: Request = Request.Builder()
-                        .url("https://recipes.androidsprint.ru/api/category")
+                    val okHttpClientRecipes = OkHttpClient.Builder()
+                        .addNetworkInterceptor(interceptor)
                         .build()
 
-                    val responseRecipesUrl = okHttpClient.newCall(request).execute().body?.string()
+                    val recipesUrl: Request = Request.Builder()
+                        .url("https://recipes.androidsprint.ru/api/recipes")
+                        .build()
 
-                    val recipes = responseRecipesUrl?.let { it -> parseResponse(it) }
+                    okHttpClientRecipes.newCall(recipesUrl).execute().use {
+                        Log.i("MyLog", recipesUrl.toString())
+                    }
+
+                    val responseRecipesUrl: String? =
+                        okHttpClientRecipes.newCall(recipesUrl).execute().body?.string()
+
+                    val recipes = responseRecipesUrl?.let { it -> parseResponseRecipesList(it) }
                     Log.i("MyLog", recipes.toString())
                 }
             }
         }
     }
 
-    private fun parseResponse(response: String): List<Category> {
+    private fun parseResponseCategory(response: String): List<Category> {
 
         val listCategory = mutableListOf<Category>()
         val responseObject = JSONArray(response)
@@ -103,8 +112,7 @@ class MainActivity : AppCompatActivity() {
         return listCategory
     }
 
-    private fun parseRecipesListResponse(response: String): List<Recipe> {
-
+    private fun parseResponseRecipesList(response: String): List<Recipe> {
         val listRecipe = mutableListOf<Recipe>()
         val responseRecipesObject = JSONArray(response)
         for (el in 0 until responseRecipesObject.length()) {
