@@ -7,10 +7,14 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.findNavController
 import com.example.androidstudyapp.R
+import com.example.androidstudyapp.data.Category
+import com.example.androidstudyapp.data.Ingredient
+import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.databinding.ActivityMainBinding
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
+import org.json.JSONArray
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.concurrent.thread
@@ -61,29 +65,20 @@ class MainActivity : AppCompatActivity() {
                 Log.i("MyLog", "_________________________________")
             }
 
-//            val url = URL("https://recipes.androidsprint.ru/api/category")
-//            val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
-//            connection.connect()
+            val response = okHttpClient.newCall(request).execute().body?.string()
 
-//            val body: String = connection.inputStream.bufferedReader().readText()
+            val categories = response?.let { parseResponse(it) }
 
-//            Log.i("MyLog", "responseBody: $body")
-//            Log.i("MyLog", "Выполняю запрос в отдельном, НЕ UI, потоке")
-//            Log.i("MyLog", "_________________________________")
-
-            val categories = parseResponse(body)
-
-            categories.forEach {
+            categories?.forEach {
                 threadPool.execute {
-                    val recipesUrl =
-                        URL("https://recipes.androidsprint.ru/api/category/${it.id}/recipes")
-                    val connection: HttpURLConnection =
-                        recipesUrl.openConnection() as HttpURLConnection
-                    connection.connect()
 
-                    val recipesBody: String = connection.inputStream.bufferedReader().readText()
+                    val recipesUrl: Request = Request.Builder()
+                        .url("https://recipes.androidsprint.ru/api/category")
+                        .build()
 
-                    val recipes = parseRecipesListResponse(recipesBody)
+                    val responseRecipesUrl = okHttpClient.newCall(request).execute().body?.string()
+
+                    val recipes = responseRecipesUrl?.let { it1 -> parseRecipesListResponse(it1) }
                     Log.i("MyLog", recipes.toString())
                 }
             }
