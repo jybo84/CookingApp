@@ -10,6 +10,7 @@ import com.example.androidstudyapp.R
 import com.example.androidstudyapp.databinding.ActivityMainBinding
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.concurrent.thread
@@ -42,15 +43,20 @@ class MainActivity : AppCompatActivity() {
         Log.i("MyLog", "Метод onCreate() выполняется на потоке: Main")
 
         thread {
+            val interceptor = HttpLoggingInterceptor()
+            interceptor.level = HttpLoggingInterceptor.Level.BODY
 
+            val okHttpClient = OkHttpClient.Builder()
+                .addNetworkInterceptor(interceptor)
+                .build()
 
-            val client = OkHttpClient()
             val request: Request = Request.Builder()
                 .url("https://recipes.androidsprint.ru/api/category")
                 .build()
 
-            client.newCall(request).execute().use { it ->
+            okHttpClient.newCall(request).execute().use { it ->
                 Log.i("MyLog", "Выполняю запрос в отдельном, НЕ UI, потоке")
+                Log.i("MyLog", "responseBody: ${it.code}")
                 Log.i("MyLog", "responseBody: ${it.body?.string()}")
                 Log.i("MyLog", "_________________________________")
             }
