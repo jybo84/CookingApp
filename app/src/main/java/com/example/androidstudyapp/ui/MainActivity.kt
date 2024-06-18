@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
 
                     val responseRecipesUrl = okHttpClient.newCall(request).execute().body?.string()
 
-                    val recipes = responseRecipesUrl?.let { it1 -> parseRecipesListResponse(it1) }
+                    val recipes = responseRecipesUrl?.let { it -> parseResponse(it) }
                     Log.i("MyLog", recipes.toString())
                 }
             }
