@@ -69,7 +69,10 @@ class MainActivity : AppCompatActivity() {
 
             val categories = response?.let { parseResponseCategory(it) }
 
-            categories?.forEach {
+
+            Log.i("MyLog", "Выполняю запрос в ПУЛЕ потоков")
+            categories?.forEach { el->
+
                 threadPool.execute {
 
                     val okHttpClientRecipes = OkHttpClient.Builder()
@@ -77,11 +80,13 @@ class MainActivity : AppCompatActivity() {
                         .build()
 
                     val recipesUrl: Request = Request.Builder()
-                        .url("https://recipes.androidsprint.ru/api/recipes")
+
+                        .url("https://recipes.androidsprint.ru/api/recipes?ids=${el.id} ")
                         .build()
 
-                    okHttpClientRecipes.newCall(recipesUrl).execute().use {
-                        Log.i("MyLog", recipesUrl.toString())
+                    okHttpClientRecipes.newCall(recipesUrl).execute().use { it ->
+
+                        Log.i("MyLog", "recipes ${it.body?.string()}")
                     }
 
                     val responseRecipesUrl: String? =
