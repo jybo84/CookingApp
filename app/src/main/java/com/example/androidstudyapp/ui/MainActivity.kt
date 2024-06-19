@@ -67,11 +67,14 @@ class MainActivity : AppCompatActivity() {
 
             val response: String? = okHttpClient.newCall(request).execute().body?.string()
 
-            val categories = response?.let { parseResponseCategory(it) }
+            val categories: List<Category>? = response?.let { parseResponseCategory(it) }
+
+            val allId: List<Int>? = categories?.let { getIdCategory(it) }
 
 
             Log.i("MyLog", "Выполняю запрос в ПУЛЕ потоков")
-            categories?.forEach { el->
+
+            allId?.forEach { el ->
 
                 threadPool.execute {
 
@@ -81,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
                     val recipesUrl: Request = Request.Builder()
 
-                        .url("https://recipes.androidsprint.ru/api/recipes?ids=${el.id} ")
+                        .url("https://recipes.androidsprint.ru/api/category/${el}/recipes ")
                         .build()
 
                     okHttpClientRecipes.newCall(recipesUrl).execute().use { it ->
@@ -98,6 +101,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 
     private fun parseResponseCategory(response: String): List<Category> {
 
@@ -157,5 +161,10 @@ class MainActivity : AppCompatActivity() {
             list.add(itemMethod)
         }
         return list
+    }
+
+    private fun getIdCategory(list: List<Category>): List<Int> {
+        val listId = list.map { it.id }
+        return listId
     }
 }
