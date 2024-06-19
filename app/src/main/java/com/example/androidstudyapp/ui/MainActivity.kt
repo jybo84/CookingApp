@@ -95,8 +95,10 @@ class MainActivity : AppCompatActivity() {
                     val responseRecipesUrl: String? =
                         okHttpClientRecipes.newCall(recipesUrl).execute().body?.string()
 
-                    val recipes = responseRecipesUrl?.let { it -> parseResponseRecipesList(it) }
-                    Log.i("MyLog", recipes.toString())
+                    val recipes = responseRecipesUrl?.let { parseResponseRecipesList(it) }
+                    if (recipes != null) {
+                        Log.i("MyLog", recipes.joinToString ("\n"))
+                    }
                 }
             }
         }
