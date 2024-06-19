@@ -11,9 +11,10 @@ import com.example.androidstudyapp.data.Category
 import com.example.androidstudyapp.data.Ingredient
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.databinding.ActivityMainBinding
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONArray
-import java.net.HttpURLConnection
-import java.net.URL
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.concurrent.thread
@@ -46,36 +47,65 @@ class MainActivity : AppCompatActivity() {
         Log.i("MyLog", "Метод onCreate() выполняется на потоке: Main")
 
         thread {
-            val url = URL("https://recipes.androidsprint.ru/api/category")
-            val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
-            connection.connect()
+            val interceptor = HttpLoggingInterceptor()
+            interceptor.level = HttpLoggingInterceptor.Level.BODY
 
-            val body: String = connection.inputStream.bufferedReader().readText()
+            val okHttpClient = OkHttpClient.Builder()
+                .addNetworkInterceptor(interceptor)
+                .build()
 
-            Log.i("MyLog", "responseBody: $body")
-            Log.i("MyLog", "Выполняю запрос в отдельном, НЕ UI, потоке")
-            Log.i("MyLog", "_________________________________")
+            val request: Request = Request.Builder()
+                .url("https://recipes.androidsprint.ru/api/category")
+                .build()
 
-            val categories = parseResponse(body)
+            okHttpClient.newCall(request).execute().use { it ->
+                Log.i("MyLog", "Выполняю запрос в отдельном, НЕ UI, потоке")
+                Log.i("MyLog", "responseBody: ${it.code}")
+                Log.i("MyLog", "responseBody: ${it.body?.string()}")
+                Log.i("MyLog", "_________________________________")
+            }
 
-            categories.forEach {
+            val response: String? = okHttpClient.newCall(request).execute().body?.string()
+
+            val categories: List<Category>? = response?.let { parseResponseCategory(it) }
+
+            val allId: List<Int>? = categories?.let { getListIdCategory(it) }
+
+
+            Log.i("MyLog", "Выполняю запрос в ПУЛЕ потоков")
+
+            allId?.forEach { el ->
+
                 threadPool.execute {
-                    val recipesUrl =
-                        URL("https://recipes.androidsprint.ru/api/category/${it.id}/recipes")
-                    val connection: HttpURLConnection =
-                        recipesUrl.openConnection() as HttpURLConnection
-                    connection.connect()
 
-                    val recipesBody: String = connection.inputStream.bufferedReader().readText()
+                    val okHttpClientRecipes = OkHttpClient.Builder()
+                        .addNetworkInterceptor(interceptor)
+                        .build()
 
-                    val recipes = parseRecipesListResponse(recipesBody)
-                    Log.i("MyLog", recipes.toString())
+                    val recipesUrl: Request = Request.Builder()
+
+                        .url("https://recipes.androidsprint.ru/api/category/${el}/recipes ")
+                        .build()
+
+                    okHttpClientRecipes.newCall(recipesUrl).execute().use { it ->
+
+                        Log.i("MyLog", "recipes ${it.body?.string()}")
+                    }
+
+                    val responseRecipesUrl: String? =
+                        okHttpClientRecipes.newCall(recipesUrl).execute().body?.string()
+
+                    val recipes = responseRecipesUrl?.let { parseResponseRecipesList(it) }
+                    if (recipes != null) {
+                        Log.i("MyLog", recipes.joinToString ("\n"))
+                    }
                 }
             }
         }
     }
 
-    private fun parseResponse(response: String): List<Category> {
+
+    private fun parseResponseCategory(response: String): List<Category> {
 
         val listCategory = mutableListOf<Category>()
         val responseObject = JSONArray(response)
@@ -93,8 +123,7 @@ class MainActivity : AppCompatActivity() {
         return listCategory
     }
 
-    private fun parseRecipesListResponse(response: String): List<Recipe> {
-
+    private fun parseResponseRecipesList(response: String): List<Recipe> {
         val listRecipe = mutableListOf<Recipe>()
         val responseRecipesObject = JSONArray(response)
         for (el in 0 until responseRecipesObject.length()) {
@@ -134,5 +163,10 @@ class MainActivity : AppCompatActivity() {
             list.add(itemMethod)
         }
         return list
+    }
+
+    private fun getListIdCategory(list: List<Category>): List<Int> {
+        val listId = list.map { it.id }
+        return listId
     }
 }
