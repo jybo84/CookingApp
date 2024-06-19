@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
             val categories: List<Category>? = response?.let { parseResponseCategory(it) }
 
-            val allId: List<Int>? = categories?.let { getIdCategory(it) }
+            val allId: List<Int>? = categories?.let { getListIdCategory(it) }
 
 
             Log.i("MyLog", "Выполняю запрос в ПУЛЕ потоков")
@@ -165,7 +165,7 @@ class MainActivity : AppCompatActivity() {
         return list
     }
 
-    private fun getIdCategory(list: List<Category>): List<Int> {
+    private fun getListIdCategory(list: List<Category>): List<Int> {
         val listId = list.map { it.id }
         return listId
     }
