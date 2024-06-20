@@ -55,10 +55,11 @@ class MainActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val recipeApiService = retrofit.create(RecipeApiService::class.java)
+        val recipeApiService: RecipeApiService = retrofit.create(RecipeApiService::class.java)
 
 
         thread {
+
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
 
