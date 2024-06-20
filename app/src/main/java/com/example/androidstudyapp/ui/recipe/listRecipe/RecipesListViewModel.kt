@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.androidstudyapp.data.Category
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.data.RecipesRepository
+import java.util.concurrent.Executors
 
 class RecipesListViewModel(application: Application) : AndroidViewModel(application) {
     data class RecipeListState(
@@ -22,12 +23,16 @@ class RecipesListViewModel(application: Application) : AndroidViewModel(applicat
 
     private val recipeRepository = RecipesRepository()
 
+    private val threadPool = Executors.newFixedThreadPool(10)
+
     fun loadRecipes(categoryId: Int) {
-        _state.value = RecipeListState(
-            categoryName = getCategoryById(categoryId)?.title,
-            categoryImage = loadImageCategory(categoryId),
-            recipes = recipeRepository.getRecipesByCategoryId(categoryId)
-        )
+        threadPool.execute() {
+            _state.value = RecipeListState(
+                categoryName = getCategoryById(categoryId)?.title,
+                categoryImage = loadImageCategory(categoryId),
+                recipes = recipeRepository.getRecipesByCategoryId(categoryId)
+            )
+        }
     }
 
     private fun loadImageCategory(categoryId: Int): Drawable? {

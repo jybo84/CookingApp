@@ -20,6 +20,7 @@ class FavouritesViewModel(application: Application) : AndroidViewModel(applicati
     private val recipeRepository = RecipesRepository()
     private val threadPool: ExecutorService = Executors.newFixedThreadPool(10)
 
+
     data class FavouritesState(
         val dataSet: List<Recipe>? = emptyList()
     )

@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.databinding.FragmentRecipesListBinding
 import com.example.androidstudyapp.ui.recipe.RecipesListAdapter
+import java.util.concurrent.Executors
 
 class RecipesListFragment : Fragment() {
 
@@ -19,6 +20,7 @@ class RecipesListFragment : Fragment() {
 
     private val recipeListViewModel: RecipesListViewModel by viewModels()
     private val args: RecipesListFragmentArgs by navArgs()
+    private val threadPool = Executors.newFixedThreadPool(10)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,16 +39,17 @@ class RecipesListFragment : Fragment() {
                 tvCategory.text = state.categoryName
                 ivRecipe.setImageDrawable(state.categoryImage)
             }
-            if (state.recipes != null) {
-                initRecyclerRecipe(state.recipes)
-            } else {
-                Toast.makeText(context, "Ошибка получения данных", Toast.LENGTH_LONG).show()
+            threadPool.execute() {
+                if (state.recipes != null) {
+                    initRecyclerRecipe(state.recipes)
+                } else {
+                    Toast.makeText(context, "Ошибка получения данных", Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
 
     private fun initRecyclerRecipe(list: List<Recipe>) {
-
         val adapter = RecipesListAdapter(list)
         binding.rvRecipe.adapter = adapter
         adapter.setOnClickListenerRecipe(object : RecipesListAdapter.OnItemClickListenerRecipe {

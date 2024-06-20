@@ -12,7 +12,6 @@ class RecipesRepository {
 
     private val recipeApiService: RecipeApiService = retrofit.create(RecipeApiService::class.java)
 
-
     fun getCategories(): List<Category>? {
         return try {
             recipeApiService.getListCategory().execute().body()

@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.androidstudyapp.data.Category
 import com.example.androidstudyapp.data.RecipesRepository
+import java.util.concurrent.Executors
 
 class CategoriesListViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -18,9 +19,13 @@ class CategoriesListViewModel(application: Application) : AndroidViewModel(appli
 
     private val recipeRepository = RecipesRepository()
 
+    private val threadPool = Executors.newFixedThreadPool(10)
+
     fun loadCategoriesList() {
-        _state.value = StateCategoriesList(
-            categories = recipeRepository.getCategories()
-        )
+        threadPool.execute() {
+            _state.value = StateCategoriesList(
+                categories = recipeRepository.getCategories()
+            )
+        }
     }
 }

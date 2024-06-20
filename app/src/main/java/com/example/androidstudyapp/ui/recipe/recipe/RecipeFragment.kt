@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.androidstudyapp.R
+import com.example.androidstudyapp.data.RecipesRepository
 import com.example.androidstudyapp.databinding.FragmentRecipeBinding
 //import com.example.androidstudyapp.model.STUB
 import com.example.androidstudyapp.ui.category.CookingMethodAdapter
@@ -70,13 +71,14 @@ class RecipeFragment : Fragment() {
     }
 
     private fun makeAdapters() {
+        val recipeRepository = RecipesRepository()
         adapterIngredient =
-            STUB.getRecipeById(args.recipeId)?.ingredients?.let { IngredientsAdapter(it) }
+            recipeRepository.getRecipeById(args.recipeId)?.ingredients?.let { IngredientsAdapter(it) }
         binding.rvIngredients.adapter = adapterIngredient
         binding.rvIngredients.addItemDecoration(makeDivider())
 
         adapterCookingMethod =
-            STUB.getRecipeById(args.recipeId)?.method?.let { CookingMethodAdapter(it) }
+            recipeRepository.getRecipeById(args.recipeId)?.method?.let { CookingMethodAdapter(it) }
         binding.rvMethod.adapter = adapterCookingMethod
         binding.rvMethod.addItemDecoration(makeDivider())
     }
