@@ -8,23 +8,25 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.androidstudyapp.data.Category
 import com.example.androidstudyapp.data.Recipe
-import com.example.androidstudyapp.model.STUB
+import com.example.androidstudyapp.data.RecipesRepository
 
 class RecipesListViewModel(application: Application) : AndroidViewModel(application) {
     data class RecipeListState(
         var categoryName: String? = null,
         var categoryImage: Drawable? = null,
-        var recipes: List<Recipe> = emptyList(),
+        val recipes: List<Recipe>? = emptyList(),
     )
 
     private val _state = MutableLiveData(RecipeListState())
     val state: LiveData<RecipeListState> = _state
 
+    private val recipeRepository = RecipesRepository()
+
     fun loadRecipes(categoryId: Int) {
         _state.value = RecipeListState(
             categoryName = getCategoryById(categoryId)?.title,
             categoryImage = loadImageCategory(categoryId),
-            recipes = STUB.getRecipesByCategoryId(categoryId)
+            recipes = recipeRepository.getRecipesByCategoryId(categoryId)
         )
     }
 
@@ -43,6 +45,6 @@ class RecipesListViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     private fun getCategoryById(id: Int): Category? {
-        return STUB.getCategories().find { it.id == id }
+        return recipeRepository.getCategories()?.find { it.id == id }
     }
 }

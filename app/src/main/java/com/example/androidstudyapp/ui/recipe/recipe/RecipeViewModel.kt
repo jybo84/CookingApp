@@ -10,7 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.androidstudyapp.data.FAVORITE_PREFS_KEY
 import com.example.androidstudyapp.data.FILE_COLLECTION_MY_ID
 import com.example.androidstudyapp.data.Recipe
-import com.example.androidstudyapp.model.STUB
+import com.example.androidstudyapp.data.RecipesRepository
 
 class RecipeViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -20,6 +20,8 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
     private val sharedPrefs by lazy {
         application.getSharedPreferences(FILE_COLLECTION_MY_ID, Context.MODE_PRIVATE)
     }
+
+    private val recipeRepository = RecipesRepository()
 
     data class RecipeState(
         val recipe: Recipe? = null,
@@ -35,7 +37,7 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
 
     fun loadRecipe(recipeId: Int) {
         //TODO 'load from network'
-        val recipe = STUB.getRecipeById(recipeId)
+        val recipe = recipeRepository.getRecipeById(recipeId)
         _state.value = RecipeState(
             recipe = recipe,
             isFavourite = getFavorites().contains(recipeId.toString()),

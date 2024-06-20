@@ -1,34 +1,55 @@
 package com.example.androidstudyapp.data
 
-import com.example.androidstudyapp.model.RecipeApiService
-import retrofit2.Call
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.io.IOException
 
-class RecipesRepository: RecipeApiService {
+class RecipesRepository {
+    private val retrofit = Retrofit.Builder()
+        .baseUrl("https://recipes.androidsprint.ru/api")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
 
-    override suspend fun getRecipeById(id: Int): Call<Recipe> {
-        return burgerRecipes.find { it.id == id }
+    private val recipeApiService: RecipeApiService = retrofit.create(RecipeApiService::class.java)
 
+
+    fun getCategories(): List<Category>? {
+        return try {
+            recipeApiService.getListCategory().execute().body()
+        } catch (e: IOException) {
+            null
+        }
     }
 
-    override suspend fun getListRecipesById(id: Int): Call<List<Recipe>> {
-            return if (categoryId == 0)
-        burgerRecipes
-    else
-        emptyList()
+    fun getRecipesByCategoryId(categoryId: Int): List<Recipe>? {
+        return try {
+            recipeApiService.getListRecipesByIdCategory(categoryId).execute().body()
+        } catch (e: IOException) {
+            null
+        }
     }
 
-    override suspend fun getCategoryById(id: Int): Call<Category> {
-        TODO("Not yet implemented")
+    fun getRecipeById(id: Int): Recipe? {
+        return try {
+            recipeApiService.getRecipeById(id).execute().body()
+        } catch (e: IOException) {
+            null
+        }
     }
 
-    override suspend fun getListRecipesByIdCategory(id: Int): Call<Category> {
-            return if (categoryId == 0)
-            burgerRecipes
-            else
-            emptyList()
+    fun getRecipesByIds(listIdFavourites: List<Int>): List<Recipe>? {
+        return try {
+            recipeApiService.getListRecipesById(listIdFavourites).execute().body()
+        } catch (e: IOException) {
+            null
+        }
     }
 
-    override suspend fun getListCategory(): Call<List<Category>> {
-        return categories
+    fun getCategoryById(id: Int): Category? {
+        return try {
+            recipeApiService.getCategoryById(id).execute().body()
+        } catch (e: IOException) {
+            null
+        }
     }
 }
