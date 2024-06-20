@@ -56,4 +56,6 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
+
+    implementation (libs.retrofit)
 }
