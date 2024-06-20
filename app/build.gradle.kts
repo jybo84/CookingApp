@@ -61,4 +61,10 @@ dependencies {
 
     implementation(libs.converter.gson)
 
+    val appcompat_version = "1.7.1"
+
+    implementation("androidx.appcompat:appcompat:$appcompat_version")
+
+    implementation("androidx.appcompat:appcompat-resources:$appcompat_version")
+
 }
