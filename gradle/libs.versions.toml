@@ -12,6 +12,7 @@ activity = "1.8.0"
 constraintlayout = "2.1.4"
 nav_version = "2.7.7"
 okhttp = "4.12.0"
+retrofit = "2.11.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -28,6 +29,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-navigation-ui = {group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "nav_version" }
 androidx-navigation-fragment = {group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "nav_version"}
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
