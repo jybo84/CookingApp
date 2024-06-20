@@ -11,10 +11,13 @@ import com.example.androidstudyapp.data.Category
 import com.example.androidstudyapp.data.Ingredient
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.databinding.ActivityMainBinding
+import com.example.androidstudyapp.model.RecipeApiService
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONArray
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.concurrent.thread
@@ -45,6 +48,15 @@ class MainActivity : AppCompatActivity() {
 
         Log.i("MyLog", "   ")
         Log.i("MyLog", "Метод onCreate() выполняется на потоке: Main")
+
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://recipes.androidsprint.ru/api")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val recipeApiService = retrofit.create(RecipeApiService::class.java)
+
 
         thread {
             val interceptor = HttpLoggingInterceptor()
