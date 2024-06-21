@@ -15,6 +15,7 @@ import com.example.androidstudyapp.databinding.FragmentListCategoriesBinding
 class CategoriesListFragment : Fragment() {
 
     private val binding by lazy { FragmentListCategoriesBinding.inflate(layoutInflater) }
+
     private val categoriesListViewModel: CategoriesListViewModel by viewModels()
 
     override fun onCreateView(
