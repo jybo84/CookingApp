@@ -42,12 +42,12 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
         threadPool.execute() {
             //TODO 'load from network'
             val recipe = recipeRepository.getRecipeById(recipeId)
-            _state.value = RecipeState(
+            _state.postValue(RecipeState(
                 recipe = recipe,
                 isFavourite = getFavorites().contains(recipeId.toString()),
                 portionsCount = state.value?.portionsCount ?: 1,
                 recipeImage = getImageOfRecipe(recipe?.imageUrl)
-            )
+            ))
         }
     }
 

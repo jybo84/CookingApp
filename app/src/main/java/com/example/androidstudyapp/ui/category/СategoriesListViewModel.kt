@@ -23,7 +23,7 @@ class CategoriesListViewModel(application: Application) : AndroidViewModel(appli
     fun loadCategoriesList() {
         threadPool.execute {
             _state.postValue(StateCategoriesList(
-                categories = recipeRepository.getCategories()
+                    categories = recipeRepository.getCategories()
             ))
         }
     }

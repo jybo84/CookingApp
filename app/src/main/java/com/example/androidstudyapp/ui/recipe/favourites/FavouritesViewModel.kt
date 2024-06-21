@@ -36,9 +36,9 @@ class FavouritesViewModel(application: Application) : AndroidViewModel(applicati
 
     fun loadFavourites() {
         threadPool.execute {
-            _state.value = FavouritesState(
+            _state.postValue(FavouritesState(
                 dataSet = recipeRepository.getRecipesByIds(getFavorites().map { it.toInt() })
-            )
+            ))
         }
     }
 }

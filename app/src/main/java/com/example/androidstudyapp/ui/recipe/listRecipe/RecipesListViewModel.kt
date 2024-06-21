@@ -27,11 +27,11 @@ class RecipesListViewModel(application: Application) : AndroidViewModel(applicat
 
     fun loadRecipes(categoryId: Int) {
         threadPool.execute() {
-            _state.value = RecipeListState(
+            _state.postValue( RecipeListState(
                 categoryName = getCategoryById(categoryId)?.title,
                 categoryImage = loadImageCategory(categoryId),
                 recipes = recipeRepository.getRecipesByCategoryId(categoryId)
-            )
+            ))
         }
     }
 
