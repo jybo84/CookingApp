@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.androidstudyapp.data.Category
-import com.example.androidstudyapp.data.RecipesRepository
 import com.example.androidstudyapp.databinding.FragmentListCategoriesBinding
 
 class CategoriesListFragment : Fragment() {
@@ -52,13 +51,9 @@ class CategoriesListFragment : Fragment() {
     }
 
     fun openRecipesByCategoryId(categoryId: Int) {
-        val repository = RecipesRepository()
-        val category: Category =
-            repository.getCategories()?.find { it.id == categoryId } ?: throw IllegalArgumentException()
-
         findNavController().navigate(
             CategoriesListFragmentDirections.actionCategoriesListFragmentToRecipesListFragment(
-                category
+                categoryId
             )
         )
     }

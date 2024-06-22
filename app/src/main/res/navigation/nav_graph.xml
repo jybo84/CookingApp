@@ -38,8 +38,8 @@
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
         <argument
-            android:name="category"
-            app:argType="com.example.androidstudyapp.data.Category" />
+            android:name="categoryId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/recipeFragment"
@@ -63,7 +63,7 @@
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
         <argument
-            android:name="category"
-            app:argType="com.example.androidstudyapp.data.Category" />
+            android:name="categoryId"
+            app:argType="integer" />
     </fragment>
 </navigation>

@@ -1,5 +1,6 @@
 package com.example.androidstudyapp.ui.recipe.recipe
 
+//import com.example.androidstudyapp.model.STUB
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,7 +15,6 @@ import androidx.navigation.fragment.navArgs
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.data.RecipesRepository
 import com.example.androidstudyapp.databinding.FragmentRecipeBinding
-//import com.example.androidstudyapp.model.STUB
 import com.example.androidstudyapp.ui.category.CookingMethodAdapter
 import com.example.androidstudyapp.ui.category.IngredientsAdapter
 import com.google.android.material.divider.MaterialDividerItemDecoration
@@ -42,11 +42,11 @@ class RecipeFragment : Fragment() {
             Log.i("!!!", it.isFavourite.toString())
         }
 
-        if (savedInstanceState == null)
-            recipeViewModel.loadRecipe(args.recipeId)
-
         initUI()
         makeAdapters()
+
+        if (savedInstanceState == null)
+            recipeViewModel.loadRecipe(args.recipeId)
     }
 
     private fun initUI() {
@@ -67,18 +67,23 @@ class RecipeFragment : Fragment() {
             makeSeekBar()
 
             makeFavouriteHeard(state.isFavourite)
+
+            adapterIngredient?.dataSet = state.recipe?.ingredients ?: listOf()
+            adapterIngredient?.notifyDataSetChanged()
+            adapterCookingMethod?.dataSet = state.recipe?.method ?: listOf()
+            adapterCookingMethod?.notifyDataSetChanged()
         }
     }
 
     private fun makeAdapters() {
         val recipeRepository = RecipesRepository()
-        adapterIngredient =
-            recipeRepository.getRecipeById(args.recipeId)?.ingredients?.let { IngredientsAdapter(it) }
+        adapterIngredient = IngredientsAdapter()
+        recipeRepository.getRecipeById(args.recipeId)?.ingredients?.let { IngredientsAdapter(it) }
         binding.rvIngredients.adapter = adapterIngredient
         binding.rvIngredients.addItemDecoration(makeDivider())
 
-        adapterCookingMethod =
-            recipeRepository.getRecipeById(args.recipeId)?.method?.let { CookingMethodAdapter(it) }
+        adapterCookingMethod = CookingMethodAdapter()
+        recipeRepository.getRecipeById(args.recipeId)?.method?.let { CookingMethodAdapter(it) }
         binding.rvMethod.adapter = adapterCookingMethod
         binding.rvMethod.addItemDecoration(makeDivider())
     }

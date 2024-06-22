@@ -32,7 +32,7 @@ class RecipesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recipeListViewModel.loadRecipes(args.category.id)
+        recipeListViewModel.loadRecipes(args.categoryId)
 
         recipeListViewModel.state.observe(viewLifecycleOwner) { state ->
             binding.apply {
