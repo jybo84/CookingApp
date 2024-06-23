@@ -11,6 +11,8 @@ import com.example.androidstudyapp.data.FAVORITE_PREFS_KEY
 import com.example.androidstudyapp.data.FILE_COLLECTION_MY_ID
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.data.RecipesRepository
+import com.example.androidstudyapp.ui.category.CookingMethodAdapter
+import com.example.androidstudyapp.ui.category.IngredientsAdapter
 import java.io.InputStream
 import java.util.concurrent.Executors
 
@@ -52,6 +54,13 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
                     recipeImage = getImageOfRecipe(recipe?.imageUrl)
                 )
             )
+
+            threadPool.execute {
+
+                recipeRepository.getRecipeById(recipeId)?.ingredients?.let { IngredientsAdapter(it) }
+
+                recipeRepository.getRecipeById(recipeId)?.method?.let { CookingMethodAdapter(it) }
+            }
         }
     }
 
@@ -95,3 +104,4 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
         return state.value?.portionsCount
     }
 }
+

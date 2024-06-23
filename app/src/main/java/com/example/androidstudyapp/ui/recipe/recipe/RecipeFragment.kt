@@ -12,12 +12,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.androidstudyapp.R
-import com.example.androidstudyapp.data.RecipesRepository
 import com.example.androidstudyapp.databinding.FragmentRecipeBinding
 import com.example.androidstudyapp.ui.category.CookingMethodAdapter
 import com.example.androidstudyapp.ui.category.IngredientsAdapter
 import com.google.android.material.divider.MaterialDividerItemDecoration
-import java.util.concurrent.Executors
 
 class RecipeFragment : Fragment() {
 
@@ -26,8 +24,6 @@ class RecipeFragment : Fragment() {
     private var adapterCookingMethod: CookingMethodAdapter? = null
     private val recipeViewModel: RecipeViewModel by viewModels()
     private val args: RecipeFragmentArgs by navArgs()
-
-    private val threadPool = Executors.newFixedThreadPool(10)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +47,8 @@ class RecipeFragment : Fragment() {
     }
 
     private fun initUI() {
+        adapterIngredient = IngredientsAdapter()
+        adapterCookingMethod = CookingMethodAdapter()
 
         binding.ibHeartFavourites.setOnClickListener {
             recipeViewModel.onFavoritesClicked()
@@ -71,28 +69,13 @@ class RecipeFragment : Fragment() {
 
             adapterIngredient?.dataSet = state.recipe?.ingredients ?: listOf()
             adapterIngredient?.notifyDataSetChanged()
+            binding.rvIngredients.adapter = adapterIngredient
+            binding.rvIngredients.addItemDecoration(makeDivider())
+
             adapterCookingMethod?.dataSet = state.recipe?.method ?: listOf()
             adapterCookingMethod?.notifyDataSetChanged()
-
-            makeAdapters()
-        }
-    }
-
-    private fun makeAdapters() {
-        val recipeRepository = RecipesRepository()
-
-        binding.rvIngredients.adapter = adapterIngredient
-        binding.rvIngredients.addItemDecoration(makeDivider())
-                threadPool.execute {
-            adapterIngredient = IngredientsAdapter()
-            recipeRepository.getRecipeById(args.recipeId)?.ingredients?.let { IngredientsAdapter(it) }
-        }
-
-        binding.rvMethod.adapter = adapterCookingMethod
-        binding.rvMethod.addItemDecoration(makeDivider())
-        threadPool.execute() {
-            adapterCookingMethod = CookingMethodAdapter()
-            recipeRepository.getRecipeById(args.recipeId)?.method?.let { CookingMethodAdapter(it) }
+            binding.rvMethod.adapter = adapterCookingMethod
+            binding.rvMethod.addItemDecoration(makeDivider())
         }
     }
 
