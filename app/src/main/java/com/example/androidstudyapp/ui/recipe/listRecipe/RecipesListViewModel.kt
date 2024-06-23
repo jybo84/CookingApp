@@ -17,11 +17,11 @@ class RecipesListViewModel(application: Application) : AndroidViewModel(applicat
         var categoryImage: Drawable? = null,
         val recipes: List<Recipe>? = emptyList(),
     )
+    private val recipeRepository = RecipesRepository()
 
     private val _state = MutableLiveData(RecipeListState())
     val state: LiveData<RecipeListState> = _state
 
-    private val recipeRepository = RecipesRepository()
 
     private val threadPool = Executors.newFixedThreadPool(10)
 
@@ -36,8 +36,10 @@ class RecipesListViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     private fun loadImageCategory(categoryId: Int): Drawable? {
+
         try {
-            val ims = getCategoryById(categoryId)?.imageUrl?.let {
+            val ims = recipeRepository.getCategoryById(categoryId)?.imageUrl?.let {
+
                 getApplication<Application>().assets.open(it)
             }
             val picture = Drawable.createFromStream(ims, null)
@@ -47,6 +49,7 @@ class RecipesListViewModel(application: Application) : AndroidViewModel(applicat
             Log.e("mylog", "Error: $ex")
             return null
         }
+
     }
 
     private fun getCategoryById(id: Int): Category? {
