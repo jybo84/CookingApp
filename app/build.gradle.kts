@@ -51,20 +51,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
     implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
     implementation (libs.retrofit)
-
-
     implementation(libs.converter.gson)
-
-
-
     implementation(libs.androidx.appcompat)
-
     implementation(libs.androidx.appcompat.resources)
-
 }

@@ -11,6 +11,7 @@ import com.example.androidstudyapp.data.FAVORITE_PREFS_KEY
 import com.example.androidstudyapp.data.FILE_COLLECTION_MY_ID
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.data.RecipesRepository
+import java.io.InputStream
 import java.util.concurrent.Executors
 
 class RecipeViewModel(application: Application) : AndroidViewModel(application) {
@@ -80,7 +81,7 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
 
     private fun getImageOfRecipe(imageUrl: String?): Drawable? {
         try {
-            val ims = imageUrl?.let { getApplication<Application>().assets.open(it) }
+            val ims: InputStream? = imageUrl?.let { getApplication<Application>().assets.open(it) }
             val picture = Drawable.createFromStream(ims, null)
             return picture
         } catch (ex: Exception) {
