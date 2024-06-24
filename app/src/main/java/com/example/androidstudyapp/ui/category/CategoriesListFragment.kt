@@ -4,16 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.androidstudyapp.data.Category
 import com.example.androidstudyapp.databinding.FragmentListCategoriesBinding
-import com.example.androidstudyapp.model.STUB
 
 class CategoriesListFragment : Fragment() {
 
     private val binding by lazy { FragmentListCategoriesBinding.inflate(layoutInflater) }
+
     private val categoriesListViewModel: CategoriesListViewModel by viewModels()
 
     override fun onCreateView(
@@ -27,11 +28,15 @@ class CategoriesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (savedInstanceState == null)
+       if (savedInstanceState == null)
             categoriesListViewModel.loadCategoriesList()
 
         categoriesListViewModel.state.observe(viewLifecycleOwner) { state ->
-            initRecycler(state.categories)
+            if (state.categories != null) {
+                initRecycler(state.categories)
+            } else {
+                Toast.makeText(context, "Ошибка получения данных", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
@@ -46,12 +51,9 @@ class CategoriesListFragment : Fragment() {
     }
 
     fun openRecipesByCategoryId(categoryId: Int) {
-        val category: Category =
-            STUB.getCategories().find { it.id == categoryId } ?: throw IllegalArgumentException()
-
         findNavController().navigate(
             CategoriesListFragmentDirections.actionCategoriesListFragmentToRecipesListFragment(
-                category
+                categoryId
             )
         )
     }

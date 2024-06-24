@@ -13,7 +13,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.databinding.FragmentRecipeBinding
-import com.example.androidstudyapp.model.STUB
 import com.example.androidstudyapp.ui.category.CookingMethodAdapter
 import com.example.androidstudyapp.ui.category.IngredientsAdapter
 import com.google.android.material.divider.MaterialDividerItemDecoration
@@ -41,14 +40,15 @@ class RecipeFragment : Fragment() {
             Log.i("!!!", it.isFavourite.toString())
         }
 
+        initUI()
+
         if (savedInstanceState == null)
             recipeViewModel.loadRecipe(args.recipeId)
-
-        initUI()
-        makeAdapters()
     }
 
     private fun initUI() {
+        adapterIngredient = IngredientsAdapter()
+        adapterCookingMethod = CookingMethodAdapter()
 
         binding.ibHeartFavourites.setOnClickListener {
             recipeViewModel.onFavoritesClicked()
@@ -66,19 +66,17 @@ class RecipeFragment : Fragment() {
             makeSeekBar()
 
             makeFavouriteHeard(state.isFavourite)
+
+            adapterIngredient?.dataSet = state.recipe?.ingredients ?: listOf()
+            adapterIngredient?.notifyDataSetChanged()
+            binding.rvIngredients.adapter = adapterIngredient
+            binding.rvIngredients.addItemDecoration(makeDivider())
+
+            adapterCookingMethod?.dataSet = state.recipe?.method ?: listOf()
+            adapterCookingMethod?.notifyDataSetChanged()
+            binding.rvMethod.adapter = adapterCookingMethod
+            binding.rvMethod.addItemDecoration(makeDivider())
         }
-    }
-
-    private fun makeAdapters() {
-        adapterIngredient =
-            STUB.getRecipeById(args.recipeId)?.ingredients?.let { IngredientsAdapter(it) }
-        binding.rvIngredients.adapter = adapterIngredient
-        binding.rvIngredients.addItemDecoration(makeDivider())
-
-        adapterCookingMethod =
-            STUB.getRecipeById(args.recipeId)?.method?.let { CookingMethodAdapter(it) }
-        binding.rvMethod.adapter = adapterCookingMethod
-        binding.rvMethod.addItemDecoration(makeDivider())
     }
 
     private fun makeDivider(): MaterialDividerItemDecoration {

@@ -8,15 +8,21 @@ import androidx.lifecycle.MutableLiveData
 import com.example.androidstudyapp.data.FAVORITE_PREFS_KEY
 import com.example.androidstudyapp.data.FILE_COLLECTION_MY_ID
 import com.example.androidstudyapp.data.Recipe
-import com.example.androidstudyapp.model.STUB
+import com.example.androidstudyapp.data.RecipesRepository
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 class FavouritesViewModel(application: Application) : AndroidViewModel(application) {
     private val sharedPrefs by lazy {
         application.getSharedPreferences(FILE_COLLECTION_MY_ID, Context.MODE_PRIVATE)
     }
 
+    private val recipeRepository = RecipesRepository()
+    private val threadPool: ExecutorService = Executors.newFixedThreadPool(10)
+
+
     data class FavouritesState(
-        var dataSet: List<Recipe> = emptyList()
+        val dataSet: List<Recipe>? = emptyList()
     )
 
     private val _state = MutableLiveData(FavouritesState())
@@ -29,8 +35,10 @@ class FavouritesViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun loadFavourites() {
-        _state.value = FavouritesState(
-            dataSet = STUB.getRecipesByIds(getFavorites().map { it.toInt() }.toSet())
-        )
+        threadPool.execute {
+            _state.postValue(FavouritesState(
+                dataSet = recipeRepository.getRecipesByIds(getFavorites().map { it.toInt() })
+            ))
+        }
     }
 }

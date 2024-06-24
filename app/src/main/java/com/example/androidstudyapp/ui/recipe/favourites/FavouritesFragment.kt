@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -32,8 +33,13 @@ class FavouritesFragment : Fragment() {
             favouritesViewModel.loadFavourites()
 
         favouritesViewModel.state.observe(viewLifecycleOwner) { state ->
-            initRecycleViewFavourites(state.dataSet)
-            binding.tvEmptyFavouriteList.isVisible = state.dataSet.isEmpty()
+            binding.tvEmptyFavouriteList.isVisible = state.dataSet.isNullOrEmpty()
+
+            if (state.dataSet != null) {
+                initRecycleViewFavourites(state.dataSet)
+            } else {
+                Toast.makeText(context, "Ошибка получения данных", Toast.LENGTH_LONG).show()
+            }
         }
     }
 

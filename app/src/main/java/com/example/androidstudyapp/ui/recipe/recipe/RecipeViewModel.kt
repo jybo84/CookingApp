@@ -10,7 +10,9 @@ import androidx.lifecycle.MutableLiveData
 import com.example.androidstudyapp.data.FAVORITE_PREFS_KEY
 import com.example.androidstudyapp.data.FILE_COLLECTION_MY_ID
 import com.example.androidstudyapp.data.Recipe
-import com.example.androidstudyapp.model.STUB
+import com.example.androidstudyapp.data.RecipesRepository
+import java.io.InputStream
+import java.util.concurrent.Executors
 
 class RecipeViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -20,6 +22,10 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
     private val sharedPrefs by lazy {
         application.getSharedPreferences(FILE_COLLECTION_MY_ID, Context.MODE_PRIVATE)
     }
+
+    private val recipeRepository = RecipesRepository()
+
+    private val threadPool = Executors.newFixedThreadPool(10)
 
     data class RecipeState(
         val recipe: Recipe? = null,
@@ -34,14 +40,20 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun loadRecipe(recipeId: Int) {
-        //TODO 'load from network'
-        val recipe = STUB.getRecipeById(recipeId)
-        _state.value = RecipeState(
-            recipe = recipe,
-            isFavourite = getFavorites().contains(recipeId.toString()),
-            portionsCount = state.value?.portionsCount ?: 1,
-            recipeImage = getImageOfRecipe(recipe?.imageUrl)
-        )
+        threadPool.execute {
+
+            //TODO 'load from network'
+            val recipe = recipeRepository.getRecipeById(recipeId)
+            _state.postValue(
+                RecipeState(
+                    recipe = recipe,
+                    isFavourite = getFavorites().contains(recipeId.toString()),
+                    portionsCount = state.value?.portionsCount ?: 1,
+                    recipeImage = getImageOfRecipe(recipe?.imageUrl)
+                )
+            )
+
+        }
     }
 
     private fun getFavorites(): MutableSet<String> {
@@ -70,7 +82,7 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
 
     private fun getImageOfRecipe(imageUrl: String?): Drawable? {
         try {
-            val ims = imageUrl?.let { getApplication<Application>().assets.open(it) }
+            val ims: InputStream? = imageUrl?.let { getApplication<Application>().assets.open(it) }
             val picture = Drawable.createFromStream(ims, null)
             return picture
         } catch (ex: Exception) {
