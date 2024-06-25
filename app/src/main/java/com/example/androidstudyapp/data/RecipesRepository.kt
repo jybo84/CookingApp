@@ -12,7 +12,7 @@ class RecipesRepository {
 
     private val recipeApiService: RecipeApiService = retrofit.create(RecipeApiService::class.java)
 
-    fun getCategories(): List<Category>? {
+    suspend fun getCategories(): List<Category>? {
         return try {
             recipeApiService.getListCategory().execute().body()
         } catch (e: IOException) {
@@ -20,7 +20,7 @@ class RecipesRepository {
         }
     }
 
-    fun getRecipesByCategoryId(categoryId: Int): List<Recipe>? {
+    suspend fun getRecipesByCategoryId(categoryId: Int): List<Recipe>? {
         return try {
             recipeApiService.getListRecipesByIdCategory(categoryId).execute().body()
         } catch (e: IOException) {
@@ -28,7 +28,7 @@ class RecipesRepository {
         }
     }
 
-    fun getRecipeById(id: Int): Recipe? {
+    suspend fun getRecipeById(id: Int): Recipe? {
         return try {
             recipeApiService.getRecipeById(id).execute().body()
         } catch (e: IOException) {
@@ -36,7 +36,7 @@ class RecipesRepository {
         }
     }
 
-    fun getRecipesByIds(listIdFavourites: List<Int>): List<Recipe>? {
+    suspend fun getRecipesByIds(listIdFavourites: List<Int>): List<Recipe>? {
         return try {
             recipeApiService.getListRecipesById(listIdFavourites).execute().body()
         } catch (e: IOException) {
@@ -44,7 +44,7 @@ class RecipesRepository {
         }
     }
 
-    fun getCategoryById(id: Int): Category? {
+    suspend fun getCategoryById(id: Int): Category? {
         return try {
             recipeApiService.getCategoryById(id).execute().body()
         } catch (e: IOException) {
