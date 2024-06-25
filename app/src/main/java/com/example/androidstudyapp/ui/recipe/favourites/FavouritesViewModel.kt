@@ -11,8 +11,6 @@ import com.example.androidstudyapp.data.FILE_COLLECTION_MY_ID
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.data.RecipesRepository
 import kotlinx.coroutines.launch
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 class FavouritesViewModel(application: Application) : AndroidViewModel(application) {
     private val sharedPrefs by lazy {
@@ -20,8 +18,6 @@ class FavouritesViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     private val recipeRepository = RecipesRepository()
-    private val threadPool: ExecutorService = Executors.newFixedThreadPool(10)
-
 
     data class FavouritesState(
         val dataSet: List<Recipe>? = emptyList()
