@@ -81,8 +81,6 @@ class RecipeFragment : Fragment() {
             adapterCookingMethod?.notifyDataSetChanged()
             binding.rvMethod.adapter = adapterCookingMethod
             binding.rvMethod.addItemDecoration(makeDivider())
-
-
         }
     }
 

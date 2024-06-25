@@ -49,8 +49,8 @@ class RecipesListAdapter(private val dataSet: List<Recipe>) :
                 Log.e("Ошибка.", "Картинка не загрузилась. Не верный адрес")
                 null
             }
-//        holder.ivRecipeBurgerHolder.setImageDrawable(drawable)
-        Glide.with( holder.itemView)
+
+        Glide.with(holder.itemView)
             .load(ImageUtils.getImageFullUrl(recipe.imageUrl))
             .error(R.drawable.img_error)
             .placeholder(R.drawable.img_placeholder)

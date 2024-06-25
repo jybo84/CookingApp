@@ -39,7 +39,7 @@ class CategoriesListAdapter(private val dataSet: List<Category>) :
         holder.tvTitleCategoryHolder.text = category.title
         holder.tvDescriptionCategoryHolder.text = category.description
 
-        Glide.with( holder.ivCategoryHolder)
+        Glide.with(holder.ivCategoryHolder)
             .load(ImageUtils.getImageFullUrl(category.imageUrl))
             .error(R.drawable.img_error)
             .placeholder(R.drawable.img_placeholder)

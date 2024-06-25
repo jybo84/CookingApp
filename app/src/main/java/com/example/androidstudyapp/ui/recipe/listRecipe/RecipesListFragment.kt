@@ -67,7 +67,8 @@ class RecipesListFragment : Fragment() {
     }
 
     fun openRecipeByRecipeId(id: Int) {
-        val action = RecipesListFragmentDirections.actionRecipesListFragmentToRecipeFragment(recipeId = id)
+        val action =
+            RecipesListFragmentDirections.actionRecipesListFragmentToRecipeFragment(recipeId = id)
         findNavController().navigate(action)
     }
 }

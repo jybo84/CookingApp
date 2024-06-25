@@ -27,7 +27,7 @@ class RecipesListViewModel(application: Application) : AndroidViewModel(applicat
 
     fun loadRecipes(categoryId: Int) {
         threadPool.execute() {
-            val category =getCategoryById(categoryId)
+            val category = getCategoryById(categoryId)
             _state.postValue(
                 RecipeListState(
                     categoryName = category?.title,

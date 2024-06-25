@@ -51,8 +51,4 @@ class RecipesRepository {
             null
         }
     }
-
-//   fun getImageFullUrl(imageUrl: String?): String {
-//        return "$API_BASE_IMAGES_URL/$imageUrl"
-//    }
 }
