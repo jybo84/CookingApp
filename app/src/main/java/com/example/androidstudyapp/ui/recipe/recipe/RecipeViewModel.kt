@@ -6,11 +6,13 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.androidstudyapp.data.FAVORITE_PREFS_KEY
 import com.example.androidstudyapp.data.FILE_COLLECTION_MY_ID
 import com.example.androidstudyapp.data.ImageUtils
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.data.RecipesRepository
+import kotlinx.coroutines.launch
 import java.util.concurrent.Executors
 
 class RecipeViewModel(application: Application) : AndroidViewModel(application) {
@@ -42,15 +44,17 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
         threadPool.execute {
 
             //TODO 'load from network'
-            val recipe = recipeRepository.getRecipeById(recipeId)
-            _state.postValue(
-                RecipeState(
-                    recipe = recipe,
-                    isFavourite = getFavorites().contains(recipeId.toString()),
-                    portionsCount = state.value?.portionsCount ?: 1,
-                    recipeImageUrl = ImageUtils.getImageFullUrl(recipe?.imageUrl)
+            viewModelScope.launch {
+                val recipe = recipeRepository.getRecipeById(recipeId)
+                _state.postValue(
+                    RecipeState(
+                        recipe = recipe,
+                        isFavourite = getFavorites().contains(recipeId.toString()),
+                        portionsCount = state.value?.portionsCount ?: 1,
+                        recipeImageUrl = ImageUtils.getImageFullUrl(recipe?.imageUrl)
+                    )
                 )
-            )
+            }
         }
     }
 
