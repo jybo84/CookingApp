@@ -37,7 +37,6 @@ class RecipesListViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
-
     private suspend fun getCategoryById(id: Int): Category? {
         return recipeRepository.getCategories()?.find { it.id == id }
     }
