@@ -14,7 +14,7 @@ import java.util.concurrent.Executors
 class RecipesListViewModel(application: Application) : AndroidViewModel(application) {
     data class RecipeListState(
         var categoryName: String? = null,
-        var categoryImage: Drawable? = null,
+        var categoryImage: String? = null,
         val recipes: List<Recipe>? = emptyList(),
     )
 

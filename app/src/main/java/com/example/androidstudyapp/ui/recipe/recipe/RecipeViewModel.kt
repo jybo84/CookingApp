@@ -31,7 +31,7 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
         val recipe: Recipe? = null,
         val isFavourite: Boolean = false,
         var portionsCount: Int = 1,
-        val recipeImage: Drawable? = null,
+        val recipeImage: String? = null,
     )
 
     init {
