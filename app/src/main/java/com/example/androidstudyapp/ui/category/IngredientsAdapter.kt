@@ -34,8 +34,13 @@ class IngredientsAdapter(var dataSet: List<Ingredient> = listOf()) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val ingredient: Ingredient = dataSet[position]
         holder.nameOfIngredient.text = ingredient.description
-        holder.quantityIngredient.text =
-            quantityFormat.format(ingredient.quantity.toFloat() * quantity)
+        try {
+            holder.quantityIngredient.text =
+                quantityFormat.format(ingredient.quantity.toFloat() * quantity)
+        } catch (e: NumberFormatException){
+            println("По вкусу")
+        }
+
         holder.unitOfMeasureIngredients.text = ingredient.unitOfMeasure
     }
 
