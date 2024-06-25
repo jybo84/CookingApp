@@ -2,16 +2,15 @@ package com.example.androidstudyapp.ui.recipe.recipe
 
 import android.app.Application
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.androidstudyapp.data.FAVORITE_PREFS_KEY
 import com.example.androidstudyapp.data.FILE_COLLECTION_MY_ID
+import com.example.androidstudyapp.data.ImageUtils
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.data.RecipesRepository
-import java.io.InputStream
 import java.util.concurrent.Executors
 
 class RecipeViewModel(application: Application) : AndroidViewModel(application) {
@@ -31,7 +30,7 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
         val recipe: Recipe? = null,
         val isFavourite: Boolean = false,
         var portionsCount: Int = 1,
-        val recipeImage: String? = null,
+        val recipeImageUrl: String? = null,
     )
 
     init {
@@ -49,10 +48,9 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
                     recipe = recipe,
                     isFavourite = getFavorites().contains(recipeId.toString()),
                     portionsCount = state.value?.portionsCount ?: 1,
-                    recipeImage = getImageOfRecipe(recipe?.imageUrl)
+                    recipeImageUrl = ImageUtils.getImageFullUrl(recipe?.imageUrl)
                 )
             )
-
         }
     }
 
@@ -80,18 +78,7 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
         }.apply()
     }
 
-    private fun getImageOfRecipe(imageUrl: String?): Drawable? {
-        try {
-            val ims: InputStream? = imageUrl?.let { getApplication<Application>().assets.open(it) }
-            val picture = Drawable.createFromStream(ims, null)
-            return picture
-        } catch (ex: Exception) {
-            Log.e("mylog", "Error: $ex")
-            return null
-        }
-    }
-
-    fun setCountPortions(count: Int): Int? {
+     fun setCountPortions(count: Int): Int? {
         state.value?.portionsCount = count
         return state.value?.portionsCount
     }

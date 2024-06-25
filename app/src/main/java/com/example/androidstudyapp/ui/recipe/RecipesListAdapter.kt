@@ -5,6 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.androidstudyapp.R
+import com.example.androidstudyapp.data.ImageUtils
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.databinding.ItemRecipeBinding
 
@@ -46,7 +49,12 @@ class RecipesListAdapter(private val dataSet: List<Recipe>) :
                 Log.e("Ошибка.", "Картинка не загрузилась. Не верный адрес")
                 null
             }
-        holder.ivRecipeBurgerHolder.setImageDrawable(drawable)
+//        holder.ivRecipeBurgerHolder.setImageDrawable(drawable)
+        Glide.with( holder.itemView)
+            .load(ImageUtils.getImageFullUrl(recipe.imageUrl))
+            .error(R.drawable.img_error)
+            .placeholder(R.drawable.img_placeholder)
+            .into(holder.ivRecipeBurgerHolder)
 
         holder.itemView.setOnClickListener { itemClickListenerRecipe?.onItemClickRecipe(recipe.id) }
     }

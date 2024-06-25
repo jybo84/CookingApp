@@ -1,11 +1,12 @@
 package com.example.androidstudyapp.ui.category
 
-import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.androidstudyapp.R
 import com.example.androidstudyapp.data.Category
+import com.example.androidstudyapp.data.ImageUtils
 import com.example.androidstudyapp.databinding.ItemCategoryBinding
 
 class CategoriesListAdapter(private val dataSet: List<Category>) :
@@ -38,17 +39,11 @@ class CategoriesListAdapter(private val dataSet: List<Category>) :
         holder.tvTitleCategoryHolder.text = category.title
         holder.tvDescriptionCategoryHolder.text = category.description
 
-        val drawable =
-            try {
-                Drawable.createFromStream(
-                    holder.itemView.context.assets.open(category.imageUrl),
-                    null
-                )
-            } catch (e: Exception) {
-                Log.e("Ошибка.", "Картинка не загрузилась. Не верный адрес")
-                null
-            }
-        holder.ivCategoryHolder.setImageDrawable(drawable)
+        Glide.with( holder.ivCategoryHolder)
+            .load(ImageUtils.getImageFullUrl(category.imageUrl))
+            .error(R.drawable.img_error)
+            .placeholder(R.drawable.img_placeholder)
+            .into(holder.ivCategoryHolder)
 
         holder.itemView.setOnClickListener { itemClickListener?.onItemClick(category.id) }
     }
