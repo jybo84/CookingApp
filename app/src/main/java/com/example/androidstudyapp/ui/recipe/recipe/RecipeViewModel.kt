@@ -13,7 +13,6 @@ import com.example.androidstudyapp.data.ImageUtils
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.data.RecipesRepository
 import kotlinx.coroutines.launch
-import java.util.concurrent.Executors
 
 class RecipeViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -25,8 +24,6 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     private val recipeRepository = RecipesRepository()
-
-    private val threadPool = Executors.newFixedThreadPool(10)
 
     data class RecipeState(
         val recipe: Recipe? = null,
@@ -41,22 +38,19 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun loadRecipe(recipeId: Int) {
-        threadPool.execute {
-
-            //TODO 'load from network'
-            viewModelScope.launch {
-                val recipe = recipeRepository.getRecipeById(recipeId)
-                _state.postValue(
-                    RecipeState(
-                        recipe = recipe,
-                        isFavourite = getFavorites().contains(recipeId.toString()),
-                        portionsCount = state.value?.portionsCount ?: 1,
-                        recipeImageUrl = recipe?.imageUrl?.let { ImageUtils.getImageFullUrl(it) }
-                    )
+        viewModelScope.launch {
+            val recipe = recipeRepository.getRecipeById(recipeId)
+            _state.postValue(
+                RecipeState(
+                    recipe = recipe,
+                    isFavourite = getFavorites().contains(recipeId.toString()),
+                    portionsCount = state.value?.portionsCount ?: 1,
+                    recipeImageUrl = recipe?.imageUrl?.let { ImageUtils.getImageFullUrl(it) }
                 )
-            }
+            )
         }
     }
+
 
     private fun getFavorites(): MutableSet<String> {
         val savedList: Set<String> =
@@ -82,7 +76,7 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
         }.apply()
     }
 
-     fun setCountPortions(count: Int): Int? {
+    fun setCountPortions(count: Int): Int? {
         state.value?.portionsCount = count
         return state.value?.portionsCount
     }
