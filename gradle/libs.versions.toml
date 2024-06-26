@@ -42,3 +42,4 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 androidxNavigationSafeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "nav_version" }
+kotlinParcelize = { id = "org.jetbrains.kotlin.plugin.parcelize",  version.ref = "kotlin"  }
