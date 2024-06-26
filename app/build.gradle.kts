@@ -59,8 +59,5 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.appcompat.resources)
-
     implementation (libs.glide)
-
-
 }

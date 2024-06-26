@@ -48,7 +48,7 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
                     recipe = recipe,
                     isFavourite = getFavorites().contains(recipeId.toString()),
                     portionsCount = state.value?.portionsCount ?: 1,
-                    recipeImageUrl = ImageUtils.getImageFullUrl(recipe?.imageUrl)
+                    recipeImageUrl = recipe?.imageUrl?.let { ImageUtils.getImageFullUrl(it) }
                 )
             )
         }
