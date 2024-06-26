@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.androidstudyapp.data.Category
 import com.example.androidstudyapp.data.RecipesRepository
 import kotlinx.coroutines.launch
-import java.util.concurrent.Executors
 
 class CategoriesListViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -21,7 +20,6 @@ class CategoriesListViewModel(application: Application) : AndroidViewModel(appli
 
     private val recipeRepository = RecipesRepository()
 
-    private val threadPool = Executors.newFixedThreadPool(10)
     fun loadCategoriesList() {
         viewModelScope.launch {
             _state.postValue(
