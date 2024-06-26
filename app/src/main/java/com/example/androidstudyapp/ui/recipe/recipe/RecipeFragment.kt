@@ -11,6 +11,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.databinding.FragmentRecipeBinding
 import com.example.androidstudyapp.ui.category.CookingMethodAdapter
@@ -59,7 +60,11 @@ class RecipeFragment : Fragment() {
             val tvRecipeFragment = binding.tvRecipeInRecipeFragment
             tvRecipeFragment.text = state.recipe?.title.toString()
 
-            binding.ivRecipe.setImageDrawable(state.recipeImage)
+            Glide.with(this)
+                .load(state.recipeImageUrl)
+                .error(R.drawable.img_error)
+                .placeholder(R.drawable.img_placeholder)
+                .into(binding.ivRecipe)
 
             binding.quantityPortions.text = state.portionsCount.toString()
 

@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.example.androidstudyapp.R
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.databinding.FragmentRecipesListBinding
 import com.example.androidstudyapp.ui.recipe.RecipesListAdapter
@@ -37,7 +39,12 @@ class RecipesListFragment : Fragment() {
         recipeListViewModel.state.observe(viewLifecycleOwner) { state ->
             binding.apply {
                 tvCategory.text = state.categoryName
-                ivRecipe.setImageDrawable(state.categoryImage)
+
+                Glide.with(this@RecipesListFragment)
+                    .load(state.categoryImageUrl)
+                    .error(R.drawable.img_error)
+                    .placeholder(R.drawable.img_placeholder)
+                    .into(ivRecipe)
             }
             threadPool.execute() {
                 if (state.recipes != null) {
@@ -60,7 +67,8 @@ class RecipesListFragment : Fragment() {
     }
 
     fun openRecipeByRecipeId(id: Int) {
-        val action = RecipesListFragmentDirections.actionRecipesListFragmentToRecipeFragment(recipeId = id)
+        val action =
+            RecipesListFragmentDirections.actionRecipesListFragmentToRecipeFragment(recipeId = id)
         findNavController().navigate(action)
     }
 }

@@ -41,7 +41,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -59,4 +58,5 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.appcompat.resources)
+    implementation (libs.glide)
 }

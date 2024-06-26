@@ -6,7 +6,7 @@ import java.io.IOException
 
 class RecipesRepository {
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://recipes.androidsprint.ru/api/")
+        .baseUrl("$API_BASE_URL/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

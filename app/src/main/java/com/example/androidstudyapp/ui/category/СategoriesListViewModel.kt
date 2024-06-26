@@ -22,9 +22,11 @@ class CategoriesListViewModel(application: Application) : AndroidViewModel(appli
     private val threadPool = Executors.newFixedThreadPool(10)
     fun loadCategoriesList() {
         threadPool.execute {
-            _state.postValue(StateCategoriesList(
+            _state.postValue(
+                StateCategoriesList(
                     categories = recipeRepository.getCategories()
-            ))
+                )
+            )
         }
     }
 }
