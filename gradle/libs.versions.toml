@@ -16,11 +16,14 @@ constraintlayout = "2.1.4"
 nav_version = "2.7.7"
 okhttp = "4.12.0"
 retrofit = "2.11.0"
+roomRuntime = "2.6.1"
 
 [libraries]
 androidx-appcompat-resources = { module = "androidx.appcompat:appcompat-resources", version.ref = "appcompat" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
