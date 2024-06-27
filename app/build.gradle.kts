@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-parcelize")
     alias(libs.plugins.androidxNavigationSafeArgs)
+    id("com.google.devtools.ksp") version "1.9.0-1.0.13"
 
 }
 
@@ -60,4 +61,9 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.appcompat.resources)
     implementation (libs.glide)
+
+    val room_version = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
 }
