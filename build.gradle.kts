@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.androidxNavigationSafeArgs) apply false
     alias(libs.plugins.kotlinParcelize) apply false
 
+
 }
 buildscript {
     repositories {
