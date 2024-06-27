@@ -4,11 +4,12 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.androidstudyapp.data.Category
 import com.example.androidstudyapp.data.ImageUtils
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.data.RecipesRepository
-import java.util.concurrent.Executors
+import kotlinx.coroutines.launch
 
 class RecipesListViewModel(application: Application) : AndroidViewModel(application) {
     data class RecipeListState(
@@ -17,16 +18,14 @@ class RecipesListViewModel(application: Application) : AndroidViewModel(applicat
         val recipes: List<Recipe>? = emptyList(),
     )
 
-
     private val recipeRepository = RecipesRepository()
 
     private val _state = MutableLiveData(RecipeListState())
     val state: LiveData<RecipeListState> = _state
 
-    private val threadPool = Executors.newFixedThreadPool(10)
-
     fun loadRecipes(categoryId: Int) {
-        threadPool.execute() {
+
+        viewModelScope.launch {
             val category = getCategoryById(categoryId)
             if (category != null) {
                 _state.postValue(
@@ -40,7 +39,7 @@ class RecipesListViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
-    private fun getCategoryById(id: Int): Category? {
+    private suspend fun getCategoryById(id: Int): Category? {
         return recipeRepository.getCategories()?.find { it.id == id }
     }
 }

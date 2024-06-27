@@ -1,5 +1,7 @@
 package com.example.androidstudyapp.data
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
@@ -12,40 +14,40 @@ class RecipesRepository {
 
     private val recipeApiService: RecipeApiService = retrofit.create(RecipeApiService::class.java)
 
-    fun getCategories(): List<Category>? {
-        return try {
+    suspend fun getCategories(): List<Category>?  = withContext(Dispatchers.IO){
+        return@withContext try {
             recipeApiService.getListCategory().execute().body()
         } catch (e: IOException) {
             null
         }
     }
 
-    fun getRecipesByCategoryId(categoryId: Int): List<Recipe>? {
-        return try {
+    suspend fun getRecipesByCategoryId(categoryId: Int): List<Recipe>? = withContext(Dispatchers.IO){
+        return@withContext try {
             recipeApiService.getListRecipesByIdCategory(categoryId).execute().body()
         } catch (e: IOException) {
             null
         }
     }
 
-    fun getRecipeById(id: Int): Recipe? {
-        return try {
+    suspend fun getRecipeById(id: Int): Recipe? = withContext(Dispatchers.IO){
+        return@withContext try {
             recipeApiService.getRecipeById(id).execute().body()
         } catch (e: IOException) {
             null
         }
     }
 
-    fun getRecipesByIds(listIdFavourites: List<Int>): List<Recipe>? {
-        return try {
+    suspend fun getRecipesByIds(listIdFavourites: List<Int>): List<Recipe>? = withContext(Dispatchers.IO) {
+        return@withContext try {
             recipeApiService.getListRecipesById(listIdFavourites).execute().body()
         } catch (e: IOException) {
             null
         }
     }
 
-    fun getCategoryById(id: Int): Category? {
-        return try {
+    suspend fun getCategoryById(id: Int): Category? = withContext(Dispatchers.IO){
+        return@withContext try {
             recipeApiService.getCategoryById(id).execute().body()
         } catch (e: IOException) {
             null

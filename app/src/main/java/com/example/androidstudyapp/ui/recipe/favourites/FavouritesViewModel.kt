@@ -5,12 +5,12 @@ import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.androidstudyapp.data.FAVORITE_PREFS_KEY
 import com.example.androidstudyapp.data.FILE_COLLECTION_MY_ID
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.data.RecipesRepository
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
+import kotlinx.coroutines.launch
 
 class FavouritesViewModel(application: Application) : AndroidViewModel(application) {
     private val sharedPrefs by lazy {
@@ -18,8 +18,6 @@ class FavouritesViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     private val recipeRepository = RecipesRepository()
-    private val threadPool: ExecutorService = Executors.newFixedThreadPool(10)
-
 
     data class FavouritesState(
         val dataSet: List<Recipe>? = emptyList()
@@ -35,10 +33,12 @@ class FavouritesViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun loadFavourites() {
-        threadPool.execute {
-            _state.postValue(FavouritesState(
-                dataSet = recipeRepository.getRecipesByIds(getFavorites().map { it.toInt() })
-            ))
+        viewModelScope.launch {
+            _state.postValue(
+                FavouritesState(
+                    dataSet = recipeRepository.getRecipesByIds(getFavorites().map { it.toInt() })
+                )
+            )
         }
     }
 }
