@@ -58,4 +58,8 @@ class RecipesRepository {
             null
         }
     }
+
+    private fun  getCategoriesFromCache(){
+        recipeDb.getCategoriesDao()
+    }
 }

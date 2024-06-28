@@ -22,6 +22,13 @@ class CategoriesListViewModel(application: Application) : AndroidViewModel(appli
 
     fun loadCategoriesList() {
         viewModelScope.launch {
+
+            _state.postValue(
+                StateCategoriesList(
+                    categories = recipeRepository.recipeDb.getCategoriesDao()
+                )
+            )
+
             _state.postValue(
                 StateCategoriesList(
                     categories = recipeRepository.getCategories()
