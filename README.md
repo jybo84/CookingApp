@@ -2,17 +2,40 @@
 
 Приложение полностью написано на языке Kotlin. Все данные грузятся из сети.
 
-При написании приложения использовался следующий СТЭК:
+При написании приложения использовался следующий СТЭК технологий:
 
-MVVM/ LiveDAta/ Clean arhitecture
-Jackpack Navigation
-Retrofit
-Glide
-RecyclerView
-SeekBar
-Bundle
+Figma
+
+XML
+
+Single Activity
+
+Fragment
+
+FragmentManager
+
 Parcelable
-Shared Preferences
+
+Bundle
+
+ViewModel
+
+Jetpack Navigation
+
+OkHttp
+
+Retrofit
+
+Room
+
+Hilt
+
+Retrofit
+
+Glide
+
+Shared Preference
+
 Coroutine
 
 ![1](https://github.com/jybo84/AndroidStudy/assets/135285790/178548cf-01f8-4f8c-a4f3-109871d9d2b5)  ![2](https://github.com/jybo84/AndroidStudy/assets/135285790/f8867dc6-7905-447d-a65c-c051f8cd1869) 
