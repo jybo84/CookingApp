@@ -62,5 +62,7 @@ dependencies {
     implementation(libs.androidx.appcompat.resources)
     implementation (libs.glide)
     implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
     annotationProcessor(libs.androidx.room.compiler)
+
 }
