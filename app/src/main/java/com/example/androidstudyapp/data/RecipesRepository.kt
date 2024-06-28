@@ -1,6 +1,7 @@
 package com.example.androidstudyapp.data
 
 import com.example.androidstudyapp.data.db.RecipeDb
+import com.example.androidstudyapp.ui.MainActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
@@ -16,7 +17,7 @@ class RecipesRepository {
 
     private val recipeApiService: RecipeApiService = retrofit.create(RecipeApiService::class.java)
 
-    val recipeDb = RecipeDb.getDb(context: Context)
+    val recipeDb = RecipeDb.getDb(RecipeDb )
 
     suspend fun getCategories(): List<Category>?  = withContext(Dispatchers.IO){
         return@withContext try {
