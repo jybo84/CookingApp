@@ -25,7 +25,7 @@ class CategoriesListViewModel(application: Application) : AndroidViewModel(appli
 
             _state.postValue(
                 StateCategoriesList(
-                    categories = recipeRepository.recipeDb.getCategoriesDao()
+                    categories = recipeRepository.getCategoriesFromCache()
                 )
             )
 

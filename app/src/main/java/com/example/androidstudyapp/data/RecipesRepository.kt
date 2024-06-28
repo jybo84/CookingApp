@@ -1,5 +1,6 @@
 package com.example.androidstudyapp.data
 
+import androidx.room.Dao
 import com.example.androidstudyapp.data.db.RecipeDb
 import com.example.androidstudyapp.ui.RecipeApplication
 import kotlinx.coroutines.Dispatchers
@@ -59,7 +60,7 @@ class RecipesRepository {
         }
     }
 
-    private fun  getCategoriesFromCache(){
-        recipeDb.getCategoriesDao()
+     fun  getCategoriesFromCache(): Dao {
+        return recipeDb.getCategoriesDao()
     }
 }
