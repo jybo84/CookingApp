@@ -7,6 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 
+
 class RecipesRepository {
     private val retrofit = Retrofit.Builder()
         .baseUrl("$API_BASE_URL/")
@@ -15,7 +16,7 @@ class RecipesRepository {
 
     private val recipeApiService: RecipeApiService = retrofit.create(RecipeApiService::class.java)
 
-    val recipeDb = RecipeDb.getDb()
+    val recipeDb = RecipeDb.getDb(context: Context)
 
     suspend fun getCategories(): List<Category>?  = withContext(Dispatchers.IO){
         return@withContext try {
