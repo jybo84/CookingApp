@@ -18,7 +18,9 @@ class RecipesRepository {
 
     private val recipeApiService: RecipeApiService = retrofit.create(RecipeApiService::class.java)
 
-    val recipeDb = RecipeDb.getDb(RecipeApplication.instance)
+    private val recipeDb = RecipeDb.getDb(RecipeApplication.instance)
+
+    private val categoriesDao = recipeDb.getCategoriesDao()
 
     suspend fun getCategories(): List<Category>?  = withContext(Dispatchers.IO){
         return@withContext try {
@@ -61,6 +63,6 @@ class RecipesRepository {
     }
 
      fun  getCategoriesFromCache(): Dao {
-        return recipeDb.getCategoriesDao()
+        return categoriesDao
     }
 }
