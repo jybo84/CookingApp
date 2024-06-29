@@ -12,7 +12,7 @@ interface CategoryDao {
     fun getListAllCategory(): List<Category>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addCategoryToList(category: List<Category>?)
+    fun addCategoryToList(category: List<Category>)
 }
 
 

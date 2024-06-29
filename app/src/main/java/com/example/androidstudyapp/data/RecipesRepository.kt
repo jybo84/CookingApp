@@ -23,7 +23,9 @@ class RecipesRepository {
     suspend fun getCategories(): List<Category>? = withContext(Dispatchers.IO) {
         return@withContext try {
             val newDataFromNetwork = recipeApiService.getListCategory().execute().body()
-            categoriesDao.addCategoryToList(newDataFromNetwork)
+            if (newDataFromNetwork != null) {
+                categoriesDao.addCategoryToList(newDataFromNetwork)
+            }
             newDataFromNetwork
         } catch (e: IOException) {
             null
@@ -64,7 +66,8 @@ class RecipesRepository {
         }
     }
 
-    fun getCategoriesFromCache(): List<Category>{
-        return categoriesDao.getListAllCategory()
+    suspend fun getCategoriesFromCache(): List<Category> = withContext(Dispatchers.IO){
+        return@withContext categoriesDao.getListAllCategory()
     }
 }
+
