@@ -13,5 +13,5 @@ interface CategoriesDao {
     @Query("SELECT * FROM recipeTable")
     suspend fun getListAllCategories(): Flow<List<Category>>
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addCategoryInList(category: Category)
+    suspend fun addCategoryInList(category: List<Category>?)
 }

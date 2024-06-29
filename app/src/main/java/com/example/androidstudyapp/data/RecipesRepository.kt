@@ -1,7 +1,7 @@
 package com.example.androidstudyapp.data
 
-import androidx.room.Dao
 import androidx.room.Room
+import com.example.androidstudyapp.data.db.CategoriesDao
 import com.example.androidstudyapp.data.db.RecipeDb
 import com.example.androidstudyapp.ui.RecipeApplication
 import kotlinx.coroutines.Dispatchers
@@ -17,29 +17,25 @@ class RecipesRepository {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    val dataBase = Room.databaseBuilder(
+    private val dataBase = Room.databaseBuilder(
         RecipeApplication.instance,
         RecipeDb::class.java,
         "applicationData"
     ).build()
 
-    val categoriesDao: Dao = dataBase.getCategoriesDao()
+    val categoriesDao: CategoriesDao = dataBase.getCategoriesDao()
 
     private val recipeApiService: RecipeApiService = retrofit.create(RecipeApiService::class.java)
 
-    //     val recipeDb = RecipeDb.getDb(RecipeApplication.instance)
-
-
-
-
     suspend fun getCategories(): List<Category>? = withContext(Dispatchers.IO) {
         return@withContext try {
-            val categories = recipeApiService.getListCategory().execute().body()
+            val categories: List<Category>? = recipeApiService.getListCategory().execute().body()
             if (categories != null) {
-                categoriesDao.
+                categoriesDao.addCategoryInList(categories)
             }
             categories
         } catch (e: IOException) {
+
             null
         }
     }
