@@ -61,4 +61,8 @@ class RecipesRepository {
             null
         }
     }
+
+    fun getCategoriesFromCache(): RecipeDataBase{
+
+    }
 }
