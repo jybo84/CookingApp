@@ -1,6 +1,5 @@
 package com.example.androidstudyapp.data
 
-import androidx.room.Room
 import com.example.androidstudyapp.data.db.CategoriesDao
 import com.example.androidstudyapp.data.db.RecipeDb
 import com.example.androidstudyapp.ui.RecipeApplication
@@ -10,20 +9,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 
-
 class RecipesRepository {
     private val retrofit = Retrofit.Builder()
         .baseUrl("$API_BASE_URL/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    private val dataBase = Room.databaseBuilder(
-        RecipeApplication.instance,
-        RecipeDb::class.java,
-        "applicationData"
-    ).build()
+    private val dataBase = RecipeDb.getDb(RecipeApplication.instance)
 
-    val categoriesDao: CategoriesDao = dataBase.getCategoriesDao()
+    private val categoriesDao: CategoriesDao = dataBase.getCategoriesDao()
 
     private val recipeApiService: RecipeApiService = retrofit.create(RecipeApiService::class.java)
 
@@ -75,6 +69,6 @@ class RecipesRepository {
     }
 
     suspend fun getCategoriesFromCache(): List<Category> {
-        return categoriesDao.
+        return categoriesDao.getListAllCategories()
     }
 }

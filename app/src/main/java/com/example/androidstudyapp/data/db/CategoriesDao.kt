@@ -5,13 +5,12 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.androidstudyapp.data.Category
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CategoriesDao {
 
     @Query("SELECT * FROM recipeTable")
-    suspend fun getListAllCategories(): Flow<List<Category>>
+    suspend fun getListAllCategories(): List<Category>
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addCategoryInList(category: List<Category>?)
 }
