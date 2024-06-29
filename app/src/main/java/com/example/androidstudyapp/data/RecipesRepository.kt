@@ -62,7 +62,7 @@ class RecipesRepository {
         }
     }
 
-    fun getCategoriesFromCache(): RecipeDataBase{
-
+    fun getCategoriesFromCache(): List<Category>{
+        return categoriesDao.getListAllCategory()
     }
 }
