@@ -16,7 +16,7 @@ class RecipesRepository {
 
     private val recipeApiService: RecipeApiService = retrofit.create(RecipeApiService::class.java)
 
-    private val dataBase = RecipeDataBase.database(RecipesApplication.instance)
+    private val dataBase = RecipeDataBase.getDataBase(RecipesApplication.instance)
 
     private val categoriesDao = dataBase.getCategoryDao()
 

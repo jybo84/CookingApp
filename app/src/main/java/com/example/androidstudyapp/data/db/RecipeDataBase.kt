@@ -7,12 +7,12 @@ import androidx.room.RoomDatabase
 import com.example.androidstudyapp.data.Category
 
 @Database(version = 1, entities = [Category::class])
-abstract class RecipeDataBase: RoomDatabase(){
+abstract class RecipeDataBase : RoomDatabase() {
 
     abstract fun getCategoryDao(): CategoryDao
 
-    companion object{
-        fun database(context: Context): RecipeDataBase{
+    companion object {
+        fun getDataBase(context: Context): RecipeDataBase {
             return Room.databaseBuilder(
                 context.applicationContext,
                 RecipeDataBase::class.java,
