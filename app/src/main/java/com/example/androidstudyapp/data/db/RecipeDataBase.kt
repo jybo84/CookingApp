@@ -9,6 +9,8 @@ import com.example.androidstudyapp.data.Category
 @Database(version = 1, entities = [Category::class])
 abstract class RecipeDataBase: RoomDatabase(){
 
+    abstract fun getCategoryDao(): CategoryDao
+
     companion object{
         fun database(context: Context): RecipeDataBase{
             return Room.databaseBuilder(
