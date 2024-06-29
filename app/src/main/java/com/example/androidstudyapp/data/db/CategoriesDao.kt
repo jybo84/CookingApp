@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface CategoriesDao {
 
     @Query("SELECT * FROM recipeTable")
-    suspend fun getListCategories(): Flow<List<Category>>
+    suspend fun getListAllCategories(): Flow<List<Category>>
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addCategoryInList(category: Category)
 }
