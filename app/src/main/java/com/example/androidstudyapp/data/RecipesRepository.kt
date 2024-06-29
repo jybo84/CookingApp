@@ -18,6 +18,8 @@ class RecipesRepository {
 
     val dataBase = RecipeDataBase.database(RecipesApplication.instance)
 
+    val categoriesDao = dataBase.getCategoryDao()
+
     suspend fun getCategories(): List<Category>?  = withContext(Dispatchers.IO){
         return@withContext try {
             recipeApiService.getListCategory().execute().body()
