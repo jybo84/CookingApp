@@ -11,7 +11,7 @@ interface CategoryDao {
     @Query("SELECT * FROM table_recipe")
     fun getListAllCategory(): List<Category>
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addCategoryToList(category: Category)
+    fun addCategoryToList(category: List<Category>?)
 }
 
 

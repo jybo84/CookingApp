@@ -16,13 +16,15 @@ class RecipesRepository {
 
     private val recipeApiService: RecipeApiService = retrofit.create(RecipeApiService::class.java)
 
-    val dataBase = RecipeDataBase.database(RecipesApplication.instance)
+    private val dataBase = RecipeDataBase.database(RecipesApplication.instance)
 
-    val categoriesDao = dataBase.getCategoryDao()
+    private val categoriesDao = dataBase.getCategoryDao()
 
     suspend fun getCategories(): List<Category>? = withContext(Dispatchers.IO) {
         return@withContext try {
-            recipeApiService.getListCategory().execute().body()
+            val newDataFromNetwork = recipeApiService.getListCategory().execute().body()
+            categoriesDao.addCategoryToList(newDataFromNetwork)
+            newDataFromNetwork
         } catch (e: IOException) {
             null
         }
