@@ -15,7 +15,13 @@ class RecipesRepository {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    private val dataBase = RecipeDb.getDb(RecipeApplication.instance)
+    private val dataBase: RecipeDb = RecipeDb.getDb(RecipeApplication.instance)
+
+//     val dataBase: RecipeDb = Room.databaseBuilder(
+//        RecipeApplication.instance,
+//        RecipeDb::class.java,
+//        "aaaaaaaa"
+//    ).build()
 
     private val categoriesDao: CategoriesDao = dataBase.getCategoriesDao()
 
