@@ -2,6 +2,7 @@ package com.example.androidstudyapp.data.db
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.androidstudyapp.data.Category
 
@@ -9,7 +10,7 @@ import com.example.androidstudyapp.data.Category
 interface CategoryDao {
     @Query("SELECT * FROM table_recipe")
     fun getListAllCategory(): List<Category>
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addCategoryToList(category: Category)
 }
 
