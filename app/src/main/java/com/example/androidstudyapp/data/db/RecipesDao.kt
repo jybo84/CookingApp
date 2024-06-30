@@ -3,14 +3,14 @@ package com.example.androidstudyapp.data.db
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.androidstudyapp.data.Category
+import com.example.androidstudyapp.data.Recipe
 
 interface RecipesDao {
     @Query("SELECT * FROM `table - list_recipe`")
-    fun getListAllCategory(): List<Category>
+    fun getListAllRecipes(): List<Recipe>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun addCategoryToList(category: List<Category>)
+    fun addRecipeToList(category: List<Recipe>)
 }
 
 

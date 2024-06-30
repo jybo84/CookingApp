@@ -12,7 +12,7 @@ abstract class DataBase : RoomDatabase() {
 
     abstract fun getCategoryDao(): CategoriesDao
 
-    abstract fun getRecipesDao(): CategoriesDao
+    abstract fun getRecipesDao(): RecipesDao
 
     companion object {
         fun getDataBase(context: Context): DataBase {
