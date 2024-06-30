@@ -20,6 +20,8 @@ class RecipesRepository {
 
     private val categoriesDao = dataBase.getCategoryDao()
 
+    private val recipesDao = dataBase.getRecipesDao()
+
     suspend fun getCategories(): List<Category>? = withContext(Dispatchers.IO) {
         return@withContext try {
             val newDataFromNetwork = recipeApiService.getListCategory().execute().body()
