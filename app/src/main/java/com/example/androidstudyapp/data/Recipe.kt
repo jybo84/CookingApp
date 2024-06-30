@@ -13,8 +13,10 @@ data class Recipe(
     val id: Int,
     @ColumnInfo(name = "title")
     val title: String,
-    @ColumnInfo(name = "ingredients")
+//    @Relation(parentColumn = "id", entityColumn = "ingredients")
+    @ColumnInfo(name = "ingredients" )
     val ingredients: List<Ingredient>,
+//    @Relation(parentColumn = "id", entityColumn = "method")
     @ColumnInfo(name = "method")
     val method: List<String>,
     @ColumnInfo(name = "image_url")

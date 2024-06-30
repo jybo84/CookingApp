@@ -26,7 +26,21 @@ class RecipesListViewModel(application: Application) : AndroidViewModel(applicat
     fun loadRecipes(categoryId: Int) {
 
         viewModelScope.launch {
-            val category = getCategoryById(categoryId)
+
+            val categoryFromCache: Recipe? =
+                recipeRepository.getRecipesFromCache(categoryId).find { it.id == categoryId }
+
+            if (categoryFromCache != null) {
+                _state.postValue(
+                    RecipeListState(
+                        categoryName = categoryFromCache?.title,
+                        categoryImageUrl = ImageUtils.getImageFullUrl(categoryFromCache.imageUrl),
+                        recipes = recipeRepository.getRecipesByCategoryId(categoryId)
+                    )
+                )
+            }
+
+            val category: Category? = getCategoryById(categoryId)
             if (category != null) {
                 _state.postValue(
                     RecipeListState(
