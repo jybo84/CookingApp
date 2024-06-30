@@ -33,7 +33,7 @@ class RecipesListViewModel(application: Application) : AndroidViewModel(applicat
             if (categoryFromCache != null) {
                 _state.postValue(
                     RecipeListState(
-                        categoryName = categoryFromCache?.title,
+                        categoryName = categoryFromCache.title,
                         categoryImageUrl = ImageUtils.getImageFullUrl(categoryFromCache.imageUrl),
                         recipes = recipeRepository.getRecipesByCategoryId(categoryId)
                     )

@@ -4,10 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.androidstudyapp.data.Category
 import com.example.androidstudyapp.data.Recipe
 
-@Database(version = 1, entities = [Category::class, Recipe::class])
+@Database(version = 3, entities = [Category::class, Recipe::class])
+@TypeConverters(Converters::class)
 abstract class DataBase : RoomDatabase() {
 
     abstract fun getCategoryDao(): CategoriesDao
@@ -20,7 +22,9 @@ abstract class DataBase : RoomDatabase() {
                 context.applicationContext,
                 DataBase::class.java,
                 "applicationData"
-            ).build()
+
+            ).fallbackToDestructiveMigration()
+                .build()
         }
     }
 }
