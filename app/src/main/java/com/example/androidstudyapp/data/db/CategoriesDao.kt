@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.example.androidstudyapp.data.Category
 
 @Dao
-interface CategoryDao {
+interface CategoriesDao {
     @Query("SELECT * FROM table_recipe")
     fun getListAllCategory(): List<Category>
 
