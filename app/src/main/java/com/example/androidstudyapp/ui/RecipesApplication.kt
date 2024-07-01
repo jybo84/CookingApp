@@ -2,7 +2,7 @@ package com.example.androidstudyapp.ui
 
 import android.app.Application
 
-class RecipesApplication: Application() {
+class RecipesApplication : Application() {
 
     companion object {
         private var _instance: Application? = null

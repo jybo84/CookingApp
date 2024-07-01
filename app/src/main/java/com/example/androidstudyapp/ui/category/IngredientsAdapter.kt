@@ -37,7 +37,7 @@ class IngredientsAdapter(var dataSet: List<Ingredient> = listOf()) :
         try {
             holder.quantityIngredient.text =
                 quantityFormat.format(ingredient.quantity.toFloat() * quantity)
-        } catch (e: NumberFormatException){
+        } catch (e: NumberFormatException) {
             println("По вкусу")
         }
 

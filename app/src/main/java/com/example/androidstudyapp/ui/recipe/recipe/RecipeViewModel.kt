@@ -1,14 +1,10 @@
 package com.example.androidstudyapp.ui.recipe.recipe
 
 import android.app.Application
-import android.content.Context
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.androidstudyapp.data.FAVORITE_PREFS_KEY
-import com.example.androidstudyapp.data.FILE_COLLECTION_MY_ID
 import com.example.androidstudyapp.data.ImageUtils
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.data.RecipesRepository
@@ -19,10 +15,6 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
     private val _state = MutableLiveData(RecipeState())
     val state: LiveData<RecipeState> = _state
 
-    private val sharedPrefs by lazy {
-        application.getSharedPreferences(FILE_COLLECTION_MY_ID, Context.MODE_PRIVATE)
-    }
-
     private val recipeRepository = RecipesRepository()
 
     data class RecipeState(
@@ -32,18 +24,13 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
         val recipeImageUrl: String? = null,
     )
 
-    init {
-        _state.value = RecipeState(isFavourite = true)
-        Log.i("!!!", "massage")
-    }
-
     fun loadRecipe(recipeId: Int) {
         viewModelScope.launch {
             val recipe = recipeRepository.getRecipeById(recipeId)
             _state.postValue(
                 RecipeState(
                     recipe = recipe,
-                    isFavourite = getFavorites().contains(recipeId.toString()),
+                    isFavourite = getFavorites().contains(recipeId),
                     portionsCount = state.value?.portionsCount ?: 1,
                     recipeImageUrl = recipe?.imageUrl?.let { ImageUtils.getImageFullUrl(it) }
                 )
@@ -51,30 +38,18 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
-
-    private fun getFavorites(): MutableSet<String> {
-        val savedList: Set<String> =
-            sharedPrefs.getStringSet(FAVORITE_PREFS_KEY, emptySet()) ?: emptySet()
-        return HashSet(savedList)
+    private suspend fun getFavorites(): List<Int> {
+        return recipeRepository.getListFavouriteRecipes().map { it.id }
     }
 
     fun onFavoritesClicked() {
-        val myListRecipes = getFavorites()
-        if (myListRecipes.contains(state.value?.recipe?.id.toString()))
-            myListRecipes.remove(state.value?.recipe?.id.toString())
-        else state.value?.recipe?.id?.toString()?.let { myListRecipes.add(it) }
-
-        saveFavorites(myListRecipes)
-
-        _state.value =
-            state.value?.copy(isFavourite = getFavorites().contains(state.value?.recipe?.id.toString()))
+        viewModelScope.launch {
+            val favourite = _state.value?.isFavourite ?: false
+            _state.value?.recipe?.let { recipeRepository.updateRecipe(it.copy(isFavorite = !favourite)) }
+            _state.value = _state.value?.copy(isFavourite = !favourite)
+        }
     }
 
-    private fun saveFavorites(listIdFavouritesRecipes: Set<String>) {
-        with(sharedPrefs.edit()) {
-            putStringSet(FAVORITE_PREFS_KEY, listIdFavouritesRecipes)
-        }.apply()
-    }
 
     fun setCountPortions(count: Int): Int? {
         state.value?.portionsCount = count

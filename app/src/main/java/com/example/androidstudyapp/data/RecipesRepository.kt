@@ -51,28 +51,19 @@ class RecipesRepository {
         }
     }
 
-    suspend fun getRecipesByIds(listIdFavourites: List<Int>): List<Recipe>? =
-        withContext(Dispatchers.IO) {
-            return@withContext try {
-                recipeApiService.getListRecipesById(listIdFavourites).execute().body()
-            } catch (e: IOException) {
-                null
-            }
-        }
-
-    suspend fun getCategoryById(id: Int): Category? = withContext(Dispatchers.IO) {
-        return@withContext try {
-            recipeApiService.getCategoryById(id).execute().body()
-        } catch (e: IOException) {
-            null
-        }
-    }
-
-    suspend fun getCategoriesFromCache(): List<Category> = withContext(Dispatchers.IO){
+    suspend fun getCategoriesFromCache(): List<Category> = withContext(Dispatchers.IO) {
         return@withContext categoriesDao.getListAllCategory()
     }
 
-    suspend fun getRecipesFromCache(categoryId: Int): List<Recipe> = withContext(Dispatchers.IO){
+    suspend fun getRecipesFromCache(categoryId: Int): List<Recipe> = withContext(Dispatchers.IO) {
         return@withContext recipesDao.getListAllRecipes()
+    }
+
+    suspend fun getListFavouriteRecipes(): List<Recipe> = withContext(Dispatchers.IO) {
+        return@withContext recipesDao.getListFavouriteRecipes()
+    }
+
+    suspend fun updateRecipe(recipe: Recipe) = withContext(Dispatchers.IO) {
+        recipesDao.updateRecipe(recipe)
     }
 }
