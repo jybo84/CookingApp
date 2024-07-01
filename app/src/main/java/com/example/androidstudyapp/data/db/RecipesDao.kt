@@ -8,7 +8,7 @@ import com.example.androidstudyapp.data.Recipe
 
 @Dao
 interface RecipesDao {
-    @Query("SELECT * FROM `table - list_recipe`")
+    @Query("SELECT * FROM table_recipe")
     fun getListAllRecipes(): List<Recipe>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

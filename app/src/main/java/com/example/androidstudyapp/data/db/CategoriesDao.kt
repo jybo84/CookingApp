@@ -8,7 +8,7 @@ import com.example.androidstudyapp.data.Category
 
 @Dao
 interface CategoriesDao {
-    @Query("SELECT * FROM table_recipe")
+    @Query("SELECT * FROM table_category")
     fun getListAllCategory(): List<Category>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
