@@ -47,6 +47,7 @@ class RecipeFragment : Fragment() {
             recipeViewModel.loadRecipe(args.recipeId)
     }
 
+
     private fun initUI() {
         adapterIngredient = IngredientsAdapter()
         adapterCookingMethod = CookingMethodAdapter()
