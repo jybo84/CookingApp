@@ -1,5 +1,7 @@
 package com.example.androidstudyapp.data
 
+import com.example.androidstudyapp.data.db.CategoryDataBase
+import com.example.androidstudyapp.ui.RecipesApplication
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
@@ -14,23 +16,32 @@ class RecipesRepository {
 
     private val recipeApiService: RecipeApiService = retrofit.create(RecipeApiService::class.java)
 
-    suspend fun getCategories(): List<Category>?  = withContext(Dispatchers.IO){
+    private val dataBase = CategoryDataBase.getDataBase(RecipesApplication.instance)
+
+    private val categoriesDao = dataBase.getCategoryDao()
+
+    suspend fun getCategories(): List<Category>? = withContext(Dispatchers.IO) {
         return@withContext try {
-            recipeApiService.getListCategory().execute().body()
+            val newDataFromNetwork = recipeApiService.getListCategory().execute().body()
+            if (newDataFromNetwork != null) {
+                categoriesDao.addCategoryToList(newDataFromNetwork)
+            }
+            newDataFromNetwork
         } catch (e: IOException) {
             null
         }
     }
 
-    suspend fun getRecipesByCategoryId(categoryId: Int): List<Recipe>? = withContext(Dispatchers.IO){
-        return@withContext try {
-            recipeApiService.getListRecipesByIdCategory(categoryId).execute().body()
-        } catch (e: IOException) {
-            null
+    suspend fun getRecipesByCategoryId(categoryId: Int): List<Recipe>? =
+        withContext(Dispatchers.IO) {
+            return@withContext try {
+                recipeApiService.getListRecipesByIdCategory(categoryId).execute().body()
+            } catch (e: IOException) {
+                null
+            }
         }
-    }
 
-    suspend fun getRecipeById(id: Int): Recipe? = withContext(Dispatchers.IO){
+    suspend fun getRecipeById(id: Int): Recipe? = withContext(Dispatchers.IO) {
         return@withContext try {
             recipeApiService.getRecipeById(id).execute().body()
         } catch (e: IOException) {
@@ -38,19 +49,25 @@ class RecipesRepository {
         }
     }
 
-    suspend fun getRecipesByIds(listIdFavourites: List<Int>): List<Recipe>? = withContext(Dispatchers.IO) {
-        return@withContext try {
-            recipeApiService.getListRecipesById(listIdFavourites).execute().body()
-        } catch (e: IOException) {
-            null
+    suspend fun getRecipesByIds(listIdFavourites: List<Int>): List<Recipe>? =
+        withContext(Dispatchers.IO) {
+            return@withContext try {
+                recipeApiService.getListRecipesById(listIdFavourites).execute().body()
+            } catch (e: IOException) {
+                null
+            }
         }
-    }
 
-    suspend fun getCategoryById(id: Int): Category? = withContext(Dispatchers.IO){
+    suspend fun getCategoryById(id: Int): Category? = withContext(Dispatchers.IO) {
         return@withContext try {
             recipeApiService.getCategoryById(id).execute().body()
         } catch (e: IOException) {
             null
         }
     }
+
+    suspend fun getCategoriesFromCache(): List<Category> = withContext(Dispatchers.IO){
+        return@withContext categoriesDao.getListAllCategory()
+    }
 }
+

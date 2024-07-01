@@ -28,7 +28,7 @@ class CategoriesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       if (savedInstanceState == null)
+        if (savedInstanceState == null)
             categoriesListViewModel.loadCategoriesList()
 
         categoriesListViewModel.state.observe(viewLifecycleOwner) { state ->
