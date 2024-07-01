@@ -75,4 +75,8 @@ class RecipesRepository {
     suspend fun getRecipesFromCache(categoryId: Int): List<Recipe> = withContext(Dispatchers.IO){
         return@withContext recipesDao.getListAllRecipes()
     }
+
+    suspend fun getListFavouriteRecipes(): List<Recipe> = withContext(Dispatchers.IO){
+        return@withContext recipesDao.getListFavouriteRecipes()
+    }
 }

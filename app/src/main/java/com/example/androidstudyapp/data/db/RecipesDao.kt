@@ -13,6 +13,9 @@ interface RecipesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addRecipeToList(category: List<Recipe>)
+
+    @Query("SELECT * FROM table_recipe WHERE isFavorite = true")
+    fun getListFavouriteRecipes(): List<Recipe>
 }
 
 
