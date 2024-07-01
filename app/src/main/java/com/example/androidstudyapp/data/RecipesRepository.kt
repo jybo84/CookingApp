@@ -68,15 +68,15 @@ class RecipesRepository {
         }
     }
 
-    suspend fun getCategoriesFromCache(): List<Category> = withContext(Dispatchers.IO){
+    suspend fun getCategoriesFromCache(): List<Category> = withContext(Dispatchers.IO) {
         return@withContext categoriesDao.getListAllCategory()
     }
 
-    suspend fun getRecipesFromCache(categoryId: Int): List<Recipe> = withContext(Dispatchers.IO){
+    suspend fun getRecipesFromCache(categoryId: Int): List<Recipe> = withContext(Dispatchers.IO) {
         return@withContext recipesDao.getListAllRecipes()
     }
 
-    suspend fun getListFavouriteRecipes(): List<Recipe> = withContext(Dispatchers.IO){
-        return@withContext recipesDao.getListFavouriteRecipes()
+    suspend fun getListFavouriteRecipes(): List<Recipe> = withContext(Dispatchers.IO) {
+        return@withContext recipesDao.getListAllRecipes().filter { it.isFavorite }
     }
 }
