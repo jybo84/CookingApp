@@ -12,7 +12,6 @@ class Converters {
     @TypeConverter
     fun jsonStringToListIngredient(value: String) = Gson().fromJson(value, Array<Ingredient>::class.java).toList()
 
-
     @TypeConverter
     fun listToJsonString(value: List<String>?): String = Gson().toJson(value)
 
