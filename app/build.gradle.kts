@@ -62,6 +62,5 @@ dependencies {
     implementation(libs.androidx.appcompat.resources)
     implementation (libs.glide)
     implementation(libs.androidx.room.runtime)
-//    annotationProcessor(libs.androidx.room.compiler)
     ksp(libs.androidx.room.compiler)
 }

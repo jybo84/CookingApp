@@ -14,6 +14,3 @@ interface CategoriesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addCategoryToList(category: List<Category>)
 }
-
-
-
