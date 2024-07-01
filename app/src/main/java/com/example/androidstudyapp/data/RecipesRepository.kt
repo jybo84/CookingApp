@@ -77,6 +77,10 @@ class RecipesRepository {
     }
 
     suspend fun getListFavouriteRecipes(): List<Recipe> = withContext(Dispatchers.IO) {
-        return@withContext recipesDao.getListAllRecipes().filter { it.isFavorite }
+        return@withContext recipesDao.getListFavouriteRecipes()
+    }
+
+    suspend fun updateRecipe(recipe: Recipe) = withContext(Dispatchers.IO){
+        recipesDao.updateRecipe(recipe)
     }
 }
