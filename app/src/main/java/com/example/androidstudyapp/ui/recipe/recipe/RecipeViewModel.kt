@@ -15,10 +15,6 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
     private val _state = MutableLiveData(RecipeState())
     val state: LiveData<RecipeState> = _state
 
-//    private val sharedPrefs by lazy {
-//        application.getSharedPreferences(FILE_COLLECTION_MY_ID, Context.MODE_PRIVATE)
-//    }
-
     private val recipeRepository = RecipesRepository()
 
     data class RecipeState(
@@ -27,11 +23,6 @@ class RecipeViewModel(application: Application) : AndroidViewModel(application) 
         var portionsCount: Int = 1,
         val recipeImageUrl: String? = null,
     )
-
-//    init {
-//        _state.value = RecipeState(isFavourite = true)
-//        Log.i("!!!", "massage")
-//    }
 
     fun loadRecipe(recipeId: Int) {
         viewModelScope.launch {

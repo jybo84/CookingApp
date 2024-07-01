@@ -15,8 +15,8 @@
             app:destination="@id/recipeFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right" />
+            app:popEnterAnim="@android:anim/slide_out_right"
+            app:popExitAnim="@android:anim/slide_in_left" />
         <action
             android:id="@+id/action_favouritesFragment_to_categoriesListFragment"
             app:destination="@id/categoriesListFragment"
