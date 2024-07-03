@@ -1,9 +1,10 @@
-package com.example.androidstudyapp.di
+package com.example.androidstudyapp
 
 import com.example.androidstudyapp.data.API_BASE_URL
 import com.example.androidstudyapp.data.RecipeApiService
 import com.example.androidstudyapp.data.RecipesRepository
 import com.example.androidstudyapp.data.db.DataBase
+import com.example.androidstudyapp.di.CategoriesListViewModelFactory
 import com.example.androidstudyapp.ui.RecipesApplication
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -28,4 +29,6 @@ class AppContainer {
         categoriesDao = categoriesDao,
         recipeApiService = recipeApiService
     )
+
+    val categoriesListViewModelFactory = CategoriesListViewModelFactory(repository)
 }
