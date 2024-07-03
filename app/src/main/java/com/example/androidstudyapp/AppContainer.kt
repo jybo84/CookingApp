@@ -27,7 +27,7 @@ class AppContainer {
 
     private val recipesDao = dataBase.getRecipesDao()
 
-     val repository = RecipesRepository(
+    val repository = RecipesRepository(
         recipesDao = recipesDao,
         categoriesDao = categoriesDao,
         recipeApiService = recipeApiService

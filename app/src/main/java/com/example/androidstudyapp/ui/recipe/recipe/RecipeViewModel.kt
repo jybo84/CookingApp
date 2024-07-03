@@ -10,7 +10,7 @@ import com.example.androidstudyapp.data.RecipesRepository
 import kotlinx.coroutines.launch
 
 class RecipeViewModel(
-    val recipesRepository: RecipesRepository
+    private val recipesRepository: RecipesRepository
 ) : ViewModel() {
 
     private val _state = MutableLiveData(RecipeState())

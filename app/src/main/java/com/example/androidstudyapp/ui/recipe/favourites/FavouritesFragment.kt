@@ -16,8 +16,8 @@ import com.example.androidstudyapp.ui.recipe.RecipesListAdapter
 class FavouritesFragment : Fragment() {
 
     private val binding by lazy { FragmentFavouritesBinding.inflate(layoutInflater) }
-//    private val favouritesViewModel: FavouritesViewModel by viewModels()
-//    TODO() спроасить у Фридона
+
+//    TODO() спросить у Фридона про by viewModels
     private lateinit var favouritesViewModel: FavouritesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {

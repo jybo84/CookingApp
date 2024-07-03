@@ -17,7 +17,5 @@ class RecipesApplication : Application() {
         _instance = this
 
         appContainer = AppContainer()
-
-
     }
 }

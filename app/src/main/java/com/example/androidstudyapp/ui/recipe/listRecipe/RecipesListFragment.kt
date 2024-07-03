@@ -18,8 +18,6 @@ import com.example.androidstudyapp.ui.recipe.RecipesListAdapter
 class RecipesListFragment : Fragment() {
 
     private val binding by lazy { FragmentRecipesListBinding.inflate(layoutInflater) }
-
-//    private val recipeListViewModel: RecipesListViewModel by viewModels()
     private val args: RecipesListFragmentArgs by navArgs()
     private lateinit var recipeListViewModel: RecipesListViewModel
 
@@ -29,7 +27,6 @@ class RecipesListFragment : Fragment() {
         val appContainer = (requireActivity().application as RecipesApplication).appContainer
         recipeListViewModel = appContainer.recipesListViewModelFactory.create()
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
