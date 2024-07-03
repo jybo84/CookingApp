@@ -4,8 +4,6 @@ import com.example.androidstudyapp.data.db.CategoriesDao
 import com.example.androidstudyapp.data.db.RecipesDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 
 class RecipesRepository(
@@ -13,12 +11,6 @@ class RecipesRepository(
     val recipesDao: RecipesDao,
     val recipeApiService: RecipeApiService,
 ) {
-    private val retrofit = Retrofit.Builder()
-        .baseUrl("$API_BASE_URL/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-
-
 
     suspend fun getCategories(): List<Category>? = withContext(Dispatchers.IO) {
         return@withContext try {
