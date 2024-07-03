@@ -5,6 +5,7 @@ import com.example.androidstudyapp.data.RecipeApiService
 import com.example.androidstudyapp.data.RecipesRepository
 import com.example.androidstudyapp.data.db.DataBase
 import com.example.androidstudyapp.di.CategoriesListViewModelFactory
+import com.example.androidstudyapp.di.FavouritesViewModelFactory
 import com.example.androidstudyapp.ui.RecipesApplication
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,11 +25,12 @@ class AppContainer {
 
     private val recipesDao = dataBase.getRecipesDao()
 
-    val repository = RecipesRepository(
+     val repository = RecipesRepository(
         recipesDao = recipesDao,
         categoriesDao = categoriesDao,
         recipeApiService = recipeApiService
     )
 
     val categoriesListViewModelFactory = CategoriesListViewModelFactory(repository)
+    val favouriteModelFactory = FavouritesViewModelFactory(repository)
 }
