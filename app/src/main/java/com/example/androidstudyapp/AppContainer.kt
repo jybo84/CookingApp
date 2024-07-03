@@ -6,6 +6,7 @@ import com.example.androidstudyapp.data.RecipesRepository
 import com.example.androidstudyapp.data.db.DataBase
 import com.example.androidstudyapp.di.CategoriesListViewModelFactory
 import com.example.androidstudyapp.di.FavouritesViewModelFactory
+import com.example.androidstudyapp.di.RecipesListViewModelFactory
 import com.example.androidstudyapp.ui.RecipesApplication
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -33,4 +34,5 @@ class AppContainer {
 
     val categoriesListViewModelFactory = CategoriesListViewModelFactory(repository)
     val favouriteModelFactory = FavouritesViewModelFactory(repository)
+    val recipesListViewModelFactory = RecipesListViewModelFactory(repository)
 }
