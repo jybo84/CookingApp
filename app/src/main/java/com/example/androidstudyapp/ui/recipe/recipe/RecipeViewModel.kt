@@ -9,9 +9,10 @@ import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.data.RecipesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
-class RecipeViewModel(
+class RecipeViewModel @Inject constructor(
     private val recipesRepository: RecipesRepository
 ) : ViewModel() {
 

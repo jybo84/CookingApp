@@ -12,7 +12,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @HiltViewModel
-class FavouritesViewModel(
+class FavouritesViewModel @Inject constructor(
     private val recipesRepository:  RecipesRepository
 ) : ViewModel() {
 
