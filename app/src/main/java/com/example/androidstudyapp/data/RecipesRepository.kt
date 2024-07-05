@@ -1,26 +1,16 @@
 package com.example.androidstudyapp.data
 
-import com.example.androidstudyapp.data.db.DataBase
-import com.example.androidstudyapp.ui.RecipesApplication
+import com.example.androidstudyapp.data.db.CategoriesDao
+import com.example.androidstudyapp.data.db.RecipesDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 
-class RecipesRepository {
-    private val retrofit = Retrofit.Builder()
-        .baseUrl("$API_BASE_URL/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-
-    private val recipeApiService: RecipeApiService = retrofit.create(RecipeApiService::class.java)
-
-    private val dataBase = DataBase.getDataBase(RecipesApplication.instance)
-
-    private val categoriesDao = dataBase.getCategoryDao()
-
-    private val recipesDao = dataBase.getRecipesDao()
+class RecipesRepository(
+    val categoriesDao: CategoriesDao,
+    val recipesDao: RecipesDao,
+    val recipeApiService: RecipeApiService,
+) {
 
     suspend fun getCategories(): List<Category>? = withContext(Dispatchers.IO) {
         return@withContext try {

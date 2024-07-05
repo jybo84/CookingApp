@@ -1,17 +1,16 @@
 package com.example.androidstudyapp.ui.recipe.favourites
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.data.RecipesRepository
 import kotlinx.coroutines.launch
 
-class FavouritesViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val recipeRepository = RecipesRepository()
+class FavouritesViewModel(
+    private val recipesRepository:  RecipesRepository
+) : ViewModel() {
 
     data class FavouritesState(
         val dataSet: List<Recipe>? = emptyList()
@@ -24,7 +23,7 @@ class FavouritesViewModel(application: Application) : AndroidViewModel(applicati
         viewModelScope.launch {
             _state.postValue(
                 FavouritesState(
-                    dataSet = recipeRepository.getListFavouriteRecipes()
+                    dataSet = recipesRepository.getListFavouriteRecipes()
 
                 )
             )
