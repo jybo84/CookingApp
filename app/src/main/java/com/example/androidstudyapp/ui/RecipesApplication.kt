@@ -1,7 +1,7 @@
 package com.example.androidstudyapp.ui
 
 import android.app.Application
-import com.example.androidstudyapp.AppContainer
+import com.example.androidstudyapp.RecipeModule
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
@@ -12,12 +12,12 @@ class RecipesApplication : Application() {
         val instance get() = requireNotNull(_instance)
     }
 
-    lateinit var appContainer: AppContainer
+    lateinit var recipeModule: RecipeModule
 
     override fun onCreate() {
         super.onCreate()
         _instance = this
 
-        appContainer = AppContainer()
+        recipeModule = RecipeModule()
     }
 }
