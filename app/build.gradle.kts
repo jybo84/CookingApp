@@ -5,8 +5,8 @@ plugins {
     alias(libs.plugins.androidxNavigationSafeArgs)
     id("com.google.devtools.ksp") version "1.9.0-1.0.13"
 
-    id("kotlin-kapt")
-//    id("com.google.dagger.hilt.android")
+//    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 
 }
 
@@ -70,6 +70,6 @@ dependencies {
     ksp(libs.androidx.room.compiler)
 
     implementation(libs.hilt.android.v2511)
-    kapt(libs.hilt.android.compiler.v2511)
+    ksp(libs.hilt.android.compiler.v2511)
 }
 

@@ -6,7 +6,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class RecipesRepository @Inject constructor(
     val categoriesDao: CategoriesDao,
     val recipesDao: RecipesDao,

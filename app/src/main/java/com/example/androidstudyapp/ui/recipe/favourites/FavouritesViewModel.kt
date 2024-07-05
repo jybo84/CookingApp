@@ -17,7 +17,7 @@ class FavouritesViewModel @Inject constructor(
 ) : ViewModel() {
 
     @Singleton
-    data class FavouritesState @Inject constructor(
+    data class FavouritesState (
         val dataSet: List<Recipe>? = emptyList()
     )
 
