@@ -12,7 +12,7 @@ import com.example.androidstudyapp.ui.RecipesApplication
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class AppContainer {
+class AppContainer() {
 
     private val retrofit = Retrofit.Builder()
         .baseUrl("$API_BASE_URL/")

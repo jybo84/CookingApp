@@ -17,7 +17,6 @@ class FavouritesFragment : Fragment() {
 
     private val binding by lazy { FragmentFavouritesBinding.inflate(layoutInflater) }
 
-//    TODO() спросить у Фридона про by viewModels
     private lateinit var favouritesViewModel: FavouritesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
