@@ -12,7 +12,7 @@ class RecipesApplication : Application() {
         val instance get() = requireNotNull(_instance)
     }
 
-    lateinit var recipeModule: RecipeModule
+    private lateinit var recipeModule: RecipeModule
 
     override fun onCreate() {
         super.onCreate()

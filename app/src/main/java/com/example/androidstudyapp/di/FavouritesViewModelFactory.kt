@@ -5,7 +5,7 @@ import com.example.androidstudyapp.ui.recipe.favourites.FavouritesViewModel
 
 class FavouritesViewModelFactory(
     private val recipesRepository: RecipesRepository
-): Factory<FavouritesViewModel> {
+) : Factory<FavouritesViewModel> {
 
     override fun create(): FavouritesViewModel {
         return FavouritesViewModel(recipesRepository)

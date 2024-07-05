@@ -25,9 +25,6 @@ class FavouritesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        val appContainer = (requireActivity().application as RecipesApplication).recipeModule
-//        favouritesViewModel = appContainer.favouriteModelFactory.create()
     }
 
     override fun onCreateView(

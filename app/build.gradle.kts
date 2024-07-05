@@ -4,12 +4,8 @@ plugins {
     id("kotlin-parcelize")
     alias(libs.plugins.androidxNavigationSafeArgs)
     id("com.google.devtools.ksp") version "1.9.0-1.0.13"
-
-//    id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
-
 }
-
 
 android {
     namespace = "com.example.androidstudyapp"
@@ -68,7 +64,6 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
-
     implementation(libs.hilt.android.v2511)
     ksp(libs.hilt.android.compiler.v2511)
 }

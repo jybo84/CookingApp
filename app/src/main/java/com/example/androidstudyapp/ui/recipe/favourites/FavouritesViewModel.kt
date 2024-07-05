@@ -13,11 +13,11 @@ import javax.inject.Singleton
 
 @HiltViewModel
 class FavouritesViewModel @Inject constructor(
-    private val recipesRepository:  RecipesRepository
+    private val recipesRepository: RecipesRepository
 ) : ViewModel() {
 
     @Singleton
-    data class FavouritesState (
+    data class FavouritesState(
         val dataSet: List<Recipe>? = emptyList()
     )
 

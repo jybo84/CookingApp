@@ -39,16 +39,15 @@ class RecipesListAdapter(private val dataSet: List<Recipe>) :
         val recipe: Recipe = dataSet[position]
         holder.tvTitleBurgerHolder.text = recipe.title
 
-        val drawable =
-            try {
-                Drawable.createFromStream(
-                    holder.itemView.context.assets.open(recipe.imageUrl),
-                    null
-                )
-            } catch (e: Exception) {
-                Log.e("Ошибка.", "Картинка не загрузилась. Не верный адрес")
+        try {
+            Drawable.createFromStream(
+                holder.itemView.context.assets.open(recipe.imageUrl),
                 null
-            }
+            )
+        } catch (e: Exception) {
+            Log.e("Ошибка.", "Картинка не загрузилась. Не верный адрес")
+            null
+        }
 
         Glide.with(holder.itemView)
             .load(ImageUtils.getImageFullUrl(recipe.imageUrl))

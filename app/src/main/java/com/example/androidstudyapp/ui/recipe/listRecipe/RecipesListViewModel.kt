@@ -17,8 +17,7 @@ class RecipesListViewModel @Inject constructor(
     private val recipesRepository: RecipesRepository
 ) : ViewModel() {
 
-
-    data class RecipeListState (
+    data class RecipeListState(
         var categoryName: String? = null,
         var categoryImageUrl: String? = null,
         val recipes: List<Recipe>? = emptyList(),

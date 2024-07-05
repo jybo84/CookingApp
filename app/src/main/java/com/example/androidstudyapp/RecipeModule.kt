@@ -41,15 +41,4 @@ class RecipeModule() {
     @Provides
     @Singleton
     fun provideRecipesDao(dataBase: DataBase): RecipesDao = dataBase.getRecipesDao()
-
-//    val repository = RecipesRepository(
-//        recipesDao = recipesDao,
-//        categoriesDao = categoriesDao,
-//        recipeApiService = recipeApiService
-//    )
-//
-//    val categoriesListViewModelFactory = CategoriesListViewModelFactory(repository)
-//    val favouriteModelFactory = FavouritesViewModelFactory(repository)
-//    val recipesListViewModelFactory = RecipesListViewModelFactory(repository)
-//    val recipeViewModelFactory = RecipeViewModelFactory(repository)
 }

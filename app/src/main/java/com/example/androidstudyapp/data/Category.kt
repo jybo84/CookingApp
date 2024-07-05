@@ -16,6 +16,6 @@ data class Category @Inject constructor(
     val title: String,
     @ColumnInfo(name = "description")
     val description: String,
-    @ColumnInfo(name = "imageUrl" )
+    @ColumnInfo(name = "imageUrl")
     val imageUrl: String,
 ) : Parcelable

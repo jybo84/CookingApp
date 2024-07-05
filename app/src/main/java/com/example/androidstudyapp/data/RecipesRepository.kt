@@ -10,9 +10,9 @@ import javax.inject.Singleton
 
 @Singleton
 class RecipesRepository @Inject constructor(
-    val categoriesDao: CategoriesDao,
-    val recipesDao: RecipesDao,
-    val recipeApiService: RecipeApiService,
+    private val categoriesDao: CategoriesDao,
+    private val recipesDao: RecipesDao,
+    private val recipeApiService: RecipeApiService,
 ) {
 
     suspend fun getCategories(): List<Category>? = withContext(Dispatchers.IO) {
