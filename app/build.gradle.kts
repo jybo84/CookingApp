@@ -6,7 +6,7 @@ plugins {
     id("com.google.devtools.ksp") version "1.9.0-1.0.13"
 
     id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
+//    id("com.google.dagger.hilt.android")
 
 }
 
@@ -69,7 +69,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
 
-    implementation("com.google.dagger:hilt-android:2.51.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+    implementation(libs.hilt.android.v2511)
+    kapt(libs.hilt.android.compiler.v2511)
 }
 
