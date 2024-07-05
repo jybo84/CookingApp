@@ -5,8 +5,9 @@ import com.example.androidstudyapp.data.db.RecipesDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
+import javax.inject.Inject
 
-class RecipesRepository(
+class RecipesRepository @Inject constructor(
     val categoriesDao: CategoriesDao,
     val recipesDao: RecipesDao,
     val recipeApiService: RecipeApiService,

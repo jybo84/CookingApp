@@ -5,10 +5,11 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
+import javax.inject.Inject
 
 @Parcelize
 @Entity(tableName = "table_recipe")
-data class Recipe(
+data class Recipe @Inject constructor(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     @ColumnInfo(name = "title")
