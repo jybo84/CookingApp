@@ -5,7 +5,11 @@ plugins {
     alias(libs.plugins.androidxNavigationSafeArgs)
     id("com.google.devtools.ksp") version "1.9.0-1.0.13"
 
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
+
 }
+
 
 android {
     namespace = "com.example.androidstudyapp"
@@ -43,6 +47,7 @@ android {
 }
 
 dependencies {
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -56,11 +61,15 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
-    implementation (libs.retrofit)
+    implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.appcompat.resources)
-    implementation (libs.glide)
+    implementation(libs.glide)
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
+
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
 }
+

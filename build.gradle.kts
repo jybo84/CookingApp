@@ -5,7 +5,10 @@ plugins {
     alias(libs.plugins.androidxNavigationSafeArgs) apply false
     alias(libs.plugins.kotlinParcelize) apply false
 
+    id ("com.google.dagger.hilt.android") version "2.51.1" apply false
+
 }
+
 buildscript {
     repositories {
         google()
