@@ -7,8 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.androidstudyapp.data.ImageUtils
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.data.RecipesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 
+@HiltViewModel
 class RecipeViewModel(
     private val recipesRepository: RecipesRepository
 ) : ViewModel() {

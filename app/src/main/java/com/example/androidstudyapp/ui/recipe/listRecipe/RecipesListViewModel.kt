@@ -8,12 +8,18 @@ import com.example.androidstudyapp.data.Category
 import com.example.androidstudyapp.data.ImageUtils
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.data.RecipesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+import javax.inject.Singleton
 
+@HiltViewModel
 class RecipesListViewModel(
     private val recipesRepository: RecipesRepository
 ) : ViewModel() {
-    data class RecipeListState(
+
+    @Singleton
+    data class RecipeListState @Inject constructor(
         var categoryName: String? = null,
         var categoryImageUrl: String? = null,
         val recipes: List<Recipe>? = emptyList(),

@@ -7,23 +7,27 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.databinding.FragmentFavouritesBinding
-import com.example.androidstudyapp.ui.RecipesApplication
 import com.example.androidstudyapp.ui.recipe.RecipesListAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class FavouritesFragment : Fragment() {
 
     private val binding by lazy { FragmentFavouritesBinding.inflate(layoutInflater) }
 
-    private lateinit var favouritesViewModel: FavouritesViewModel
+    @delegate:Inject
+    val favouritesViewModel: FavouritesViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val appContainer = (requireActivity().application as RecipesApplication).recipeModule
-        favouritesViewModel = appContainer.favouriteModelFactory.create()
+//        val appContainer = (requireActivity().application as RecipesApplication).recipeModule
+//        favouritesViewModel = appContainer.favouriteModelFactory.create()
     }
 
     override fun onCreateView(

@@ -6,13 +6,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.data.RecipesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
+import javax.inject.Singleton
 
+@HiltViewModel
 class FavouritesViewModel(
     private val recipesRepository:  RecipesRepository
 ) : ViewModel() {
 
-    data class FavouritesState(
+    @Singleton
+    data class FavouritesState @Inject constructor(
         val dataSet: List<Recipe>? = emptyList()
     )
 
