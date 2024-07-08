@@ -15,7 +15,6 @@ import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.databinding.FragmentRecipesListBinding
 import com.example.androidstudyapp.ui.recipe.RecipesListAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class RecipesListFragment : Fragment() {
@@ -23,8 +22,7 @@ class RecipesListFragment : Fragment() {
     private val binding by lazy { FragmentRecipesListBinding.inflate(layoutInflater) }
     private val args: RecipesListFragmentArgs by navArgs()
 
-    @delegate:Inject
-    val recipeListViewModel: RecipesListViewModel by viewModels()
+    private val recipeListViewModel: RecipesListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

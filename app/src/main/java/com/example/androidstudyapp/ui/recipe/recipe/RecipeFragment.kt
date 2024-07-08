@@ -18,7 +18,6 @@ import com.example.androidstudyapp.ui.category.CookingMethodAdapter
 import com.example.androidstudyapp.ui.category.IngredientsAdapter
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class RecipeFragment : Fragment() {
@@ -28,12 +27,7 @@ class RecipeFragment : Fragment() {
     private var adapterCookingMethod: CookingMethodAdapter? = null
     private val args: RecipeFragmentArgs by navArgs()
 
-    @delegate:Inject
-    val recipeViewModel: RecipeViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private val recipeViewModel: RecipeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +49,6 @@ class RecipeFragment : Fragment() {
         if (savedInstanceState == null)
             recipeViewModel.loadRecipe(args.recipeId)
     }
-
 
     private fun initUI() {
         adapterIngredient = IngredientsAdapter()

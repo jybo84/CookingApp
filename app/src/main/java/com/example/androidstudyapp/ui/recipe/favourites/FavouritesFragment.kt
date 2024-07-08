@@ -13,15 +13,13 @@ import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.databinding.FragmentFavouritesBinding
 import com.example.androidstudyapp.ui.recipe.RecipesListAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class FavouritesFragment : Fragment() {
 
     private val binding by lazy { FragmentFavouritesBinding.inflate(layoutInflater) }
 
-    @delegate:Inject
-    val favouritesViewModel: FavouritesViewModel by viewModels()
+    private val favouritesViewModel: FavouritesViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

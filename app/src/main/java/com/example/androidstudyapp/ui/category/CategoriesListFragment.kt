@@ -11,15 +11,13 @@ import androidx.navigation.fragment.findNavController
 import com.example.androidstudyapp.data.Category
 import com.example.androidstudyapp.databinding.FragmentListCategoriesBinding
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class CategoriesListFragment : Fragment() {
 
     private val binding by lazy { FragmentListCategoriesBinding.inflate(layoutInflater) }
 
-    @delegate:Inject
-    val categoriesListViewModel: CategoriesListViewModel by viewModels()
+    private val categoriesListViewModel: CategoriesListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
