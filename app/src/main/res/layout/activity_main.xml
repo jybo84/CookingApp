@@ -52,6 +52,7 @@
             android:backgroundTint="@color/color_button_favourites"
             android:text="@string/title_favourites"
             android:textColor="@color/white"
+            android:autoSizeTextType="uniform"
             app:icon="@drawable/ic_heart_empty"
             app:iconGravity="textEnd" />
 
