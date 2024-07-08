@@ -1,7 +1,5 @@
 package com.example.androidstudyapp.ui.recipe
 
-import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -38,16 +36,6 @@ class RecipesListAdapter(private val dataSet: List<Recipe>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val recipe: Recipe = dataSet[position]
         holder.tvTitleBurgerHolder.text = recipe.title
-
-        try {
-            Drawable.createFromStream(
-                holder.itemView.context.assets.open(recipe.imageUrl),
-                null
-            )
-        } catch (e: Exception) {
-            Log.e("Ошибка.", "Картинка не загрузилась. Не верный адрес")
-            null
-        }
 
         Glide.with(holder.itemView)
             .load(ImageUtils.getImageFullUrl(recipe.imageUrl))
