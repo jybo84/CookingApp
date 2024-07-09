@@ -9,6 +9,7 @@
     <color name="color_portions">#626466</color>
     <color name="color_empty_list">#666666</color>
     <color name="color_divider">#DBDDDF</color>
+    <color name="my_light_primary">#FFFFFFFF</color>
 
 </resources>
 
