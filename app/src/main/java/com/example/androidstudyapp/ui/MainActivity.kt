@@ -2,11 +2,13 @@ package com.example.androidstudyapp.ui
 
 import android.os.Build
 import android.os.Bundle
-import android.view.View
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.databinding.ActivityMainBinding
@@ -31,11 +33,33 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.apply {
-            buttonFavourites.setOnClickListener { navController.navigate(R.id.favouritesFragment) }
+            buttonFavourites.setOnClickListener {
+                navController.navigate(
+                    R.id.favouritesFragment, null,
+                    NavOptions.Builder()
+                        .setEnterAnim(androidx.navigation.ui.R.anim.nav_default_enter_anim)
+                        .build()
+                )
+            }
 
-            buttonCategory.setOnClickListener { navController.navigate(R.id.categoriesListFragment) }
+            buttonCategory.setOnClickListener {
+                navController.navigate(
+                    R.id.categoriesListFragment, null,
+                    NavOptions.Builder()
+                        .setEnterAnim(androidx.navigation.ui.R.anim.nav_default_enter_anim)
+                        .build()
+                )
+            }
         }
-        window.statusBarColor = getColor(R.color.white)
-        window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.light(
+                getColor(R.color.white), getColor(R.color.black)
+            ),
+            navigationBarStyle = SystemBarStyle.light(
+                getColor(R.color.white),
+                getColor(R.color.black)
+            )
+        )
     }
 }
