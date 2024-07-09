@@ -11,14 +11,14 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/mainContainer"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        app:defaultNavHost="true"
-        app:navGraph = "@navigation/nav_graph"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/nav_graph" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_16dp"
         android:layout_marginBottom="@dimen/linear_layout_margin_bottom"
+        android:autoSizeTextType="uniform"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +53,6 @@
             android:backgroundTint="@color/color_button_favourites"
             android:text="@string/title_favourites"
             android:textColor="@color/white"
-            android:autoSizeTextType="uniform"
             app:icon="@drawable/ic_heart_empty"
             app:iconGravity="textEnd" />
 
