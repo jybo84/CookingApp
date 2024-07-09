@@ -1,6 +1,9 @@
 package com.example.androidstudyapp.ui
 
+import android.os.Build
 import android.os.Bundle
+import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -16,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private val navController by lazy { findNavController(R.id.mainContainer) }
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -31,5 +35,7 @@ class MainActivity : AppCompatActivity() {
 
             buttonCategory.setOnClickListener { navController.navigate(R.id.categoriesListFragment) }
         }
+        window.statusBarColor = getColor(R.color.white)
+        window.decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 }

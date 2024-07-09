@@ -52,9 +52,10 @@
             android:layout_weight="1"
             android:backgroundTint="@color/color_button_favourites"
             android:text="@string/title_favourites"
-            android:textColor="@color/white"
-            app:icon="@drawable/ic_heart_empty"
-            app:iconGravity="textEnd" />
+            android:textColor="@color/white"  />
+<!--            app:icon="@drawable/ic_heart_empty"-->
+<!--            app:iconGravity="textEnd"-->
+
 
     </LinearLayout>
 
