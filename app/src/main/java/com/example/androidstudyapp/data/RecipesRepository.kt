@@ -17,7 +17,7 @@ class RecipesRepository @Inject constructor(
 
     suspend fun getCategories(): List<Category>? = withContext(Dispatchers.IO) {
         return@withContext try {
-            val newDataFromNetwork = recipeApiService.getListCategory().execute().body()
+            val newDataFromNetwork: List<Category>? = recipeApiService.getListCategory().execute().body()
             if (newDataFromNetwork != null) {
                 categoriesDao.addCategoryToList(newDataFromNetwork)
             }
@@ -27,14 +27,25 @@ class RecipesRepository @Inject constructor(
         }
     }
 
+     fun getAllRecipes(): List<Recipe>? {
+        val listRecipes =
+         return
+    }
+
+
+
+
+
+
     suspend fun getRecipesByCategoryId(categoryId: Int): List<Recipe>? =
         withContext(Dispatchers.IO) {
             return@withContext try {
-                recipeApiService.getListRecipesByIdCategory(categoryId).execute().body()
+           recipeApiService.getListRecipesByIdCategory(categoryId).execute().body()
             } catch (e: IOException) {
                 null
             }
         }
+
 
     suspend fun getRecipeById(id: Int): Recipe? = withContext(Dispatchers.IO) {
         return@withContext try {
