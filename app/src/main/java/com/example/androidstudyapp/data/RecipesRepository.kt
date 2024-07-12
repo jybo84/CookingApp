@@ -4,7 +4,6 @@ import com.example.androidstudyapp.data.db.CategoriesDao
 import com.example.androidstudyapp.data.db.RecipesDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.Call
 import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -27,17 +26,6 @@ class RecipesRepository @Inject constructor(
             null
         }
     }
-
-     fun getAllRecipes(listId: List<Int>): List<Recipe>? {
-        val listRecipes: List<Recipe>? = recipeApiService.getListRecipesById(listId).execute().body()
-
-         return
-    }
-
-
-
-
-
 
     suspend fun getRecipesByCategoryId(categoryId: Int): List<Recipe>? =
         withContext(Dispatchers.IO) {
