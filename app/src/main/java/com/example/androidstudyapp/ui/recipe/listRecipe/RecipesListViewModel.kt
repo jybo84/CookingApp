@@ -30,8 +30,22 @@ class RecipesListViewModel @Inject constructor(
 
         viewModelScope.launch {
 
-            val categoryFromCache: Recipe? =
-                recipesRepository.getRecipesFromCache(categoryId).find { it.id == categoryId }
+//            val categoryFromCache: Recipe? =
+//                recipesRepository.getRecipesFromCache(categoryId).find { it.id == categoryId }
+//
+//            if (categoryFromCache != null) {
+//                _state.postValue(
+//                    RecipeListState(
+//                        categoryName = categoryFromCache.title,
+//                        categoryImageUrl = ImageUtils.getImageFullUrl(categoryFromCache.imageUrl),
+//                        recipes = recipesRepository.getRecipesByCategoryId(categoryId)
+//                    )
+//                )
+//            }
+
+
+            val categoryFromCache: Category? =
+                recipesRepository.getCategoriesFromCache().find { it.id == categoryId }
 
             if (categoryFromCache != null) {
                 _state.postValue(
@@ -42,6 +56,7 @@ class RecipesListViewModel @Inject constructor(
                     )
                 )
             }
+
 
             val category: Category? = getCategoryById(categoryId)
             if (category != null) {
