@@ -29,6 +29,7 @@ class RecipeViewModel @Inject constructor(
     fun loadRecipe(recipeId: Int) {
         viewModelScope.launch {
 
+            //TODO isFavourite ???
             val recipeFromCash: Recipe? = recipesRepository.getRecipesFromCache(recipeId).find { it.id == recipeId }
             _state.postValue(
                 RecipeState(
