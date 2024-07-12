@@ -28,25 +28,29 @@ class RecipesRepository @Inject constructor(
         }
     }
 
-//    suspend fun getRecipesByCategoryId(categoryId: Int): List<Recipe>? =
-//        withContext(Dispatchers.IO) {
-//            val newDataFromNetwork =
-//                recipeApiService.getListRecipesByIdCategory(categoryId).execute().body()
-//            if (newDataFromNetwork != null) {
-//                recipesDao.addRecipeToList(newDataFromNetwork)
-//            }
-//            return@withContext newDataFromNetwork
-//        }
-
-
     suspend fun getRecipesByCategoryId(categoryId: Int): List<Recipe>? =
         withContext(Dispatchers.IO) {
             return@withContext try {
-           recipeApiService.getListRecipesByIdCategory(categoryId).execute().body()
+                val newDataFromNetwork =
+                    recipeApiService.getListRecipesByIdCategory(categoryId).execute().body()
+                if (newDataFromNetwork != null) {
+                    recipesDao.addRecipeToList(newDataFromNetwork)
+                }
+                newDataFromNetwork
             } catch (e: IOException) {
                 null
             }
         }
+
+
+//    suspend fun getRecipesByCategoryId(categoryId: Int): List<Recipe>? =
+//        withContext(Dispatchers.IO) {
+//            return@withContext try {
+//           recipeApiService.getListRecipesByIdCategory(categoryId).execute().body()
+//            } catch (e: IOException) {
+//                null
+//            }
+//        }
 
 
     suspend fun getRecipeById(id: Int): Recipe? = withContext(Dispatchers.IO) {
