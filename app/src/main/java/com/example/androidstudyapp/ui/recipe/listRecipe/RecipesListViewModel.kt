@@ -57,13 +57,12 @@ class RecipesListViewModel @Inject constructor(
                 )
             }
 
-
-            val category: Category? = getCategoryById(categoryId)
-            if (category != null) {
+            val categoryFromNetwork: Category? = getCategoryById(categoryId)
+            if (categoryFromNetwork != null) {
                 _state.postValue(
                     RecipeListState(
-                        categoryName = category.title,
-                        categoryImageUrl = ImageUtils.getImageFullUrl(category.imageUrl),
+                        categoryName = categoryFromNetwork.title,
+                        categoryImageUrl = ImageUtils.getImageFullUrl(categoryFromNetwork.imageUrl),
                         recipes = recipesRepository.getRecipesByCategoryId(categoryId)
                     )
                 )
