@@ -28,30 +28,14 @@ class RecipesRepository @Inject constructor(
         }
     }
 
-//    suspend fun getRecipesByCategoryId(categoryId: Int): List<Recipe>? =
-//        withContext(Dispatchers.IO) {
-//            return@withContext try {
-//                val newRecipesFromNetwork =
-//                    recipeApiService.getListRecipesByIdCategory(categoryId).execute().body()
-//                if (newRecipesFromNetwork != null) {
-//                    recipesDao.addRecipeToList(newRecipesFromNetwork)
-//                }
-//                newRecipesFromNetwork
-//            } catch (e: IOException) {
-//                null
-//            }
-//        }
-
-
     suspend fun getRecipesByCategoryId(categoryId: Int): List<Recipe>? =
         withContext(Dispatchers.IO) {
             return@withContext try {
-           recipeApiService.getListRecipesByIdCategory(categoryId).execute().body()
+                recipeApiService.getListRecipesByIdCategory(categoryId).execute().body()
             } catch (e: IOException) {
                 null
             }
         }
-
 
     suspend fun getRecipeById(id: Int): Recipe? = withContext(Dispatchers.IO) {
         return@withContext try {
@@ -63,10 +47,6 @@ class RecipesRepository @Inject constructor(
 
     suspend fun getCategoriesFromCache(): List<Category> = withContext(Dispatchers.IO) {
         return@withContext categoriesDao.getListAllCategory()
-    }
-
-    suspend fun getRecipesFromCache(categoryId: Int): List<Recipe> = withContext(Dispatchers.IO) {
-        return@withContext recipesDao.getListAllRecipes()
     }
 
     suspend fun getListFavouriteRecipes(): List<Recipe> = withContext(Dispatchers.IO) {

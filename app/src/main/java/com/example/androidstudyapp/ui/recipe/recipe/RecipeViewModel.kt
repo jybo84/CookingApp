@@ -29,24 +29,17 @@ class RecipeViewModel @Inject constructor(
     fun loadRecipe(recipeId: Int) {
         viewModelScope.launch {
 
-            //TODO isFavourite ???
-//            val recipeFromCash: Recipe? = recipesRepository.getRecipesFromCache(recipeId).find { it.id == recipeId }
-//            _state.postValue(
-//                RecipeState(
-//                    recipe = recipeFromCash,
-//                    isFavourite = getFavorites().contains(recipeId),
-//                    portionsCount = state.value?.portionsCount ?: 1,
-//                    recipeImageUrl = recipeFromCash?.imageUrl
-//                )
-//            )
-
             val recipeFromNetwork = recipesRepository.getRecipeById(recipeId)
             _state.postValue(
                 RecipeState(
                     recipe = recipeFromNetwork,
                     isFavourite = getFavorites().contains(recipeId),
                     portionsCount = state.value?.portionsCount ?: 1,
-                    recipeImageUrl = recipeFromNetwork?.imageUrl?.let { ImageUtils.getImageFullUrl(it) }
+                    recipeImageUrl = recipeFromNetwork?.imageUrl?.let {
+                        ImageUtils.getImageFullUrl(
+                            it
+                        )
+                    }
                 )
             )
         }
@@ -63,7 +56,6 @@ class RecipeViewModel @Inject constructor(
             _state.value = _state.value?.copy(isFavourite = !favourite)
         }
     }
-
 
     fun setCountPortions(count: Int): Int? {
         state.value?.portionsCount = count
