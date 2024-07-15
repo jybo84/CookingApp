@@ -17,40 +17,40 @@ class RecipesRepository @Inject constructor(
 
     suspend fun getCategories(): List<Category>? = withContext(Dispatchers.IO) {
         return@withContext try {
-            val newDataFromNetwork: List<Category>? =
+            val newCategoryFromNetwork: List<Category>? =
                 recipeApiService.getListCategory().execute().body()
-            if (newDataFromNetwork != null) {
-                categoriesDao.addCategoryToList(newDataFromNetwork)
+            if (newCategoryFromNetwork != null) {
+                categoriesDao.addCategoryToList(newCategoryFromNetwork)
             }
-            newDataFromNetwork
+            newCategoryFromNetwork
         } catch (e: IOException) {
             null
         }
     }
 
-    suspend fun getRecipesByCategoryId(categoryId: Int): List<Recipe>? =
-        withContext(Dispatchers.IO) {
-            return@withContext try {
-                val newDataFromNetwork =
-                    recipeApiService.getListRecipesByIdCategory(categoryId).execute().body()
-                if (newDataFromNetwork != null) {
-                    recipesDao.addRecipeToList(newDataFromNetwork)
-                }
-                newDataFromNetwork
-            } catch (e: IOException) {
-                null
-            }
-        }
-
-
 //    suspend fun getRecipesByCategoryId(categoryId: Int): List<Recipe>? =
 //        withContext(Dispatchers.IO) {
 //            return@withContext try {
-//           recipeApiService.getListRecipesByIdCategory(categoryId).execute().body()
+//                val newRecipesFromNetwork =
+//                    recipeApiService.getListRecipesByIdCategory(categoryId).execute().body()
+//                if (newRecipesFromNetwork != null) {
+//                    recipesDao.addRecipeToList(newRecipesFromNetwork)
+//                }
+//                newRecipesFromNetwork
 //            } catch (e: IOException) {
 //                null
 //            }
 //        }
+
+
+    suspend fun getRecipesByCategoryId(categoryId: Int): List<Recipe>? =
+        withContext(Dispatchers.IO) {
+            return@withContext try {
+           recipeApiService.getListRecipesByIdCategory(categoryId).execute().body()
+            } catch (e: IOException) {
+                null
+            }
+        }
 
 
     suspend fun getRecipeById(id: Int): Recipe? = withContext(Dispatchers.IO) {

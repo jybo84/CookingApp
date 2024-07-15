@@ -30,15 +30,15 @@ class RecipeViewModel @Inject constructor(
         viewModelScope.launch {
 
             //TODO isFavourite ???
-            val recipeFromCash: Recipe? = recipesRepository.getRecipesFromCache(recipeId).find { it.id == recipeId }
-            _state.postValue(
-                RecipeState(
-                    recipe = recipeFromCash,
-                    isFavourite = getFavorites().contains(recipeId),
-                    portionsCount = state.value?.portionsCount ?: 1,
-                    recipeImageUrl = recipeFromCash?.imageUrl
-                )
-            )
+//            val recipeFromCash: Recipe? = recipesRepository.getRecipesFromCache(recipeId).find { it.id == recipeId }
+//            _state.postValue(
+//                RecipeState(
+//                    recipe = recipeFromCash,
+//                    isFavourite = getFavorites().contains(recipeId),
+//                    portionsCount = state.value?.portionsCount ?: 1,
+//                    recipeImageUrl = recipeFromCash?.imageUrl
+//                )
+//            )
 
             val recipeFromNetwork = recipesRepository.getRecipeById(recipeId)
             _state.postValue(
