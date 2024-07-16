@@ -6,22 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.androidstudyapp.data.Category
 import com.example.androidstudyapp.databinding.FragmentListCategoriesBinding
-import com.example.androidstudyapp.ui.RecipesApplication
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CategoriesListFragment : Fragment() {
 
     private val binding by lazy { FragmentListCategoriesBinding.inflate(layoutInflater) }
 
-    private lateinit var categoriesListViewModel: CategoriesListViewModel
+    private val categoriesListViewModel: CategoriesListViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val appContainer = (requireActivity().application as RecipesApplication).appContainer
-        categoriesListViewModel = appContainer.categoriesListViewModelFactory.create()
     }
 
     override fun onCreateView(

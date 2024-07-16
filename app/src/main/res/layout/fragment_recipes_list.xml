@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/color_background"
     android:orientation="vertical"
-    tools:layout="@layout/fragment_recipes_list"
-    tools:context=".ui.category.CategoriesListFragment">
+    tools:context=".ui.category.CategoriesListFragment"
+    tools:layout="@layout/fragment_recipes_list">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -7,9 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.androidstudyapp.data.ImageUtils
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.data.RecipesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RecipeViewModel(
+@HiltViewModel
+class RecipeViewModel @Inject constructor(
     private val recipesRepository: RecipesRepository
 ) : ViewModel() {
 
@@ -25,13 +28,18 @@ class RecipeViewModel(
 
     fun loadRecipe(recipeId: Int) {
         viewModelScope.launch {
-            val recipe = recipesRepository.getRecipeById(recipeId)
+
+            val recipeFromNetwork = recipesRepository.getRecipeById(recipeId)
             _state.postValue(
                 RecipeState(
-                    recipe = recipe,
+                    recipe = recipeFromNetwork,
                     isFavourite = getFavorites().contains(recipeId),
                     portionsCount = state.value?.portionsCount ?: 1,
-                    recipeImageUrl = recipe?.imageUrl?.let { ImageUtils.getImageFullUrl(it) }
+                    recipeImageUrl = recipeFromNetwork?.imageUrl?.let {
+                        ImageUtils.getImageFullUrl(
+                            it
+                        )
+                    }
                 )
             )
         }
@@ -48,7 +56,6 @@ class RecipeViewModel(
             _state.value = _state.value?.copy(isFavourite = !favourite)
         }
     }
-
 
     fun setCountPortions(count: Int): Int? {
         state.value?.portionsCount = count

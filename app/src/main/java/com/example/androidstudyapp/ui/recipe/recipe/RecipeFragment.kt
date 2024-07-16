@@ -9,29 +9,25 @@ import android.widget.LinearLayout
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.androidstudyapp.R
 import com.example.androidstudyapp.databinding.FragmentRecipeBinding
-import com.example.androidstudyapp.ui.RecipesApplication
 import com.example.androidstudyapp.ui.category.CookingMethodAdapter
 import com.example.androidstudyapp.ui.category.IngredientsAdapter
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RecipeFragment : Fragment() {
 
     private val binding by lazy { FragmentRecipeBinding.inflate(layoutInflater) }
     private var adapterIngredient: IngredientsAdapter? = null
     private var adapterCookingMethod: CookingMethodAdapter? = null
     private val args: RecipeFragmentArgs by navArgs()
-    private lateinit var recipeViewModel: RecipeViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val appContainer = (requireActivity().application as RecipesApplication).appContainer
-        recipeViewModel = appContainer.recipeViewModelFactory.create()
-    }
+    private val recipeViewModel: RecipeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +49,6 @@ class RecipeFragment : Fragment() {
         if (savedInstanceState == null)
             recipeViewModel.loadRecipe(args.recipeId)
     }
-
 
     private fun initUI() {
         adapterIngredient = IngredientsAdapter()

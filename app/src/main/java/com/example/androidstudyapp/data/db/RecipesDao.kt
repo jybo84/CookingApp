@@ -21,5 +21,3 @@ interface RecipesDao {
     @Upsert
     fun updateRecipe(recipe: Recipe)
 }
-
-

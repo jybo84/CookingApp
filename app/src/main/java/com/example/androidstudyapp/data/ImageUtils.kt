@@ -6,4 +6,3 @@ object ImageUtils {
         return "$API_BASE_IMAGES_URL/$imageUrl"
     }
 }
-

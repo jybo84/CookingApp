@@ -8,11 +8,15 @@ import com.example.androidstudyapp.data.Category
 import com.example.androidstudyapp.data.ImageUtils
 import com.example.androidstudyapp.data.Recipe
 import com.example.androidstudyapp.data.RecipesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RecipesListViewModel(
+@HiltViewModel
+class RecipesListViewModel @Inject constructor(
     private val recipesRepository: RecipesRepository
 ) : ViewModel() {
+
     data class RecipeListState(
         var categoryName: String? = null,
         var categoryImageUrl: String? = null,
@@ -26,8 +30,8 @@ class RecipesListViewModel(
 
         viewModelScope.launch {
 
-            val categoryFromCache: Recipe? =
-                recipesRepository.getRecipesFromCache(categoryId).find { it.id == categoryId }
+            val categoryFromCache: Category? =
+                recipesRepository.getCategoriesFromCache().find { it.id == categoryId }
 
             if (categoryFromCache != null) {
                 _state.postValue(
@@ -39,12 +43,12 @@ class RecipesListViewModel(
                 )
             }
 
-            val category: Category? = getCategoryById(categoryId)
-            if (category != null) {
+            val categoryFromNetwork: Category? = getCategoryById(categoryId)
+            if (categoryFromNetwork != null) {
                 _state.postValue(
                     RecipeListState(
-                        categoryName = category.title,
-                        categoryImageUrl = ImageUtils.getImageFullUrl(category.imageUrl),
+                        categoryName = categoryFromNetwork.title,
+                        categoryImageUrl = ImageUtils.getImageFullUrl(categoryFromNetwork.imageUrl),
                         recipes = recipesRepository.getRecipesByCategoryId(categoryId)
                     )
                 )

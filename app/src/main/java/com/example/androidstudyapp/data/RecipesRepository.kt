@@ -5,20 +5,24 @@ import com.example.androidstudyapp.data.db.RecipesDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RecipesRepository(
-    val categoriesDao: CategoriesDao,
-    val recipesDao: RecipesDao,
-    val recipeApiService: RecipeApiService,
+@Singleton
+class RecipesRepository @Inject constructor(
+    private val categoriesDao: CategoriesDao,
+    private val recipesDao: RecipesDao,
+    private val recipeApiService: RecipeApiService,
 ) {
 
     suspend fun getCategories(): List<Category>? = withContext(Dispatchers.IO) {
         return@withContext try {
-            val newDataFromNetwork = recipeApiService.getListCategory().execute().body()
-            if (newDataFromNetwork != null) {
-                categoriesDao.addCategoryToList(newDataFromNetwork)
+            val newCategoryFromNetwork: List<Category>? =
+                recipeApiService.getListCategory().execute().body()
+            if (newCategoryFromNetwork != null) {
+                categoriesDao.addCategoryToList(newCategoryFromNetwork)
             }
-            newDataFromNetwork
+            newCategoryFromNetwork
         } catch (e: IOException) {
             null
         }
@@ -43,10 +47,6 @@ class RecipesRepository(
 
     suspend fun getCategoriesFromCache(): List<Category> = withContext(Dispatchers.IO) {
         return@withContext categoriesDao.getListAllCategory()
-    }
-
-    suspend fun getRecipesFromCache(categoryId: Int): List<Recipe> = withContext(Dispatchers.IO) {
-        return@withContext recipesDao.getListAllRecipes()
     }
 
     suspend fun getListFavouriteRecipes(): List<Recipe> = withContext(Dispatchers.IO) {

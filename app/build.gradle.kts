@@ -4,7 +4,7 @@ plugins {
     id("kotlin-parcelize")
     alias(libs.plugins.androidxNavigationSafeArgs)
     id("com.google.devtools.ksp") version "1.9.0-1.0.13"
-
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -43,6 +43,7 @@ android {
 }
 
 dependencies {
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -56,11 +57,14 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
-    implementation (libs.retrofit)
+    implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.appcompat.resources)
-    implementation (libs.glide)
+    implementation(libs.glide)
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
+    implementation(libs.hilt.android.v2511)
+    ksp(libs.hilt.android.compiler.v2511)
 }
+
